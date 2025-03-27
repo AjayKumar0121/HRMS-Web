@@ -388,7 +388,7 @@ body {
     position: absolute; /* Already set */
     top: 100%; 
     right: 0; /* Adjust as needed */
-    height: auto;
+    height: 575px;
     color: white;
     width: 180px;
     gap: 10px;
