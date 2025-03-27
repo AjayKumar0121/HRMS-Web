@@ -386,9 +386,9 @@ body {
     padding: 8px 15px;
     margin-top: 20px;
     position: absolute; /* Already set */
-    top: 100%; /* Adjust as needed */
+    top: 100%; 
     right: 0; /* Adjust as needed */
-    height: 375px;
+    height: auto;
     color: white;
     width: 180px;
     gap: 10px;
