@@ -655,7 +655,7 @@ body.dark-mode {
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-primary">
+                    <button class="btn btn-primary" onclick="showdetails('Office Supplies:\nNotebook, Pen, Mouse, Laptop Bag\nAllocated Date: 06-09-2024')">
                         <i class="fas fa-info-circle"></i>
                         View Details
                     </button>
@@ -694,7 +694,7 @@ body.dark-mode {
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-primary">
+                    <button class="btn btn-primary" onclick="showdetails('Current Project:\nProject Name: New HRMS Website\nStart Date: 07-09-2024\nDue Date: 31-12-2024')">
                         <i class="fas fa-info-circle"></i>
                         View Details
                     </button>
@@ -733,7 +733,7 @@ body.dark-mode {
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-primary">
+                    <button class="btn btn-primary" onclick="showdetails('Current Assignment:\nTask: UI Designs\nStart Date: 10-10-2024\nDue Date: 15-10-2024')">
                         <i class="fas fa-info-circle"></i>
                         View Details
                     </button>
@@ -765,7 +765,7 @@ body.dark-mode {
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-primary">
+                    <button class="btn btn-primary" onclick="showdetails('Bonus Details:\nAmount: ₹5000\nCredited Date: 01-10-2024')">
                         <i class="fas fa-info-circle"></i>
                         View Details
                     </button>
@@ -810,7 +810,7 @@ body.dark-mode {
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-primary">
+                    <button class="btn btn-primary" onclick="showdetails('Bonus Details:\nAmount: ₹5000\nCredited Date: 01-10-2024')">
                         <i class="fas fa-info-circle"></i>
                         View Details
                     </button>
@@ -892,300 +892,351 @@ body.dark-mode {
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Add input event listeners for real-time validation
-            document.getElementById("employeeName").addEventListener("input", function () {
-                validateEmployeeName();
-            });
+     document.addEventListener("DOMContentLoaded", function () {
+    // Initialize date input constraints
+    const requestDateInput = document.getElementById("request-date");
+    const today = new Date();
+    const oneYearFromNow = new Date();
+    oneYearFromNow.setFullYear(today.getFullYear() + 1);
+    
+    // Format dates for input min/max attributes (YYYY-MM-DD)
+    const formatDate = (date) => date.toISOString().split('T')[0];
+    requestDateInput.min = formatDate(today);
+    requestDateInput.max = formatDate(oneYearFromNow);
 
-            document.getElementById("emp-email").addEventListener("input", function () {
-                validateEmail();
-            });
+    // Add input event listeners for real-time validation
+    document.getElementById("employeeName").addEventListener("input", function () {
+        validateEmployeeName();
+    });
 
-            document.getElementById("request-date").addEventListener("input", function () {
-                validateRequestDate();
-            });
+    document.getElementById("emp-email").addEventListener("input", function () {
+        validateEmail();
+    });
 
-            document.getElementById("asset-name").addEventListener("input", function () {
-                validateAssetName();
-            });
+    document.getElementById("request-date").addEventListener("input", function () {
+        validateRequestDate();
+    });
 
-            document.getElementById("asset-details").addEventListener("input", function () {
-                validateAssetDetails();
-            });
+    document.getElementById("asset-name").addEventListener("input", function () {
+        validateAssetName();
+    });
 
-            // Form submission handler
-            document.getElementById('asset-request-form').addEventListener('submit', function (e) {
-                e.preventDefault();
+    document.getElementById("asset-details").addEventListener("input", function () {
+        validateAssetDetails();
+    });
 
-                // Validate all fields before submission
-                if (
-                    !validateEmployeeName() ||
-                    !validateEmail() ||
-                    !validateRequestDate() ||
-                    !validateAssetName() ||
-                    !validateAssetDetails()
-                ) {
-                    return; // Stop submission if any field is invalid
-                }
+    // Form submission handler
+    document.getElementById('asset-request-form').addEventListener('submit', function (e) {
+        e.preventDefault();
 
-                const empName = document.getElementById('employeeName').value;
-                const empEmail = document.getElementById('emp-email').value;
-                const requestDate = document.getElementById('request-date').value;
-                const assetType = document.getElementById('asset-type').value;
-                const assetName = document.getElementById('asset-name').value;
-                const assetDetails = document.getElementById('asset-details').value;
-
-                const currentDate = new Date().toISOString().split('T')[0];
-
-                // Validate request date
-                if (new Date(requestDate) < new Date(currentDate)) {
-                    alert('Please select a valid Date');
-                    return false;
-                }
-
-                // Save request to localStorage
-                let requests = JSON.parse(localStorage.getItem('assetRequests')) || [];
-
-                const newRequest = {
-                    id: Date.now(),
-                    employeeName: empName,
-                    email: empEmail,
-                    requestDate: requestDate,
-                    type: assetType,
-                    name: assetName,
-                    details: assetDetails,
-                    date: new Date().toLocaleDateString(),
-                    status: "Pending"
-                };
-
-                requests.push(newRequest);
-                localStorage.setItem('assetRequests', JSON.stringify(requests));
-
-                // Notify user and reset form
-                alert('Asset Request Submitted');
-                document.getElementById('asset-request-form').reset();
-                document.getElementById('request-form').style.display = 'none';
-
-                // Display updated requests
-                displayRequests();
-            });
-
-            // Function to validate employee name
-            function validateEmployeeName() {
-                const input = document.getElementById("employeeName");
-                const errorMessage = document.getElementById("employeeName-error");
-                const value = input.value.trim();
-
-                const regex = /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
-
-                if (!regex.test(value) || value.length < 3 || value.length > 100) {
-                    errorMessage.style.display = 'block';
-                    errorMessage.textContent = 'Invalid employee name.';
-                    input.setCustomValidity('Invalid employee name.');
-                    return false;
-                } else {
-                    errorMessage.style.display = 'none';
-                    input.setCustomValidity('');
-                    return true;
-                }
-            }
-
-            // Function to validate email
-            function validateEmail() {
-                const input = document.getElementById("emp-email");
-                const errorMessage = document.getElementById("emp-email-error");
-                const value = input.value.trim();
-
-                const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-                if (!emailPattern.test(value)) {
-                    errorMessage.style.display = 'block';
-                    errorMessage.textContent = 'Invalid email address.';
-                    input.setCustomValidity('Invalid email address.');
-                    return false;
-                } else {
-                    errorMessage.style.display = 'none';
-                    input.setCustomValidity('');
-                    return true;
-                }
-            }
-
-            function validateRequestDate() {
-                const input = document.getElementById("request-date");
-                const errorMessage = document.getElementById("request-date-error");
-                const value = input.value;
-
-                const currentDate = new Date().toISOString().split('T')[0];
-
-                if (new Date(value) < new Date(currentDate)) {
-                    errorMessage.style.display = 'block';
-                    errorMessage.textContent = 'Invalid request date.';
-                    input.setCustomValidity('Invalid request date.');
-                    return false;
-                } else {
-                    errorMessage.style.display = 'none';
-                    input.setCustomValidity('');
-                    return true;
-                }
-            }
-
-            // Function to validate asset name
-            function validateAssetName() {
-                const input = document.getElementById("asset-name");
-                const errorMessage = document.getElementById("asset-name-error");
-                const value = input.value.trim();
-
-                if (value.length < 2 || value.length > 40) {
-                    errorMessage.style.display = 'block';
-                    errorMessage.textContent = 'Asset name must be between 2 and 40 characters.';
-                    input.setCustomValidity('Invalid asset name.');
-                    return false;
-                } else {
-                    errorMessage.style.display = 'none';
-                    input.setCustomValidity('');
-                    return true;
-                }
-            }
-
-            // Function to validate asset details
-            function validateAssetDetails() {
-                const textarea = document.getElementById("asset-details");
-                const errorMessage = document.getElementById("asset-details-error");
-                const value = textarea.value.trim();
-
-                const regex = /^[A-Za-z][A-Za-z0-9\s,.]*$/;
-                const invalidConsecutive = /(,{2,}|\.{2,}|\s{2,}|,\s,|\.\s\.|,\s\.|\.\s,)/;
-
-                if (!regex.test(value) || invalidConsecutive.test(value)) {
-                    errorMessage.style.display = 'block';
-                    errorMessage.textContent = 'Invalid input. Please start with a letter and avoid consecutive spaces, commas, or periods.';
-                    textarea.setCustomValidity('Invalid input. Please follow the rules.');
-                    return false;
-                } else if (value.length < 3 || value.length > 100) {
-                    errorMessage.style.display = 'block';
-                    errorMessage.textContent = 'Details must be between 3 and 100 characters.';
-                    textarea.setCustomValidity('Invalid input. Please follow the rules.');
-                    return false;
-                } else {
-                    errorMessage.style.display = 'none';
-                    textarea.setCustomValidity('');
-                    return true;
-                }
-            }
-
-            // Function to get status color
-            function getStatusColor(status) {
-                switch (status.toLowerCase()) {
-                    case "pending":
-                        return "status-pending";
-                    case "approved":
-                        return "status-approved";
-                    case "rejected":
-                        return "status-rejected";
-                    default:
-                        return "";
-                }
-            }
-        
-            function displayRequests() {
-                let requests = JSON.parse(localStorage.getItem('assetRequests')) || [];
-                const container = document.getElementById('requests-container');
-                container.innerHTML = '';
-
-                if (requests.length === 0) {
-                    container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666;">No requests found</p>';
-                    return;
-                }
-
-                requests.forEach((request) => {
-                    const statusClass = getStatusColor(request.status);
-                    const card = document.createElement('div');
-                    card.classList.add('request-card');
-
-                    card.innerHTML = `
-                        <div class="request-header">
-                            <h3 class="request-title">${request.type}</h3>
-                            <span class="request-status ${statusClass}">${request.status}</span>
-                        </div>
-                        <div class="asset-info">
-                            <i class="fas fa-user"></i>
-                            <div class="asset-detail">
-                                <span class="asset-label">Employee</span>
-                                <span class="asset-value">${request.employeeName}</span>
-                            </div>
-                        </div>
-                        <div class="asset-info">
-                            <i class="fas fa-envelope"></i>
-                            <div class="asset-detail">
-                                <span class="asset-label">Email</span>
-                                <span class="asset-value">${request.email}</span>
-                            </div>
-                        </div>
-                        <div class="asset-info">
-                            <i class="fas fa-laptop"></i>
-                            <div class="asset-detail">
-                                <span class="asset-label">Asset</span>
-                                <span class="asset-value">${request.name}</span>
-                            </div>
-                        </div>
-                        <div class="asset-info">
-                            <i class="fas fa-info-circle"></i>
-                            <div class="asset-detail">
-                                <span class="asset-label">Details</span>
-                                <span class="asset-value">${request.details}</span>
-                            </div>
-                        </div>
-                        <div class="asset-info">
-                            <i class="fas fa-calendar-alt"></i>
-                            <div class="asset-detail">
-                                <span class="asset-label">Request Date</span>
-                                <span class="asset-value">${request.requestDate}</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-primary">
-                                <i class="fas fa-info-circle"></i>
-                                View Details
-                            </button>
-                        </div>
-                    `;
-
-                    container.appendChild(card);
-                });
-            }
-        
-            // Display requests on page load
-            displayRequests();
-        });
-
-        function showdetails(details) {
-            alert(details);
+        // Validate all fields before submission
+        if (
+            !validateEmployeeName() ||
+            !validateEmail() ||
+            !validateRequestDate() ||
+            !validateAssetName() ||
+            !validateAssetDetails()
+        ) {
+            alert('Please correct the errors in the form before submitting.');
+            return; // Stop submission if any field is invalid
         }
 
-          
-window.addEventListener('message', function (event) {
- 
- if (event.data && typeof event.data.darkMode === 'boolean') {
-   const isDarkMode = event.data.darkMode;
+        const empName = document.getElementById('employeeName').value;
+        const empEmail = document.getElementById('emp-email').value;
+        const requestDate = document.getElementById('request-date').value;
+        const assetType = document.getElementById('asset-type').value;
+        const assetName = document.getElementById('asset-name').value;
+        const assetDetails = document.getElementById('asset-details').value;
 
-   
-   if (isDarkMode) {
-     document.body.classList.add('dark-mode');
-   } else {
-     document.body.classList.remove('dark-mode');
-   }
- }
+        // Save request to localStorage
+        let requests = JSON.parse(localStorage.getItem('assetRequests')) || [];
+
+        const newRequest = {
+            id: Date.now(),
+            employeeName: empName,
+            email: empEmail,
+            requestDate: requestDate,
+            type: assetType,
+            name: assetName,
+            details: assetDetails,
+            date: new Date().toLocaleDateString(),
+            status: "Pending"
+        };
+
+        requests.push(newRequest);
+        localStorage.setItem('assetRequests', JSON.stringify(requests));
+
+        // Notify user and reset form
+        alert('Asset Request Submitted Successfully!');
+        document.getElementById('asset-request-form').reset();
+        document.getElementById('request-form').style.display = 'none';
+
+        // Display updated requests
+        displayRequests();
+    });
+
+    // Function to validate employee name
+    function validateEmployeeName() {
+        const input = document.getElementById("employeeName");
+        const errorMessage = document.getElementById("employeeName-error");
+        const value = input.value.trim();
+
+        const regex = /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
+
+        if (value === '') {
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'Employee name is required.';
+            input.setCustomValidity('Employee name is required.');
+            return false;
+        } else if (!regex.test(value)) {
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'Only letters, spaces and dots are allowed.';
+            input.setCustomValidity('Invalid employee name format.');
+            return false;
+        } else if (value.length < 3 || value.length > 100) {
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'Name must be between 3 and 100 characters.';
+            input.setCustomValidity('Name length invalid.');
+            return false;
+        } else {
+            errorMessage.style.display = 'none';
+            input.setCustomValidity('');
+            return true;
+        }
+    }
+
+    // Function to validate email with specific character limits
+    function validateEmail() {
+        const input = document.getElementById("emp-email");
+        const errorMessage = document.getElementById("emp-email-error");
+        const value = input.value.trim();
+
+    
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]{2,15}\.[a-zA-Z]{2,3}$/;
+
+        if (value === '') {
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'Email is required.';
+            input.setCustomValidity('Email is required.');
+            return false;
+        } else if (!emailPattern.test(value)) {
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'Invalid email format. Example: user@domain.com (2-15 chars after @, 2-3 chars after .)';
+            input.setCustomValidity('Invalid email format.');
+            return false;
+        } else {
+            errorMessage.style.display = 'none';
+            input.setCustomValidity('');
+            return true;
+        }
+    }
+
+    // Function to validate request date
+    function validateRequestDate() {
+        const input = document.getElementById("request-date");
+        const errorMessage = document.getElementById("request-date-error");
+        const value = input.value;
+
+        if (!value) {
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'Request date is required.';
+            input.setCustomValidity('Request date is required.');
+            return false;
+        }
+
+        const selectedDate = new Date(value);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Reset time part for accurate comparison
+        
+        const oneYearFromNow = new Date();
+        oneYearFromNow.setFullYear(today.getFullYear() + 1);
+        oneYearFromNow.setHours(0, 0, 0, 0);
+
+        if (selectedDate < today) {
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'Date cannot be in the past.';
+            input.setCustomValidity('Date cannot be in the past.');
+            return false;
+        } else if (selectedDate > oneYearFromNow) {
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'Date cannot be more than 1 year from now.';
+            input.setCustomValidity('Date cannot be more than 1 year from now.');
+            return false;
+        } else {
+            errorMessage.style.display = 'none';
+            input.setCustomValidity('');
+            return true;
+        }
+    }
+
+    // Function to validate asset name
+    function validateAssetName() {
+        const input = document.getElementById("asset-name");
+        const errorMessage = document.getElementById("asset-name-error");
+        const value = input.value.trim();
+
+        if (value === '') {
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'Asset name is required.';
+            input.setCustomValidity('Asset name is required.');
+            return false;
+        } else if (value.length < 2 || value.length > 40) {
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'Asset name must be between 2 and 40 characters.';
+            input.setCustomValidity('Invalid asset name length.');
+            return false;
+        } else {
+            errorMessage.style.display = 'none';
+            input.setCustomValidity('');
+            return true;
+        }
+    }
+
+    // Function to validate asset details
+    function validateAssetDetails() {
+        const textarea = document.getElementById("asset-details");
+        const errorMessage = document.getElementById("asset-details-error");
+        const value = textarea.value.trim();
+
+        const regex = /^[A-Za-z][A-Za-z0-9\s,.]*$/;
+        const invalidConsecutive = /(,{2,}|\.{2,}|\s{2,}|,\s,|\.\s\.|,\s\.|\.\s,)/;
+
+        if (value === '') {
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'Asset details are required.';
+            textarea.setCustomValidity('Asset details are required.');
+            return false;
+        } else if (!regex.test(value)) {
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'Must start with a letter. Only letters, numbers, spaces, commas and periods allowed.';
+            textarea.setCustomValidity('Invalid characters in details.');
+            return false;
+        } else if (invalidConsecutive.test(value)) {
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'Avoid consecutive spaces, commas, or periods.';
+            textarea.setCustomValidity('Invalid consecutive characters.');
+            return false;
+        } else if (value.length < 3 || value.length > 100) {
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'Details must be between 3 and 100 characters.';
+            textarea.setCustomValidity('Invalid details length.');
+            return false;
+        } else {
+            errorMessage.style.display = 'none';
+            textarea.setCustomValidity('');
+            return true;
+        }
+    }
+
+    // Function to get status color
+    function getStatusColor(status) {
+        switch (status.toLowerCase()) {
+            case "pending":
+                return "status-pending";
+            case "approved":
+                return "status-approved";
+            case "rejected":
+                return "status-rejected";
+            default:
+                return "";
+        }
+    }
+
+    function displayRequests() {
+        let requests = JSON.parse(localStorage.getItem('assetRequests')) || [];
+        const container = document.getElementById('requests-container');
+        container.innerHTML = '';
+
+        if (requests.length === 0) {
+            container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666;">No requests found</p>';
+            return;
+        }
+
+        requests.forEach((request) => {
+            const statusClass = getStatusColor(request.status);
+            const card = document.createElement('div');
+            card.classList.add('request-card');
+
+            card.innerHTML = `
+                <div class="request-header">
+                    <h3 class="request-title">${request.type}</h3>
+                    <span class="request-status ${statusClass}">${request.status}</span>
+                </div>
+                <div class="asset-info">
+                    <i class="fas fa-user"></i>
+                    <div class="asset-detail">
+                        <span class="asset-label">Employee</span>
+                        <span class="asset-value">${request.employeeName}</span>
+                    </div>
+                </div>
+                <div class="asset-info">
+                    <i class="fas fa-envelope"></i>
+                    <div class="asset-detail">
+                        <span class="asset-label">Email</span>
+                        <span class="asset-value">${request.email}</span>
+                    </div>
+                </div>
+                <div class="asset-info">
+                    <i class="fas fa-laptop"></i>
+                    <div class="asset-detail">
+                        <span class="asset-label">Asset</span>
+                        <span class="asset-value">${request.name}</span>
+                    </div>
+                </div>
+                <div class="asset-info">
+                    <i class="fas fa-info-circle"></i>
+                    <div class="asset-detail">
+                        <span class="asset-label">Details</span>
+                        <span class="asset-value">${request.details}</span>
+                    </div>
+                </div>
+                <div class="asset-info">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div class="asset-detail">
+                        <span class="asset-label">Request Date</span>
+                        <span class="asset-value">${request.requestDate}</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary" onclick="showdetails('${request.details.replace(/'/g, "\\'")}')">
+                        <i class="fas fa-info-circle"></i>
+                        View Details
+                    </button>
+                </div>
+            `;
+
+            container.appendChild(card);
+        });
+    }
+
+    // Display requests on page load
+    displayRequests();
+});
+
+function showdetails(details) {
+    alert(details);
+}
+
+window.addEventListener('message', function (event) {
+    if (event.data && typeof event.data.darkMode === 'boolean') {
+        const isDarkMode = event.data.darkMode;
+        
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+        }
+    }
 });
 
 // Check localStorage for dark mode preference on iframe load
 window.onload = function () {
- const isDarkMode = localStorage.getItem('darkMode') === 'true';
- if (isDarkMode) {
-   document.body.classList.add('dark-mode');
- } else {
-   document.body.classList.remove('dark-mode');
- }
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
 };
     </script>
 </body>
