@@ -38,7 +38,6 @@
       font-size: 36px;
       color: white;
       font-weight: 600;
-      text-transform: uppercase;
       letter-spacing: 2px;
       position: relative;
       z-index: 2;
@@ -489,8 +488,8 @@ header p{
                 <div class="form-group">
                     <label for="task-name" class="form-label">Work Item Name</label>
                     <input type="text" id="task-name" class="form-control" name="task-name" required minlength="5" placeholder="Enter Work Item name" maxlength="100">
-                    <div class="error-message" id="task-name-error">Work Item name must be at least 5 characters long.</div>
                 </div>
+                <div class="error-message" id="task-name-error">Work Item name must be at least 5 characters long.</div>
                 
                 <div class="form-group">
                     <label for="employee-name" class="form-label">Employee Name</label>
@@ -498,32 +497,36 @@ header p{
                            minlength="3" maxlength="100"
                            pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
                            title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
-                    <div class="error-message" id="employee-name-error">Invalid employee name format.</div>
+                    
                 </div>
-                
+                <div class="error-message" id="employee-name-error">Invalid employee name format.</div> 
+
                 <div class="form-group">
                     <label for="employee-id" class="form-label">Employee ID</label>
                     <input type="text" id="employee-id" class="form-control" name="employee-id" required minlength="7" maxlength="7" 
                            placeholder="Enter Your ID" pattern="^[A-Z]{3}(?!0000)[0-9]{4}$" 
                            title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits, starting from 0001 (cannot be 0000)">
-                    <div class="error-message" id="employee-id-error">Employee ID must be in the format ABC1234.</div>
                 </div>
+                <div class="error-message" id="employee-id-error">Employee ID must be in the format ABC1234.</div>
+
                 
                 <div class="form-group">
                     <label for="upload-doc" class="form-label">Upload Document</label>
                     <input type="file" id="upload-doc" class="form-control" name="upload-doc" required accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.txt"
                            title="Acceptable file formats: PDF, DOC, DOCX, JPG, JPEG, PNG, TXT">
-                    <div class="error-message" id="upload-doc-error">Please upload a valid file (PDF, DOC, DOCX, JPG, JPEG, PNG, TXT).</div>
                 </div>
+                <div class="error-message" id="upload-doc-error">Please upload a valid file (PDF, DOC, DOCX, JPG, JPEG, PNG, TXT).</div>
+
                 
                 <div class="form-group">
                     <label for="task-status" class="form-label">Work Status</label>
                     <select id="task-status" class="form-control form-select" name="task-status" required>
                         <option value="completed">Completed</option>
-                        <option value="inprocess">In Process</option>
+                        <option value="inprocess">In Progess</option>
                     </select>
-                    <div class="error-message" id="task-status-error">Please select a work status.</div>
                 </div>
+                <div class="error-message" id="task-status-error">Please select a work status.</div>
+
                 
                 <button type="submit" class="btn btn-block">Submit Work Update</button>
             </form>
@@ -542,11 +545,11 @@ header p{
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Load work items from localStorage
+           
             loadWorkItems();
             loadHistory();
             
-            // Setup form validation
+     
             setupValidation();
         });
         
@@ -571,14 +574,14 @@ header p{
                 const workCard = document.createElement('div');
                 workCard.className = 'work-card';
                 
-                // let statusBadge = '';
-                // if (task.status === 'pending') {
-                //     statusBadge = '<span class="status-badge status-pending">Pending</span>';
-                // } else if (task.status === 'inprocess') {
-                //     statusBadge = '<span class="status-badge status-inprocess">In Process</span>';
-                // } else {
-                //     statusBadge = '<span class="status-badge status-completed">Completed</span>';
-                // }
+                let statusBadge = '';
+                if (task.status === 'pending') {
+                    statusBadge = '<span class="status-badge status-pending">Pending</span>';
+                } else if (task.status === 'inprocess') {
+                    statusBadge = '<span class="status-badge status-inprocess">In Process</span>';
+                } else {
+                    statusBadge = '<span class="status-badge status-completed">Completed</span>';
+                }
                 
                 workCard.innerHTML = `
                     <div class="work-project">HRMS Portal</div>
@@ -692,7 +695,7 @@ header p{
             });
             
             employeeIdInput.addEventListener('input', function() {
-                const pattern = /^[A-Z]{3}(?!0000)[0-9]{4}$/;
+                const pattern = /^[ATS]{3}(?!0000)[0-9]{4}$/;
                 employeeIdError.style.display = pattern.test(this.value.trim()) ? 'none' : 'block';
             });
             
@@ -748,7 +751,7 @@ header p{
             return isValid;
         }
 
-        // Check localStorage for dark mode preference on iframe load
+        
 window.onload = function () {
  const isDarkMode = localStorage.getItem('darkMode') === 'true';
  if (isDarkMode) {
