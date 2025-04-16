@@ -1,353 +1,440 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payroll Approvals & History</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Incremental Bonus Form</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif; 
+      color: #333; 
+    }
 
-        body {
-            font-family: Arial, sans-serif;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            height: 100vh;
-            padding: 20px;
-            background-color: #ffffff;
-        }
-         
-        .banner {
-            background-color: #3b145b;
-            color: white;
-            text-align: center;
-            height: auto;
-            padding: 10px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            width: 98%;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
+ 
+    header {
+      position: relative;
+      text-align: center;
+      height: 120px; 
+      background-color: #3f0370;
+      color: #fff;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
 
-        .banner h1 {
-            font-size: 36px;
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-        }
-        .banner p {
-            font-size: 18px;
-            margin-top: 10px;
-        }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Background Animation for Banner */
+    @keyframes moveCircles {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-50%) translateX(-50%);
+      }
+      100% {
+        transform: translateY(0) translateX(0);
+      }
+    }
+
+    .banner-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .circle {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: moveCircles 10s infinite linear;
+    }
+
+    .circle:nth-child(1) {
+      top: 10%;
+      left: 20%;
+      animation-duration: 8s;
+    }
+
+    .circle:nth-child(2) {
+      top: 50%;
+      left: 70%;
+      animation-duration: 12s;
+    }
+
+    .circle:nth-child(3) {
+      top: 80%;
+      left: 40%;
+      animation-duration: 15s;
+    }
 
 
-        main {
-            display: flex;
-            width: 100%;
-                    gap: 30px;
-            flex-wrap: wrap;
-        }
+    .form-container {
+      max-width: 90%;
+      margin: 20px auto;
+      padding: 20px;
+      background:linear-gradient(rgb(249, 255, 254),rgb(255, 229, 255)); 
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        h1 {
-            width: 100%;
-            text-align: center;
-            margin-bottom: 22px;
-            color: #2c3e50;
-            text-decoration: underline;
-        }
+    h1, h2 {
+      text-align: center;
+      
+    }
 
-        .form-container {
-          
-            background-size: cover;
-            background-position: center;
-            background-color: rgba(255, 255, 255, 0.3);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 500px;
-            color: white;
-           
-        }
+    .form-group {
+      margin-bottom: 15px;
+    }
 
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-            
-        }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #4a5568;
+    }
 
-        form input, form select, form textarea, form button {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 18px;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-        form select{
-            height: 50px;
-        }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
 
-        form button {
-            background-color: #2c3e50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s, transform 0.2s;
-            border-radius: 5px;
-        }
+    textarea {
+      height: 80px;
+      resize: none;
+    }
 
-        form button:hover {
- border-top: 2px solid blueviolet;
-      border-left: 2px solid blueviolet;
-      border-bottom: 2px solid rgb(238, 103, 238);
-      border-right: 2px solid rgb(238, 103, 238);
-      box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
-        rgba(240, 46, 170, 0.2) 15px 15px;
-        }
+    button {
+      background: #6b46c1;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
 
-        form button:disabled {
-            background-color: #bdc3c7;
-            cursor: not-allowed;
-        }
+    button:hover {
+      background: #553c9a;
+    }
 
-        textarea {
-            resize: none;
-            height: 120px;
-        }
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+      display: none;
+    }
 
-        select {
-            height: 40px;
-        }
+    #cardsContainer {
+      margin-top: 20px;
+    }
 
-        .history {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 100%;
-            max-width: 700px;
-            max-height: 600px;
-            overflow-y: auto;
-        }
+    #cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
 
-        .card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            height: auto;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+    .card {
+      background: #f9fafb;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      flex: 1 1 calc(33.33% - 20px); /* Adjust the width of each card */
+      box-sizing: border-box;
+    }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-            border: 3px solid #10a3ff;
-        }
+    .card h3 {
+      margin: 0;
+      color: #4a5568;
+    }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
+    .card p {
+      margin: 5px 0;
+      color: #718096;
+    }
 
-        .header .title {
-            font-weight: bold;
-            font-size: 18px;
-            color: #2c3e50;
-        }
+    .card button {
+      background: #6b46c1;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
 
-        .header .date {
-            font-size: 14px;
-            color: #7f8c8d;
-        }
-        label{
-            color: black;
-            font-size: 20px;
-        }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
 
-        .body {
-            margin-bottom: 15px;
-            font-size: 16px;
-            color: #333;
-        }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 5px;
+      width: 300px;
+      position: relative;
+    }
 
-        .actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .actions button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size : 14px;
-            transition: background-color 0.3s, transform 0.2s;
-            border-radius: 5px;
-        }
-
-        .actions button:hover {
-            background-color: #2980b9;
-            transform: translateY(-2px);
-        }
-
-        .create-entry h2 {
-            margin-bottom: 20px;
-            font-size: 22px;
-            color: #000000;
-        }
-        .reason-amount{
-            font-size: 18px;
-        }
-    </style>
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+  </style>
 </head>
 <body>
 
-<main>
-    
-    <div class="banner">
-    <h1>Incremental Bonus and Payroll</h1>
-    <p>Create bonus and salary increment here</p>
-</div>
-    
-
-    <div class="form-container">
-        <section class="create-entry">
-            <h1>Create Payroll Entry</h1>
-            <form id="payroll-form">
-                <label for="entry-type">Entry Type:</label>
-                <select id="entry-type" name="entry-type">
-                    <option value="increment">Salary Increment</option>
-                    <option value="bonus">Bonus Payment</option>
-                    <option value="payroll">Payroll Adjustment</option>
-                </select>
-
-                <label for="employee-name">Employee Name:</label>
-                <input type="text" id="employee-name" name="employee-name" required minlength="3" maxlength="100" placeholder="Enter Employee Name"  pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
-                title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
-                
-                    <label for="emp-id-input">Employee ID</label>
-                    <input type="text" id="emp-id-input" placeholder="Enter Employee ID" required 
-                        pattern="[A-Z]{3}0[0-9]{3}" minlength="7" maxlength="7">
-    
-            
-                <label for="entry-amount">Amount (₹):</label>
-                <input type="number" id="entry-amount" name="entry-amount" required minlength="3" placeholder="Enter Amount" maxlength="1000">
-
-                <label for="reason">Reason for Entry:</label>
-                <textarea id="reason" name="reason" rows="5" required minlength="10" placeholder="Reason For Increment or Bonus" maxlength="100"></textarea>
-
-                <button type="submit">Submit Entry</button>
-            </form>
-        </section>
-    </div>
-
-    <div class="history">
-        <h1>Payroll History</h1>
-        <div id="payroll-history">
-            <div class="card">
-                <div class="header">
-                    <span class="title">Salary Increment for Employee 1</span>
-                    <span class="date">2024-11-10</span>
-                </div>
-                <div class="body">
-                    <p  class="reason-amount">Reason: <strong> Performance-based increment for the year</strong></p>
-                    <p  class="reason-amount">Amount:<strong> ₹5000</strong></p>
-                </div>
-                <div class="actions">
-                    <button style="background-color: #27ae60;">Approved</button>
-                    <button>Details</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="header">
-                    <span class="title">Bonus Payment for Employee 2</span>
-                    <span class="date">2024-11-08</span>
-                </div>
-                <div class="body">
-                    <p  class="reason-amount">Reason: <strong>End-of-year bonus based on performance.</strong></p>
-                    <p  class="reason-amount">Amount: <strong>₹2000</strong></p>
-                </div>
-                <div class="actions">
-                    <button style="background-color: #27ae60;">Approved</button>
-                    <button>Details</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="header">
-                    <span class="title">Payroll Adjustment for Employee 3</span>
-                    <span class="date">2024-11-07</span>
-                </div>
-                <div class="body">
-                    <p  class="reason-amount">Reason:<strong>Adjustment for overtime hours worked in October.</strong></p>
-                    <p  class="reason-amount">Amount:<strong>₹1500</strong></p>
-                </div>
-                <div class="actions">
-                    <button style="background-color: #27ae60;">Approved</button>
-                    <button>Details</button>
-                </div>
-            </div>
+    <header>
+        <div class="banner-background">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
         </div>
+        <h1>Incremental & Bonus</h1>
+      </header>
+
+  <div class="form-container">
+  
+    <form id="bonusForm">
+      <div class="form-group">
+        <label for="empName">Employee Name:</label>
+        <input type="text" id="empName" name="empName" placeholder="Enter Employee Name (e.g., John Doe)" minlength="3" maxlength="35" required>
+        <div class="error" id="empNameError">Employee Name must contain only alphabets and single spaces. Min: 3, Max: 35 characters.</div>
+      </div>
+      <div class="form-group">
+        <label for="empId">Employee ID:</label>
+        <input type="text" id="empId" name="empId" placeholder="Enter Employee ID (e.g., ABC0123)" minlength="7" maxlength="7" required>
+        <div class="error" id="empIdError">Employee ID must be exactly 7 characters (e.g., ABC0123).</div>
+      </div>
+      <div class="form-group">
+        <label for="incrementType">Increment Type:</label>
+        <select id="incrementType" name="incrementType" required>
+          <option value="Bonus">Bonus</option>
+          <option value="Salary">Salary</option>
+          <option value="Increment">Increment</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" min="1000" max="100000" step="500" placeholder="Enter Amount (e.g., 5000)" required>
+        <div class="error" id="amountError">Amount must be between ₹1000 and ₹1,00,000 in steps of 500.</div>
+      </div>
+      <div class="form-group">
+        <label for="reason">Reason:</label>
+        <textarea id="reason" name="reason" placeholder="Enter Reason (e.g., Performance)" minlength="5" maxlength="100" required></textarea>
+        <div class="error" id="reasonError">Reason must contain only alphabets, single spaces, and periods. Min: 5, Max: 100 characters.</div>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+
+    
+  </div>
+  <div id="cardsContainer">
+    <h2>Increment Cards</h2>
+    <div id="cards"></div>
+    <button id="viewAllBtn" style="display: none;">View All</button>
+  </div>
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modalDetails"></div>
     </div>
+  </div>
 
-</main>
+  <script>
+    // Real-time validation for Employee Name
+    document.getElementById('empName').addEventListener('input', function () {
+      const empName = this.value.trim();
+      const empNameRegex = /^[A-Za-z]+(?: [A-Za-z]+)*$/;
+      const errorElement = document.getElementById('empNameError');
+      if (!empNameRegex.test(empName) || empName.length < 3 || empName.length > 35) {
+        errorElement.style.display = 'block';
+      } else {
+        errorElement.style.display = 'none';
+      }
+    });
 
-<script>
-    function addPayrollEntry(entryType, employeeName, entryAmount, reason) {
-        const historyContainer = document.getElementById('payroll-history');
-        
-        const newCard = document.createElement('div');
-        newCard.classList.add('card');
+    // Real-time validation for Employee ID
+    document.getElementById('empId').addEventListener('input', function () {
+      const empId = this.value.trim();
+      const empIdRegex = /^[A-Z]{3}0[1-9]{2}[0-9]$/;
+      const errorElement = document.getElementById('empIdError');
+      if (!empIdRegex.test(empId) || empId.length !== 7) {
+        errorElement.style.display = 'block';
+      } else {
+        errorElement.style.display = 'none';
+      }
+    });
 
-        const currentDate = new Date().toISOString().split('T')[0];
+    // Real-time validation for Amount
+    document.getElementById('amount').addEventListener('input', function () {
+      const amount = this.value;
+      const errorElement = document.getElementById('amountError');
+      if (amount < 1000 || amount > 100000 || amount % 500 !== 0) {
+        errorElement.style.display = 'block';
+      } else {
+        errorElement.style.display = 'none';
+      }
+    });
 
-        newCard.innerHTML = `
-            <div class="header">
-                <span class="title">${entryType.charAt(0).toUpperCase() + entryType.slice(1)} for ${employeeName}</span>
-                <span class="date">${currentDate}</span>
-            </div>
-            <div class="body">
-                <p class="reason-amount">Reason: <strong> ${reason}</strong></p>
-                <p class="reason-amount">Amount: <strong> ₹${entryAmount}</strong></p>
-            </div>
-            <div class="actions">
-                <button style="background-color: #27ae60;">Approved</button>
-                <button>Details</button>
-            </div>
+    // Real-time validation for Reason
+    document.getElementById('reason').addEventListener('input', function () {
+      const reason = this.value.trim();
+      const reasonRegex = /^[A-Za-z]+(?:[ .][A-Za-z]+)*$/;
+      const errorElement = document.getElementById('reasonError');
+      if (!reasonRegex.test(reason) || reason.length < 5 || reason.length > 100) {
+        errorElement.style.display = 'block';
+      } else {
+        errorElement.style.display = 'none';
+      }
+    });
+
+    // Form submission
+    document.getElementById('bonusForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Validate all fields
+      const empName = document.getElementById('empName').value.trim();
+      const empId = document.getElementById('empId').value.trim();
+      const incrementType = document.getElementById('incrementType').value;
+      const amount = document.getElementById('amount').value;
+      const reason = document.getElementById('reason').value.trim();
+
+      const empNameRegex = /^[A-Za-z]+(?: [A-Za-z]+)*$/;
+      const empIdRegex = /^[A-Z]{3}0[1-9]{2}[0-9]$/;
+      const reasonRegex = /^[A-Za-z]+(?:[ .][A-Za-z]+)*$/;
+
+      if (
+        !empNameRegex.test(empName) || empName.length < 3 || empName.length > 35 ||
+        !empIdRegex.test(empId) || empId.length !== 7 ||
+        amount < 1000 || amount > 100000 || amount % 500 !== 0 ||
+        !reasonRegex.test(reason) || reason.length < 5 || reason.length > 100
+      ) {
+        alert('Please fix all errors before submitting.');
+        return;
+      }
+
+      // Create increment object with submission date
+      const increment = {
+        empName,
+        empId,
+        incrementType,
+        amount,
+        reason,
+        date: new Date().toLocaleString(),
+      };
+
+      // Save to local storage
+      let increments = JSON.parse(localStorage.getItem('increments')) || [];
+      increments.push(increment);
+      localStorage.setItem('increments', JSON.stringify(increments));
+
+      // Display cards
+      displayCards();
+
+      // Reset form
+      document.getElementById('bonusForm').reset();
+    });
+
+    function displayCards() {
+      const increments = JSON.parse(localStorage.getItem('increments')) || [];
+      const cardsContainer = document.getElementById('cards');
+      cardsContainer.innerHTML = '';
+
+      // Display up to 5 cards
+      increments.slice(0, 5).forEach((increment, index) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <h3>${increment.empName}</h3>
+          <p>ID: ${increment.empId}</p>
+          <p>${increment.incrementType}</p>
+          <button onclick="showDetails(${index})">Details</button>
         `;
+        cardsContainer.appendChild(card);
+      });
 
-        historyContainer.appendChild(newCard);
+      // Show "View All" button if more than 5 cards
+      if (increments.length > 5) {
+        document.getElementById('viewAllBtn').style.display = 'block';
+        document.getElementById('viewAllBtn').onclick = () => showAllCards(increments);
+      } else {
+        document.getElementById('viewAllBtn').style.display = 'none';
+      }
     }
 
-    document.getElementById('payroll-form').addEventListener('submit', function(event) {
-        event.preventDefault();
+    function showDetails(index) {
+      const increments = JSON.parse(localStorage.getItem('increments')) || [];
+      const increment = increments[index];
+      const modalDetails = document.getElementById('modalDetails');
+      modalDetails.innerHTML = `
+        <h3>${increment.empName}</h3>
+        <p>ID: ${increment.empId}</p>
+        <p>Type: ${increment.incrementType}</p>
+        <p>Amount: ₹${increment.amount}</p>
+        <p>Reason: ${increment.reason}</p>
+        <p>Date: ${increment.date}</p>
+      `;
+      document.getElementById('modal').style.display = 'flex';
+    }
 
-        const entryType = document.getElementById('entry-type').value;
-        const employeeName = document.getElementById('employee-name').value;
-        const entryAmount = document.getElementById('entry-amount').value;
-        const reason = document.getElementById('reason').value;
+    function showAllCards(increments) {
+      const cardsContainer = document.getElementById('cards');
+      cardsContainer.innerHTML = '';
 
-        addPayrollEntry(entryType, employeeName, entryAmount, reason);
+      increments.forEach((increment, index) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <h3>${increment.empName}</h3>
+          <p>ID: ${increment.empId}</p>
+          <p>${increment.incrementType}</p>
+          <button onclick="showDetails(${index})">Details</button>
+        `;
+        cardsContainer.appendChild(card);
+      });
 
-        event.target.reset();
+      document.getElementById('viewAllBtn').style.display = 'none';
+    }
+
+    // Close modal
+    document.querySelector('.close').addEventListener('click', () => {
+      document.getElementById('modal').style.display = 'none';
     });
-</script>
 
+    // Initial display
+    displayCards();
+  </script>
 </body>
 </html>
-
