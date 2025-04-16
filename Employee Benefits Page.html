@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bonus and PF Slip Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -34,7 +36,6 @@
       font-size: 36px;
       color: white;
       font-weight: 600;
-      text-transform: uppercase;
       letter-spacing: 2px;
       position: relative;
       z-index: 2;
@@ -387,7 +388,7 @@ header p{
             <div class="signature">
                 <div><strong>Astrolite Tech Solutions</strong></div>
             </div>
-            <button id="download-pf-btn">Download PF Slip</button>
+            <button id="download-pf-btn">Download PF Slip (PDF)</button>
         </div>
 
         <div class="bonus-container" id="bonus-container">
@@ -408,11 +409,14 @@ header p{
             <div class="signature">
                 <div><strong>Astrolite Tech Solutions</strong></div>
             </div>
-            <button id="download-bonus-btn">Download Bonus Slip</button>
+            <button id="download-bonus-btn">Download Bonus Slip (PDF)</button>
         </div>
     </div>
 
     <script>
+        // Initialize jsPDF
+        const { jsPDF } = window.jspdf;
+        
         // Real-time validation for employee name
         document.getElementById('employee-name').addEventListener('input', function () {
             const input = this.value;
@@ -449,86 +453,249 @@ header p{
             }
         }
 
+        // Format month-year display
+        function formatMonthYear(monthValue) {
+            const [year, month] = monthValue.split('-');
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+                                "July", "August", "September", "October", "November", "December"];
+            return `${monthNames[parseInt(month) - 1]} ${year}`;
+        }
+
         // Form submission handler
         document.getElementById('bonus-form').addEventListener('submit', function (event) {
             event.preventDefault();
 
             const employeeName = document.getElementById('employee-name').value;
-            const month = document.getElementById('month').value;
+            const monthValue = document.getElementById('month').value;
+            const formattedMonthYear = formatMonthYear(monthValue);
             const pfAmount = 1800.00;
-            const bonusAmount = (["2024-01", "2024-03", "2024-06", "2024-11"].includes(month)) ? 3000.00 : 0;
+            const bonusAmount = (["2024-01", "2024-03", "2024-06", "2024-11"].includes(monthValue)) ? 3000.00 : 0;
 
+            // Get current date and calculate previous month
             const currentDate = new Date();
-            const currentMonth = currentDate.getMonth();
             const currentYear = currentDate.getFullYear();
-
-            const selectedMonth = new Date(month + "-01");
-            const selectedYear = selectedMonth.getFullYear();
-            const selectedMonthIndex = selectedMonth.getMonth();
-
-            if (selectedYear > currentYear || (selectedYear === currentYear && selectedMonthIndex >= currentMonth)) {
-                alert("Invalid selection. The selected month must be in the past.");
+            const currentMonth = currentDate.getMonth(); // 0-11
+            
+            // Get selected date
+            const selectedDate = new Date(monthValue + "-01");
+            const selectedYear = selectedDate.getFullYear();
+            const selectedMonth = selectedDate.getMonth();
+            
+            // Minimum allowed date (January 2021)
+            const minDate = new Date("2021-01-01");
+            const minYear = minDate.getFullYear();
+            const minMonth = minDate.getMonth();
+            
+            // Validate date range
+            if (selectedYear < minYear || (selectedYear === minYear && selectedMonth < minMonth)) {
+                alert("Invalid selection. The selected month must be January 2021 or later.");
+                return false;
+            }
+            
+            // Check if date is in the future or current month
+            if (selectedYear > currentYear || 
+                (selectedYear === currentYear && selectedMonth >= currentMonth)) {
+                alert("Invalid selection. The selected month must be before the current month.");
                 return false;
             }
 
             document.getElementById('employee-name-span').innerText = employeeName;
             document.getElementById('employee-name-span-bonus').innerText = employeeName;
-            document.getElementById('month-span').innerText = "Bonus for the month of " + month;
-            document.getElementById('bonus-amount').innerText = bonusAmount > 0 ? bonusAmount.toFixed(2) : "No bonus credited in " + month;
+            document.getElementById('month-span').innerText = "Bonus for " + formattedMonthYear;
+            document.getElementById('bonus-amount').innerText = bonusAmount > 0 ? bonusAmount.toFixed(2) : "No bonus credited in " + formattedMonthYear;
 
             document.getElementById('pf-container').style.display = 'block';
             document.getElementById('bonus-container').style.display = 'block';
             document.querySelector('.form').style.display = 'none';
         });
 
-        // Download PF Slip
+        // Download PF Slip as PDF
         document.getElementById('download-pf-btn').addEventListener('click', function () {
             const employeeName = document.getElementById('employee-name-span').innerText;
-            const month = document.getElementById('month').value;
-
-            const pfContent = `
-Provident Fund (PF) Slip
-========================
-EMP Code: 39124
-EMP Name: ${employeeName}
-Month: ${month}
-PF No.: 101523065714
-Designation: Developer
-Provident Fund Amount: 1,800.00
-----------------------------------------
-Astrolite Tech Solutions
-`;
-
-            const blob = new Blob([pfContent], { type: 'text/plain' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'Provident_Fund_Slip.txt';
-            link.click();
+            const monthValue = document.getElementById('month').value;
+            const formattedMonthYear = formatMonthYear(monthValue);
+            
+            // Create new PDF document
+            const doc = new jsPDF();
+            
+            // Add company logo (optional)
+            // doc.addImage(logoData, 'JPEG', 10, 10, 50, 20);
+            
+            // Set document properties
+            doc.setProperties({
+                title: `PF Slip - ${employeeName} - ${formattedMonthYear}`,
+                subject: 'Provident Fund Slip',
+                author: 'Astrolite Tech Solutions',
+                keywords: 'pf, slip, provident fund',
+                creator: 'Astrolite Tech Solutions'
+            });
+            
+            // Add header
+            doc.setFontSize(18);
+            doc.setTextColor(40);
+            doc.setFont('helvetica', 'bold');
+            doc.text('Provident Fund (PF) Slip', 105, 20, { align: 'center' });
+            
+            doc.setFontSize(12);
+            doc.text(`For ${formattedMonthYear}`, 105, 28, { align: 'center' });
+            
+            // Add line separator
+            doc.setDrawColor(100);
+            doc.line(20, 35, 190, 35);
+            
+            // Add employee details
+            doc.setFontSize(12);
+            doc.setFont('helvetica', 'normal');
+            
+            let yPosition = 45;
+            
+            // Employee details table
+            doc.autoTable({
+                startY: yPosition,
+                head: [['Employee Details', '']],
+                body: [
+                    ['EMP Code:', '39124'],
+                    ['EMP Name:', employeeName],
+                    ['Month:', formattedMonthYear],
+                    ['PF No.:', '101523065714'],
+                    ['Designation:', 'Developer'],
+                    ['Provident Fund Amount:', '1,800.00']
+                ],
+                theme: 'grid',
+                headStyles: {
+                    fillColor: [95, 6, 168],
+                    textColor: 255,
+                    fontStyle: 'bold'
+                },
+                styles: {
+                    cellPadding: 5,
+                    fontSize: 10,
+                    valign: 'middle'
+                },
+                columnStyles: {
+                    0: { fontStyle: 'bold', cellWidth: 70 },
+                    1: { cellWidth: 'auto' }
+                },
+                margin: { left: 20 }
+            });
+            
+            // Add footer
+            doc.setFontSize(10);
+            doc.setTextColor(100);
+            doc.text('This is an electronically generated document, no signature required.', 105, 280, { align: 'center' });
+            
+            doc.setFontSize(12);
+            doc.setTextColor(40);
+            doc.setFont('helvetica', 'bold');
+            doc.text('Astrolite Tech Solutions', 105, 270, { align: 'center' });
+            
+            // Save the PDF
+            doc.save(`PF_Slip_${employeeName.replace(/ /g, '_')}_${formattedMonthYear.replace(/ /g, '_')}.pdf`);
         });
 
-        // Download Bonus Slip
+        // Download Bonus Slip as PDF
         document.getElementById('download-bonus-btn').addEventListener('click', function () {
             const employeeName = document.getElementById('employee-name-span-bonus').innerText;
+            const monthValue = document.getElementById('month').value;
+            const formattedMonthYear = formatMonthYear(monthValue);
             const bonusAmount = document.getElementById('bonus-amount').innerText;
-            const month = document.getElementById('month').value;
+            
+            // Create new PDF document
+            const doc = new jsPDF();
+            
+            // Set document properties
+            doc.setProperties({
+                title: `Bonus Slip - ${employeeName} - ${formattedMonthYear}`,
+                subject: 'Bonus Slip',
+                author: 'Astrolite Tech Solutions',
+                keywords: 'bonus, slip',
+                creator: 'Astrolite Tech Solutions'
+            });
+            
+            // Add header
+            doc.setFontSize(18);
+            doc.setTextColor(40);
+            doc.setFont('helvetica', 'bold');
+            doc.text('Bonus Slip', 105, 20, { align: 'center' });
+            
+            doc.setFontSize(12);
+            doc.text(`For ${formattedMonthYear}`, 105, 28, { align: 'center' });
+            
+            // Add line separator
+            doc.setDrawColor(100);
+            doc.line(20, 35, 190, 35);
+            
+            // Add employee details
+            doc.setFontSize(12);
+            doc.setFont('helvetica', 'normal');
+            
+            // Employee details table
+            doc.autoTable({
+                startY: 45,
+                head: [['Employee Details', '']],
+                body: [
+                    ['EMP Code:', '39124'],
+                    ['EMP Name:', employeeName],
+                    ['Month:', formattedMonthYear],
+                    ['Job Role:', 'Developer'],
+                    ['Bonus Amount:', bonusAmount.includes("No bonus") ? bonusAmount : `$${bonusAmount}`]
+                ],
+                theme: 'grid',
+                headStyles: {
+                    fillColor: [95, 6, 168],
+                    textColor: 255,
+                    fontStyle: 'bold'
+                },
+                styles: {
+                    cellPadding: 5,
+                    fontSize: 10,
+                    valign: 'middle'
+                },
+                columnStyles: {
+                    0: { fontStyle: 'bold', cellWidth: 70 },
+                    1: { cellWidth: 'auto' }
+                },
+                margin: { left: 20 }
+            });
+            
+            // Add footer
+            doc.setFontSize(10);
+            doc.setTextColor(100);
+            doc.text('This is an electronically generated document, no signature required.', 105, 280, { align: 'center' });
+            
+            doc.setFontSize(12);
+            doc.setTextColor(40);
+            doc.setFont('helvetica', 'bold');
+            doc.text('Astrolite Tech Solutions', 105, 270, { align: 'center' });
+            
+            // Save the PDF
+            doc.save(`Bonus_Slip_${employeeName.replace(/ /g, '_')}_${formattedMonthYear.replace(/ /g, '_')}.pdf`);
+        });
 
-            const bonusContent = `
-Bonus Slip
-===========
-EMP Code: 39124
-EMP Name: ${employeeName}
-Month: ${month}
-Job Role: Developer
-Bonus Amount: ${bonusAmount}
-----------------------------------------
-Astrolite Tech Solutions
-`;
-
-            const blob = new Blob([bonusContent], { type: 'text/plain' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'Bonus_Slip.txt';
-            link.click();
+        // Set min and max values for month input
+        document.addEventListener('DOMContentLoaded', function() {
+            const monthInput = document.getElementById('month');
+            const now = new Date();
+            
+            // Set max to previous month
+            let year = now.getFullYear();
+            let month = now.getMonth(); // 0-11
+            
+            if (month === 0) {
+                month = 11;
+                year--;
+            } else {
+                month--;
+            }
+            
+            const maxMonth = (month + 1).toString().padStart(2, '0');
+            monthInput.max = `${year}-${maxMonth}`;
+            
+            // Set min to January 2021
+            monthInput.min = "2021-01";
+            
+            // Set default value to previous month
+            monthInput.value = `${year}-${maxMonth}`;
         });
     </script>
 </body>
