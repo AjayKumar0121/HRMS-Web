@@ -46,7 +46,6 @@
       font-size: 36px;
       color: white;
       font-weight: 600;
-      text-transform: uppercase;
       letter-spacing: 2px;
       position: relative;
       z-index: 2;
@@ -133,8 +132,8 @@ header p{
 }
 
 .input-group label {
-    font-size: 13.6px; /* 20% decreased font size */
-    margin-bottom: 8px; /* 20% decreased margin */
+    font-size: 14.6px; /* 20% decreased font size */
+    margin-bottom: 10px; /* 20% decreased margin */
     color: #3d3d3d;
 }
 
@@ -143,6 +142,7 @@ header p{
     padding: 10px; /* 20% decreased padding */
     font-size: 12.8px; /* 20% decreased font size */
     border-radius: 5px;
+    margin-top: 5px;
 }
 
 .btn,
@@ -163,7 +163,6 @@ header p{
     font-weight: 900;
     line-height: 1.5;
     margin: 0;
-
     -webkit-mask: -webkit-radial-gradient(#000, #fff);
     padding: 0;
     text-transform: uppercase;
@@ -189,7 +188,7 @@ header p{
     border-radius: 99rem;
     border-width: 2px;
     overflow: hidden;
-    padding: 0.64rem 2.4rem; /* 20% decreased padding */
+    padding: 0.64rem 2.4rem;
     position: relative;
 }
 
@@ -220,7 +219,7 @@ header p{
 
 .payslip-container {
     width: 100%;
-    max-width: 400px; /* 20% decreased max-width */
+    max-width: 400px; 
     display: flex;
     flex-direction: column;
     gap: 16px; /* 20% decreased gap */
@@ -261,7 +260,14 @@ header p{
     font-weight: bold;
     color: #333;
 }
-
+.button{
+    background-color: #1227af;
+    color: white;
+    font-size: 18px;
+    border-radius: 4px;
+    height: 40px;
+    width: 220px;
+}
         @media (max-width: 768px) {
     .main-content {
         flex-direction: column;
@@ -467,6 +473,12 @@ header p{
 .dark-mode .circle {
     background: rgba(187, 134, 252, 0.1);
 }
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
     </style>
 </head>
 <body>
@@ -477,13 +489,12 @@ header p{
           <div class="circle"></div>
         </div>
         <h1>Payslip Generator<h1>
-            <p>Track you payslip details here</p>
+            <p>Track your payslip details here</p>
       </header>
     <div class="main-content">
         <div class="payslipcontainer">
-            <h2> </h2>
-            <form id="payslipForm" onsubmit="return generatePayslip()">
-                <div class="input-group">
+            <form id="payslipForm">
+                <div class="input-group" style="margin-top: 60px;">
                     <label for="employeeName">Employee Name</label>
                     <input 
                         id="employeeName" 
@@ -494,6 +505,7 @@ header p{
                         maxlength="50"
                         pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
                         title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+                    <p class="error-message" id="employeeName-error"></p>
                 </div>
 
                 <div class="input-group">
@@ -507,9 +519,8 @@ header p{
                         maxlength="7" 
                         pattern="^[A-Z]{3}0(?!000)[0-9]{3}$"
                         title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits, starting from 0001 (cannot be 0000)">
+                    <p class="error-message" id="employeeId-error"></p>
                 </div>
-                
-                  
                 
                 <div class="input-group">
                     <label for="email">Email Address</label>
@@ -520,7 +531,9 @@ header p{
                         required  
                         minlength="8"
                         maxlength="50"
-                        title="Please enter a valid email address">
+                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z]{2,15}\.[a-zA-Z]{2,3}$"
+                        title="Please enter a valid email address (2-15 chars after @, 2-3 chars after .)">
+                    <p class="error-message" id="email-error"></p>
                 </div>
                 
                 <div class="input-group">
@@ -534,8 +547,8 @@ header p{
                         maxlength="50"
                         pattern="^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\W_]).{5,}$" 
                         title="Password must be at least 5 characters long and include at least one letter, one number, and one symbol (e.g., @, #, $, %)">
+                    <p class="error-message" id="password-error"></p>
                 </div>
-                
                 
                 <div class="input-group">
                     <label for="startMonth">Select Start Month:</label>
@@ -545,6 +558,7 @@ header p{
                         name="startMonth" 
                         placeholder="Select start month" 
                         required>
+                    <p class="error-message" id="startMonth-error"></p>
                 </div>
                 
                 <div class="input-group">
@@ -554,12 +568,11 @@ header p{
                         id="endMonth" 
                         name="endMonth" 
                         placeholder="Select end month">
+                    <p class="error-message" id="endMonth-error"></p>
                 </div>
                 
-    
                 <button type="submit" class="btn"><span>Generate Payslip</span></button>
-                <button type="button" class="btn" id="downloadButton" style="display: none; margin-left: 100px;">Download Payslip</button>
-
+                <button type="button" class="button" id="downloadButton" style="display: none; margin-left: 100px;">Download Payslip</button>
             </form>
         </div>
 
@@ -592,27 +605,27 @@ header p{
                 <h4>Earnings</h4>
                 <div class="payslip-details">
                     <label for="basicSalary">Basic Salary:</label>
-                    <p>₹16,250.00</p>
+                    <p id="basicSalary">₹16,250.00</p>
                 </div>
                 <div class="payslip-details">
                     <label for="dearnessAllowance">Dearness Allowance:</label>
-                    <p>₹550.00</p>
+                    <p id="dearnessAllowance">₹550.00</p>
                 </div>
                 <div class="payslip-details">
                     <label for="houseRentAllowance">House Rent Allowance:</label>
-                    <p>₹1,650.00</p>
+                    <p id="houseRentAllowance">₹1,650.00</p>
                 </div>
                 <div class="payslip-details">
                     <label for="wageAllowance">Wage Allowance:</label>
-                    <p>₹120.00</p>
+                    <p id="wageAllowance">₹120.00</p>
                 </div>
                 <div class="payslip-details">
                     <label for="medicalAllowance">Medical Allowance:</label>
-                    <p>₹3,000.00</p>
+                    <p id="medicalAllowance">₹3,000.00</p>
                 </div>
                 <div class="payslip-details total">
                     <label>Total Earnings:</label>
-                    <p>₹21,670.00</p>
+                    <p id="totalEarnings">₹21,670.00</p>
                 </div>
             </div>
 
@@ -620,212 +633,282 @@ header p{
                 <h4>Deductions</h4>
                 <div class="payslip-details">
                     <label for="providentFund">Provident Fund:</label>
-                    <p>₹1,800.00</p>
+                    <p id="providentFund">₹1,800.00</p>
                 </div>
                 <div class="payslip-details">
                     <label for="employeeStateInsurance">Employee State Insurance:</label>
-                    <p>₹142.00</p>
+                    <p id="employeeStateInsurance">₹142.00</p>
                 </div>
                 <div class="payslip-details">
                     <label for="taxDeductedAtSource">Tax Deducted at Source:</label>
-                    <p>₹0.00</p>
+                    <p id="taxDeductedAtSource">₹0.00</p>
                 </div>
                 <div class="payslip-details">
                     <label for="leaveWithoutPay">Leave Without Pay:</label>
-                    <p>₹0.00</p>
+                    <p id="leaveWithoutPay">₹0.00</p>
                 </div>
                 <div class="payslip-details">
                     <label for="specialDeduction">Special Deduction:</label>
-                    <p>₹500.00</p>
+                    <p id="specialDeduction">₹500.00</p>
                 </div>
                 <div class="payslip-details total">
                     <label>Total Deductions:</label>
-                    <p>₹2,442.00</p>
+                    <p id="totalDeductions">₹2,442.00</p>
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
-     document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("payslipForm");
-    
-    const fields = [
-        { id: "employeeName", pattern: /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/, message: "Invalid name format." },
-        { id: "employeeId", pattern: /^[A-Z]{3}0(?!000)[0-9]{3}$/, message: "Invalid Employee ID format." },
-        { id: "email", pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: "Invalid email format." },
-        { id: "password", pattern: /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\W_]).{5,}$/, message: "Password must include at least one letter, one number, and one symbol." }
-    ];
+    // Initialize jsPDF
+    const { jsPDF } = window.jspdf;
 
-    fields.forEach(field => {
-        const input = document.getElementById(field.id);
-        const error = document.createElement("p");
-        error.style.color = "red";
-        error.style.fontSize = "12px";
-        error.style.marginTop = "5px";
-        error.style.display = "none";
-        input.parentNode.appendChild(error);
+    document.addEventListener("DOMContentLoaded", function () {
+        // Set up date constraints
+        const today = new Date();
+        const currentMonth = today.getMonth();
+        const currentYear = today.getFullYear();
+        
+        // Calculate one month before current month
+        const maxMonth = new Date(today);
+        maxMonth.setMonth(maxMonth.getMonth() - 1);
+        
+        // Set min date to January 2021
+        const minDate = new Date('2021-01-01');
+        
+        // Format dates for input min/max attributes (YYYY-MM)
+        const formatMonth = (date) => date.toISOString().split('T')[0].slice(0, 7);
+        
+        // Set date constraints
+        const startMonthInput = document.getElementById('startMonth');
+        const endMonthInput = document.getElementById('endMonth');
+        
+        startMonthInput.min = formatMonth(minDate);
+        startMonthInput.max = formatMonth(maxMonth);
+        
+        endMonthInput.min = formatMonth(minDate);
+        endMonthInput.max = formatMonth(maxMonth);
+        
+        // Initialize form validation
+        const form = document.getElementById("payslipForm");
+        const fields = [
+            { 
+                id: "employeeName", 
+                pattern: /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/, 
+                message: "Invalid name format. Only letters, spaces and dots allowed." 
+            },
+            { 
+                id: "employeeId", 
+                pattern: /^[A-Z]{3}0(?!000)[0-9]{3}$/, 
+                message: "Invalid Employee ID format. Must be 3 letters followed by 4 digits (e.g., ABC0123)." 
+            },
+            { 
+                id: "email", 
+                pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z]{2,15}\.[a-zA-Z]{2,3}$/, 
+                message: "Invalid email format (e.g., user@domain.com)." 
+            },
+            { 
+                id: "password", 
+                pattern: /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\W_]).{5,}$/, 
+                message: "Password must include at least one letter, one number, and one symbol." 
+            },
+            { 
+                id: "startMonth", 
+                validate: function(value) {
+                    const selectedDate = new Date(value + '-01');
+                    return selectedDate >= minDate && selectedDate <= maxMonth;
+                },
+                message: `Start month must be between January 2021 and ${maxMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}.` 
+            }
+        ];
 
-        input.addEventListener("input", function () {
-            if (!field.pattern.test(input.value)) {
+        // Add event listeners for validation
+        fields.forEach(field => {
+            const input = document.getElementById(field.id);
+            const error = document.getElementById(`${field.id}-error`);
+
+            input.addEventListener("input", function() {
+                validateField(input, field, error);
+            });
+
+            input.addEventListener("blur", function() {
+                validateField(input, field, error);
+            });
+        });
+
+        // End month validation
+        endMonthInput.addEventListener("input", function() {
+            validateEndMonth();
+        });
+
+        endMonthInput.addEventListener("blur", function() {
+            validateEndMonth();
+        });
+
+        function validateField(input, field, error) {
+            let isValid;
+            if (field.validate) {
+                isValid = field.validate(input.value);
+            } else {
+                isValid = field.pattern.test(input.value);
+            }
+            
+            if (!isValid && input.value) {
                 error.textContent = field.message;
                 error.style.display = "block";
             } else {
                 error.style.display = "none";
             }
-        });
-    });
-
-    form.addEventListener("submit", function (event) {
-        let valid = true;
-        fields.forEach(field => {
-            const input = document.getElementById(field.id);
-            const error = input.nextElementSibling;
-            if (!field.pattern.test(input.value)) {
-                error.textContent = field.message;
-                error.style.display = "block";
-                valid = false;
-            }
-        });
-        if (!valid) event.preventDefault();
-    });
-
-    function generatePayslip() {
-        const employeeName = document.getElementById('employeeName').value;
-        const employeeId = document.getElementById('employeeId').value;
-        const startMonth = document.getElementById('startMonth').value;
-        const endMonth = document.getElementById('endMonth').value;
-
-        const currentDate = new Date();
-        const currentYear = currentDate.getFullYear();
-        const currentMonth = currentDate.getMonth();
-    
-        const startMonthDate = new Date(`${startMonth}-01`);
-        if (isNaN(startMonthDate)) {
-            alert("Invalid start month format.");
-            return false;
         }
-    
-        const startYear = startMonthDate.getFullYear();
-        const startMonthNum = startMonthDate.getMonth();
-    
-        let endMonthDate = null;
-        let endYear = null;
-        let endMonthNum = null;
-        if (endMonth) {
-            endMonthDate = new Date(`${endMonth}-01`);
-            if (isNaN(endMonthDate)) {
-                alert("Invalid end month format.");
+
+        function validateEndMonth() {
+            const error = document.getElementById('endMonth-error');
+            const startMonth = document.getElementById('startMonth').value;
+            const endMonth = document.getElementById('endMonth').value;
+            
+            if (!endMonth) {
+                error.style.display = "none";
+                return true;
+            }
+            
+            const startDate = new Date(startMonth + '-01');
+            const endDate = new Date(endMonth + '-01');
+            
+            if (endDate < startDate) {
+                error.textContent = "End month must be after start month.";
+                error.style.display = "block";
                 return false;
             }
-            endYear = endMonthDate.getFullYear();
-            endMonthNum = endMonthDate.getMonth();
+            
+            if (endDate > maxMonth) {
+                error.textContent = `End month cannot be after ${maxMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}.`;
+                error.style.display = "block";
+                return false;
+            }
+            
+            error.style.display = "none";
+            return true;
         }
-    
-        if (startYear > currentYear || (startYear === currentYear && startMonthNum > currentMonth)) {
-            alert("Start month cannot be in the future.");
-            return false;
-        }
-    
-        if (endMonth && (endYear > currentYear || (endYear === currentYear && endMonthNum > currentMonth))) {
-            alert("End month cannot be in the future.");
-            return false;
-        }
-    
-        if (endMonth && (endYear < startYear || (endYear === startYear && endMonthNum <= startMonthNum))) {
-            alert("End month must be greater than the start month.");
-            return false;
-        }
-    
-        if (startYear < 2022) {
-            alert("Invalid start month. It must be from 2022 onwards.");
-            return false;
-        }
-    
-        if (endMonth && endYear < 2022) {
-            alert("Invalid end month. It must be from 2022 onwards.");
-            return false;
-        }
-    
-        document.getElementById('employeeNameDisplay').textContent = employeeName;
-        document.getElementById('employeeIdDisplay').textContent = employeeId;
-    
-        const startMonthName = startMonthDate.toLocaleString('default', { month: 'long', year: 'numeric' });
-        const endMonthName = endMonth ? endMonthDate.toLocaleString('default', { month: 'long', year: 'numeric' }) : startMonthName;
-    
-        document.getElementById('payPeriod').textContent = `${startMonthName} - ${endMonthName}`;
-    
-        document.getElementById('payslipContainer').style.display = 'flex';
-        document.getElementById('downloadButton').style.display = 'block';
-    
-        return false;
-    }
 
-    function downloadPayslip() {
-        const employeeName = document.getElementById('employeeName').value;
-        const employeeId = document.getElementById('employeeId').value;
-        const email = document.getElementById('email').value;
-        const payPeriod = document.getElementById('payPeriod').textContent;
-        const salary = document.getElementById('salary').textContent;
-        const earnings = document.getElementById('earnings').textContent;
-        const deductions = document.getElementById('deductions').textContent;
-        const netPay = document.getElementById('netPay').textContent;
-        
-        const payslipText = `Employee Name: ${employeeName}\nEmployee ID: ${employeeId}\nEmail: ${email}\nPay Period: ${payPeriod}\nTotal Salary: ${salary}\nTotal Earnings: ${earnings}\nTotal Deductions: ${deductions}\nNet Pay: ${netPay}`;
-        const blob = new Blob([payslipText], { type: 'text/plain' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'Payslip.txt';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
+        // Form submission handler
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // Validate all fields
+            let isValid = true;
+            fields.forEach(field => {
+                const input = document.getElementById(field.id);
+                const error = document.getElementById(`${field.id}-error`);
+                
+                if (field.validate) {
+                    if (!field.validate(input.value)) {
+                        error.textContent = field.message;
+                        error.style.display = "block";
+                        isValid = false;
+                    }
+                } else if (!field.pattern.test(input.value)) {
+                    error.textContent = field.message;
+                    error.style.display = "block";
+                    isValid = false;
+                }
+            });
+            
+            // Validate end month
+            if (!validateEndMonth()) {
+                isValid = false;
+            }
+            
+            if (isValid) {
+                generatePayslip();
+            }
+        });
 
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        if (generatePayslip()) {
-            form.submit();
+        // Generate payslip function
+        function generatePayslip() {
+            const employeeName = document.getElementById('employeeName').value;
+            const employeeId = document.getElementById('employeeId').value;
+            const startMonth = document.getElementById('startMonth').value;
+            const endMonth = document.getElementById('endMonth').value || startMonth;
+            
+            // Format dates
+            const startDate = new Date(startMonth + '-01');
+            const endDate = new Date(endMonth + '-01');
+            
+            const startMonthName = startDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+            const endMonthName = endDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+            
+            // Update display
+            document.getElementById('employeeNameDisplay').textContent = employeeName;
+            document.getElementById('employeeIdDisplay').textContent = employeeId;
+            document.getElementById('payPeriod').textContent = startMonth === endMonth ? 
+                startMonthName : `${startMonthName} - ${endMonthName}`;
+            
+            // Show payslip container and download button
+            document.getElementById('payslipContainer').style.display = 'flex';
+            document.getElementById('downloadButton').style.display = 'block';
+            
+            // Scroll to payslip
+            document.getElementById('payslipContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Download payslip as PDF
+        document.getElementById('downloadButton').addEventListener('click', function() {
+            const payslipContainer = document.getElementById('payslipContainer');
+            
+            html2canvas(payslipContainer).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const imgWidth = 210; // A4 width in mm
+                const pageHeight = 295; // A4 height in mm
+                const imgHeight = canvas.height * imgWidth / canvas.width;
+                let heightLeft = imgHeight;
+                let position = 0;
+                
+                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+                
+                // Add new page if content is too long
+                while (heightLeft >= 0) {
+                    position = heightLeft - imgHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                }
+                
+                // Generate filename
+                const employeeName = document.getElementById('employeeName').value.replace(/\s+/g, '_');
+                const startMonth = document.getElementById('startMonth').value;
+                const endMonth = document.getElementById('endMonth').value || startMonth;
+                const filename = `Payslip_${employeeName}_${startMonth}_${endMonth}.pdf`;
+                
+                pdf.save(filename);
+            });
+        });
+    });
+
+    // Dark mode functionality
+    window.addEventListener('message', function(event) {
+        if (event.data && typeof event.data.darkMode === 'boolean') {
+            const isDarkMode = event.data.darkMode;
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
         }
     });
 
-    document.getElementById('downloadButton').addEventListener('click', downloadPayslip);
-});
-
-
-// Check localStorage for dark mode preference on iframe load
-window.onload = function () {
- const isDarkMode = localStorage.getItem('darkMode') === 'true';
- if (isDarkMode) {
-   document.body.classList.add('dark-mode');
- } else {
-   document.body.classList.remove('dark-mode');
- }
-};
-
-window.addEventListener('message', function (event) {
- 
- if (event.data && typeof event.data.darkMode === 'boolean') {
-   const isDarkMode = event.data.darkMode;
-
-   
-   if (isDarkMode) {
-     document.body.classList.add('dark-mode');
-   } else {
-     document.body.classList.remove('dark-mode');
-   }
- }
-});
-
-// Check localStorage for dark mode preference on iframe load
-window.onload = function () {
- const isDarkMode = localStorage.getItem('darkMode') === 'true';
- if (isDarkMode) {
-   document.body.classList.add('dark-mode');
- } else {
-   document.body.classList.remove('dark-mode');
- }
-};
+    // Check localStorage for dark mode preference on load
+    window.onload = function() {
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+        }
+    };
     </script>
 </body>
 </html>
-
