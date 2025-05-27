@@ -18,30 +18,89 @@
             margin: 50px auto;
             background:linear-gradient(rgba(224, 224, 255, 0.45), rgba(253, 240, 227, 0.61), rgba(247, 222, 255, 0.568));
             padding: 30px 40px;
+            flex: 1;
             border-radius: 10px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-        .banner {
-            background-color: #3b145b;
-            color: white;
+       
+header {
+            position: relative;
             text-align: center;
-            height: auto;
-            padding: 10px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            width: 98%;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            height: 90px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #f8f9fa;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 20px;
         }
 
-        .banner h1 {
-            font-size: 36px;
-            color: white;
-            font-weight: 600;
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .banner p {
-            font-size: 18px;
-            margin-top: 10px;
+
+        header p {
+            font-weight: 300;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            max-width: 700px;
+            opacity: 0.9;
+            z-index: 2;
+        }
+
+        @keyframes moveCircles {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-50%); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+
+        .banner-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: moveCircles 10s infinite linear;
+        }
+
+        .circle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 8s;
+        }
+
+        .circle:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            animation-duration: 12s;
+        }
+
+        .circle:nth-child(3) {
+            top: 80%;
+            left: 40%;
+            animation-duration: 15s;
         }
 
 
@@ -132,6 +191,7 @@
             height: 2.6em;
             line-height: 2.5em;
             margin: 20px;
+            
             position: relative;
             cursor: pointer;
             overflow: hidden;
@@ -139,7 +199,7 @@
             transition: color 0.5s, background 0.5s;
             z-index: 1;
             font-size: 17px;
-            border-radius: 6px;
+            border-radius: 16px;
             font-weight: 500;
             color: var(--color);
             background-color: var(--bg-color);
@@ -183,88 +243,356 @@
             color: #28a745;
             display: none;
         }
+        @media (max-width: 1200px) {
+    .container {
+        width: 85%;
+    }
+
+    .banner h1 {
+        font-size: 32px;
+    }
+
+    .form-section h3 {
+        font-size: 22px;
+    }
+
+    button {
+        width: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .banner h1 {
+        font-size: 28px;
+    }
+
+    .form-section h3 {
+        font-size: 20px;
+    }
+
+    .form-section input, .form-section textarea, .form-section select {
+        font-size: 14px;
+    }
+
+    button {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .btn-group {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner h1 {
+        font-size: 24px;
+    }
+
+    .form-section h3 {
+        font-size: 18px;
+    }
+
+    .form-section input, .form-section textarea, .form-section select {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    button {
+        width: 90%;
+        font-size: 16px;
+    }
+}
 
     </style>
 </head>
 <body>
     <div class="banner">
+        
+    </div>
+    <header>
+        <div class="banner-background">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+        </div>
         <h1>Employee Offboarding Form</h1>
         <p>Complete employee Offboarding Process here</p>
-    </div>
+      </header>
     <div class="container">
         
-
-      
-        <form action="#" method="post">
+        <form action="/submit" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
             <div class="form-section">
                 <h3>Employee Information</h3>
                 <label for="employeeName">Employee Name:</label>
-                <input type="text" id="employeeName" name="employeeName" placeholder="Enter Employee Name" required minlength="3" maxlength="50"    pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                <input type="text" id="employeeName" name="employeeName" placeholder="Enter Employee Name" required minlength="3" maxlength="50"  
+                pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
                 title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
-                
+                <span id="employeeName-error" style="color: red;"></span>
+        
                 <label for="employeeID">Employee ID:</label>
-                <input type="text" id="employeeID" name="employeeID" placeholder="Enter Employee ID" required  minlength="7" 
-                maxlength="7" 
-                pattern="[A-Z]{3}0[0-9]{3}" 
-                title="Employee ID must be in the format: 3 uppercase letters followed by 4 numbers">
-
+                <input type="text" id="employeeID" name="employeeID" placeholder="Enter Employee ID" required minlength="7" maxlength="7" 
+                pattern="^[ATS]{3}0(?!000)[0-9]{3}$"
+                title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits (e.g., ABC0123).">
+                <span id="employeeID-error" style="color: red;"></span>
+            
                 <label for="exitDate">Exit Date:</label>
-                <input type="date" id="exitDate" name="exitDate" required >
-
+                <input type="date" id="exitDate" name="exitDate" required>
+            
                 <label for="managerName">Manager Name:</label>
-                <input type="text" id="managerName" name="managerName" placeholder="Enter Manager Name" required minlength="3" maxlength="50"   pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                <input type="text" id="managerName" name="managerName" placeholder="Enter Manager Name" required minlength="3" maxlength="50"  
+                pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
                 title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
-
-         
+                <span id="managerName-error" style="color: red;"></span>
+            </div>
+            
             <div class="form-section">
                 <h3>Exit Interview</h3>
+            
                 <label for="exitFeedback">Feedback from Employee:</label>
                 <textarea id="exitFeedback" name="exitFeedback" placeholder="Enter any feedback the employee provided" required minlength="10" maxlength="200"></textarea>
-
+                <span id="exitFeedback-error" style="color: red;"></span>
+            
                 <label for="reasonForLeaving">Reason for Leaving:</label>
                 <textarea id="reasonForLeaving" name="reasonForLeaving" placeholder="Enter the reason the employee is leaving" required minlength="10" maxlength="200"></textarea>
+                <span id="reasonForLeaving-error" style="color: red;"></span>
             </div>
-
+        
             <div class="form-section">
                 <h3>Company Property Return</h3>
                 <div class="checklist">
-                    <label><input type="checkbox" id="laptopReturn" name="laptopReturn"> Laptop</label>
-                    <label><input type="checkbox" id="phoneReturn" name="phoneReturn"> Company Phone</label>
-                    <label><input type="checkbox" id="accessCardReturn" name="accessCardReturn"> Access Card/Key</label>
-                    <label><input type="checkbox" id="softwareReturn" name="softwareReturn"> Software Licenses/Passwords</label>
+                    <label><input type="checkbox" id="laptopReturn" name="laptopReturn" onclick="toggleNone()"> Laptop</label>
+                    <label><input type="checkbox" id="phoneReturn" name="phoneReturn" onclick="toggleNone()"> Company Phone</label>
+                    <label><input type="checkbox" id="accessCardReturn" name="accessCardReturn" onclick="toggleNone()"> Access Card/Key</label>
+                    <label><input type="checkbox" id="softwareReturn" name="softwareReturn" onclick="toggleNone()"> Software Licenses/Passwords</label>
+                    <label><input type="checkbox" id="none" name="none" onclick="toggleOthers()"> None</label>
                 </div>
             </div>
-
-         
+            
+        
             <div class="form-section">
                 <h3>Final Confirmation</h3>
                 <label><input type="checkbox" id="finalCheck" name="finalCheck" required> I confirm that all company property has been returned and that the exit interview has been conducted.</label>
             </div>
-
-            
+        
             <div class="btn-group">
                 <button type="submit" class="btn">Submit Offboarding</button>
             </div>
         </form>
+        
+        
+        <script>
+     // Set up date range for the exit date
+const today = new Date();
+const previousMonth = new Date(today);
+previousMonth.setMonth(today.getMonth() - 1);  // 1 month past
+const nextMonth = new Date(today);
+nextMonth.setMonth(today.getMonth() + 6);  // 6 months into the future
 
-    </div>
-    <script>
-        const today = new Date();
-        const previousMonth = new Date(today);
-        previousMonth.setMonth(today.getMonth() - 1);
-        const nextMonth = new Date(today);
-        nextMonth.setMonth(today.getMonth() + 1);
-    
-        function formatDate(date) {
-            const year = date.getFullYear();
-            const month = (date.getMonth() + 1).toString().padStart(2, '0');
-            const day = date.getDate().toString().padStart(2, '0');
-            return `${year}-${month}-${day}`;
-        }
-    
-        document.getElementById('exitDate').setAttribute('min', formatDate(previousMonth));
-        document.getElementById('exitDate').setAttribute('max', formatDate(nextMonth));
-    </script>
+function formatDate(date) {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+document.getElementById('exitDate').setAttribute('min', formatDate(previousMonth));  
+document.getElementById('exitDate').setAttribute('max', formatDate(nextMonth));  
+
+// Employee name validation
+document.getElementById('employeeName').addEventListener('input', function () {
+    var employeeName = this.value;
+    var errorEmployeeName = document.getElementById('employeeName-error');
+
+    if (!validateEmployeeName(employeeName)) {
+        errorEmployeeName.textContent = "Invalid name format. Ensure there are no consecutive spaces and that the name follows the required pattern.";
+    } else {
+        errorEmployeeName.textContent = "";
+    }
+});
+
+// Manager name validation
+document.getElementById('managerName').addEventListener('input', function () {
+    var managerName = this.value;
+    var errorManagerName = document.getElementById('managerName-error');
+
+    if (!validateEmployeeName(managerName)) {
+        errorManagerName.textContent = "Invalid name format. Ensure there are no consecutive spaces and that the name follows the required pattern.";
+    } else {
+        errorManagerName.textContent = "";
+    }
+});
+
+// Employee ID validation
+document.getElementById('employeeID').addEventListener('input', function () {
+    var employeeID = this.value;
+    var errorEmployeeID = document.getElementById('employeeID-error');
+
+    if (!validateEmployeeID(employeeID)) {
+        errorEmployeeID.textContent = "Invalid Employee ID format. It should follow the pattern: 3 uppercase letters followed by 4 digits (e.g., ABC0123).";
+    } else {
+        errorEmployeeID.textContent = "";
+    }
+});
+
+// Exit feedback validation
+document.getElementById('exitFeedback').addEventListener('input', function () {
+    var feedback = this.value;
+    var errorFeedback = document.getElementById('exitFeedback-error');
+
+    if (!validateTextarea(feedback)) {
+        errorFeedback.textContent = "Feedback contains invalid characters or multiple spaces.";
+    } else {
+        errorFeedback.textContent = "";
+    }
+});
+
+// Reason for leaving validation
+document.getElementById('reasonForLeaving').addEventListener('input', function () {
+    var reason = this.value;
+    var errorReason = document.getElementById('reasonForLeaving-error');
+
+    if (!validateTextarea(reason)) {
+        errorReason.textContent = "Reason for leaving contains invalid characters or multiple spaces.";
+    } else {
+        errorReason.textContent = "";
+    }
+});
+
+// Employee name regex validation pattern
+function validateEmployeeName(input) {
+    var pattern = /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
+    return pattern.test(input);
+}
+
+// Employee ID regex validation pattern
+function validateEmployeeID(input) {
+    var pattern = /^[ATS]{3}0(?!000)[0-9]{3}$/;
+    return pattern.test(input);
+}
+
+// Form validation
+function validateForm() {
+    var feedback = document.getElementById("exitFeedback").value;
+    var reason = document.getElementById("reasonForLeaving").value;
+    var employeeName = document.getElementById("employeeName").value;
+    var employeeID = document.getElementById("employeeID").value;
+    var managerName = document.getElementById("managerName").value;
+    var exitDate = document.getElementById("exitDate").value;
+
+    if (!validateEmployeeName(employeeName)) {
+        alert("Invalid Employee Name format.");
+        return false;
+    }
+
+    if (!validateEmployeeID(employeeID)) {
+        alert("Invalid Employee ID format.");
+        return false;
+    }
+
+    if (!validateEmployeeName(managerName)) {
+        alert("Invalid Manager Name format.");
+        return false;
+    }
+
+    if (!validateExitDate(exitDate)) {
+        alert("Exit Date must be between 1 month past and 6 months into the future.");
+        return false;
+    }
+
+    if (!validateTextarea(feedback)) {
+        alert("Feedback contains invalid characters or multiple spaces.");
+        return false;
+    }
+
+    if (!validateTextarea(reason)) {
+        alert("Reason for leaving contains invalid characters or multiple spaces.");
+        return false;
+    }
+
+    alert('Form submitted successfully!');
+    return true;
+}
+
+// Exit date validation
+function validateExitDate(input) {
+    var inputDate = new Date(input);
+    var minDate = new Date(previousMonth);
+    var maxDate = new Date(nextMonth);
+
+    return inputDate >= minDate && inputDate <= maxDate;
+}
+
+// Textarea validation (letters and single spaces only)
+function validateTextarea(input) {
+    var pattern = /^[A-Za-z]+( [A-Za-z]+)*$/;
+    return pattern.test(input);
+}
+
+// Handling "None" checkbox logic
+document.getElementById('none').addEventListener('click', function() {
+    toggleNone(); // Function to disable other checkboxes if 'None' is selected
+});
+
+// Toggle the "None" checkbox to disable/enable other checkboxes
+function toggleNone() {
+    const noneCheckbox = document.getElementById('none');
+    const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+
+    // If 'None' is selected, disable all other checkboxes
+    if (noneCheckbox.checked) {
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.id !== "none") {
+                checkbox.checked = false;  // Uncheck all other checkboxes
+                checkbox.disabled = true;  // Disable all other checkboxes
+            }
+        });
+    } else {
+        // If 'None' is not selected, enable all other checkboxes again
+        checkboxes.forEach(function(checkbox) {
+            checkbox.disabled = false;
+        });
+    }
+}
+
+// Handle when any other checkbox is clicked
+document.querySelectorAll('.checklist input[type="checkbox"]').forEach(function(checkbox) {
+    checkbox.addEventListener('click', function() {
+        toggleOthers(); // Function to handle enabling/disabling based on selection
+    });
+});
+
+// Toggle logic for other checkboxes
+function toggleOthers() {
+    const noneCheckbox = document.getElementById('none');
+    const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+
+    // If any checkbox other than 'None' is selected, disable 'None'
+    if (Array.from(checkboxes).some(checkbox => checkbox.checked && checkbox.id !== 'none')) {
+        noneCheckbox.checked = false;  // Uncheck 'None'
+        noneCheckbox.disabled = true;  // Disable 'None' checkbox
+    } else {
+        noneCheckbox.disabled = false;  // Enable 'None' checkbox
+    }
+
+    // If 'None' is unchecked, enable all other checkboxes
+    if (!noneCheckbox.checked) {
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.id !== "none") {
+                checkbox.disabled = false;
+            }
+        });
+    }
+}
+
+
+        </script>
+        
 
 </body>
 </html>

@@ -18,24 +18,25 @@
             font-family: 'Poppins', sans-serif;
             color: #2d3436;
             line-height: 1.6;
+            background-color: white;
         }
-
         header {
             position: relative;
             text-align: center;
-            height: 140px;
+            height: 110px;
             background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             color: #f8f9fa;
             border-radius: 16px;
             overflow: hidden;
             display: flex;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             width: 100%;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            padding: 10px;
+            padding: 20px;
         }
 
         header h1 {
@@ -50,7 +51,7 @@
         header p {
             font-weight: 300;
             font-size: 1.1rem;
-            margin-top: 15px;
+            margin-top: 5px;
             max-width: 700px;
             opacity: 0.9;
             z-index: 2;
@@ -98,6 +99,7 @@
             left: 40%;
             animation-duration: 15s;
         }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -1011,8 +1013,9 @@ body.dark-mode {
         const errorMessage = document.getElementById("emp-email-error");
         const value = input.value.trim();
 
-    
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]{2,15}\.[a-zA-Z]{2,3}$/;
+        
+
+        const emailPattern = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,3}$/;
 
         if (value === '') {
             errorMessage.style.display = 'block';
@@ -1069,28 +1072,34 @@ body.dark-mode {
         }
     }
 
-    // Function to validate asset name
-    function validateAssetName() {
-        const input = document.getElementById("asset-name");
-        const errorMessage = document.getElementById("asset-name-error");
-        const value = input.value.trim();
+   // Function to validate asset name
+function validateAssetName() {
+    const input = document.getElementById("asset-name");
+    const errorMessage = document.getElementById("asset-name-error");
+    const value = input.value.trim();
+    const pattern = /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
 
-        if (value === '') {
-            errorMessage.style.display = 'block';
-            errorMessage.textContent = 'Asset name is required.';
-            input.setCustomValidity('Asset name is required.');
-            return false;
-        } else if (value.length < 2 || value.length > 40) {
-            errorMessage.style.display = 'block';
-            errorMessage.textContent = 'Asset name must be between 2 and 40 characters.';
-            input.setCustomValidity('Invalid asset name length.');
-            return false;
-        } else {
-            errorMessage.style.display = 'none';
-            input.setCustomValidity('');
-            return true;
-        }
+    if (value === '') {
+        errorMessage.style.display = 'block';
+        errorMessage.textContent = 'Asset name is required.';
+        input.setCustomValidity('Asset name is required.');
+        return false;
+    } else if (value.length < 2 || value.length > 40) {
+        errorMessage.style.display = 'block';
+        errorMessage.textContent = 'Asset name must be between 2 and 40 characters.';
+        input.setCustomValidity('Invalid asset name length.');
+        return false;
+    } else if (!pattern.test(value)) {
+        errorMessage.style.display = 'block';
+        errorMessage.textContent = 'Invalid asset name format.';
+        input.setCustomValidity('Invalid asset name format.');
+        return false;
+    } else {
+        errorMessage.style.display = 'none';
+        input.setCustomValidity('');
+        return true;
     }
+}
 
     // Function to validate asset details
     function validateAssetDetails() {

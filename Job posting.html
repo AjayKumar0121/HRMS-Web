@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+           
         }
 
         .main-content {
@@ -24,27 +23,85 @@
             padding: 20px;
             margin: 0 auto;
         } 
-        .banner {
-            background-color: #3b145b;
-            color: white;
+       
+header {
+            position: relative;
             text-align: center;
-            height: auto;
-            padding: 10px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            width: 98%;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            height: 90px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #f8f9fa;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 20px;
         }
 
-        .banner h1 {
-            font-size: 36px;
-            color: white;
-            font-weight: 600;
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .banner p {
-            font-size: 18px;
-            margin-top: 10px;
+
+        header p {
+            font-weight: 300;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            max-width: 700px;
+            opacity: 0.9;
+            z-index: 2;
+        }
+
+        @keyframes moveCircles {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-50%); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+
+        .banner-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: moveCircles 10s infinite linear;
+        }
+
+        .circle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 8s;
+        }
+
+        .circle:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            animation-duration: 12s;
+        }
+
+        .circle:nth-child(3) {
+            top: 80%;
+            left: 40%;
+            animation-duration: 15s;
         }
 
 
@@ -178,46 +235,186 @@
             font-size: 18px;
             margin: 5px 0;
         }
+        @media (max-width: 1024px) {
+    .banner {
+        width: 100%;
+        padding: 15px;
+    }
 
-       
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 15px;
-            }
+    .banner h1 {
+        font-size: 30px;
+    }
 
-            .job-post-form input, .job-post-form select, .job-post-form textarea, .job-post-form button {
-                font-size: 14px;
-            }
+    .banner p {
+        font-size: 16px;
+    }
 
-            .job-postings {
-                flex-direction: column;
-                align-items: center;
-            }
+    h2 {
+        font-size: 30px;
+    }
 
-            .posting-card {
-                width: 100%;
-                max-width: 90%;
-            }
-        }
+    .main-content {
+        padding: 15px;
+    }
+
+    .job-post-form input,
+    .job-post-form textarea,
+    .job-post-form select {
+        width: 90%;
+        font-family: sans-serif;
+    }
+
+    button {
+        width: 280px;
+    }
+
+    .job-postings {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .posting-card {
+        width: 80%;
+        max-width: 350px;
+    }
+}
+
+/* Small Screens (Mobile & Small Tablets) */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .banner {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .banner h1 {
+        font-size: 24px;
+    }
+
+    .banner p {
+        font-size: 14px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+
+    .job-post-form input,
+    .job-post-form textarea,
+    .job-post-form select {
+        width: 100%;
+    }
+
+    button {
+        width: 260px;
+        font-size: 15px;
+        padding: 8px 12px;
+    }
+
+    .job-postings {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .posting-card {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+/* Extra Small Screens (Mobile Landscape & Small Phones) */
+@media (max-width: 480px) {
+    .banner {
+        padding: 8px;
+        text-align: center;
+    }
+
+    .banner h1 {
+        font-size: 20px;
+    }
+
+    .banner p {
+        font-size: 12px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .main-content {
+        padding: 5px;
+    }
+
+    .job-post-form input,
+    .job-post-form textarea {
+        width: 94.5%;
+    }
+    .job-post-form select{
+        width: 100%;
+    }
+
+    button {
+        font-size: 14px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+    }
+    .job-postings {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .posting-card {
+        width: 100%;
+        max-width: 260px;
+    }
+}
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+
+
     </style>
 </head>
 <body>
-    <div class="banner">
+    
+    <header>
+        <div class="banner-background">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+        </div>
         <h1>Job Posting Page</h1>
         <p>Create new job postings</p>
-    </div>
+      </header>
     <div class="main-content">
         <form class="job-post-form" onsubmit="postJob(event)">
-            <h2>Create New Job Posting</h2>
             <label for="job-title">Job Title</label>
-            <input type="text" placeholder="Job Title" id="job-title" required minlength="3" maxlength="50">
-
+            <input type="text" placeholder="Job Title" id="job-title" required minlength="3" maxlength="50" pattern="^[A-Za-z]+(?: [A-Za-z]+)*$">
+            <div id="job-title-error" class="error-message"></div> 
+        
             <label for="job-description">Job Description</label>
-            <textarea placeholder="Job Description" id="job-description" rows="4" required minlength="10" maxlength="100"></textarea>
-
+            <textarea style="font-family: Arial, Helvetica, sans-serif;" placeholder="Job Description" id="job-description" rows="4" required minlength="10" maxlength="100" pattern="^[A-Za-z]+(?: [A-Za-z]+)*$"></textarea>
+            <div id="job-description-error" class="error-message"></div>
+            <div id="job-description-char-count">0/100</div>
+        
             <label for="job-skills">Required Skills</label>
-            <textarea placeholder="Required Skills" id="job-skills" rows="2" required minlength="5" maxlength="100"></textarea>
-
+            <textarea style="font-family: Arial, Helvetica, sans-serif;" placeholder="Required Skills" id="job-skills" rows="2" required minlength="5" maxlength="100" pattern="^[A-Za-z]+(?: [A-Za-z]+)*$"></textarea>
+            <div id="job-skills-error" class="error-message"></div> 
+            <div id="job-skills-char-count">0/100</div>
+        
             <label for="job-department">Select Department</label>
             <select id="job-department" required>
                 <option value="">Select Department</option>
@@ -226,48 +423,141 @@
                 <option value="Finance">Finance</option>
                 <option value="Marketing">Marketing</option>
             </select>
-
+        
             <label for="job-posting-date">Job Posting Date</label>
             <input type="date" id="job-posting-date" required>
-
-
+            <div id="job-posting-date-error" class="error-message"></div> 
+        
             <button type="submit">Post Job</button>
         </form>
-
-        <div class="job-postings" id="job-postings">
-        </div>
+        
+        
+        <div id="job-postings"></div>
+        
+    
+        <div class="job-postings" id="job-postings"></div>
     </div>
-
+    
     <script>
-      function postJob(event) {
-        event.preventDefault();
+     document.addEventListener("DOMContentLoaded", function () {
+    // Add real-time validation on input fields
+    document.getElementById("job-title").addEventListener("input", validateJobTitle);
+    document.getElementById("job-description").addEventListener("input", validateJobDescription);
+    document.getElementById("job-skills").addEventListener("input", validateJobSkills);
+    document.getElementById("job-posting-date").addEventListener("input", validateJobPostingDate);
 
-        const title = document.getElementById('job-title').value;
-        const description = document.getElementById('job-description').value;
-        const skills = document.getElementById('job-skills').value;
-        const department = document.getElementById('job-department').value;
-        const postingDate = document.getElementById('job-posting-date').value;
+    // Add character count for text areas
+    document.getElementById("job-description").addEventListener("input", updateDescriptionCharCount);
+    document.getElementById("job-skills").addEventListener("input", updateSkillsCharCount);
+});
 
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('job-posting-date').setAttribute('min', today);
+// Validation functions to show error messages while typing
 
-        const jobPostingsContainer = document.getElementById('job-postings');
+function validateJobTitle() {
+    const title = document.getElementById('job-title').value;
+    const titlePattern = /^[A-Za-z]+(?: [A-Za-z]+)*$/;
+    const error = document.getElementById('job-title-error');
 
-        const postingCard = document.createElement('div');
-        postingCard.classList.add('posting-card');
-
-        postingCard.innerHTML = `
-            <p><strong>Job Title:</strong> ${title}</p>
-            <p><strong>Department:</strong> ${department}</p>
-            <p><strong>Skills Required:</strong> ${skills}</p>
-            <p><strong>Description:</strong> ${description}</p>
-            <p><strong>Posting Date:</strong> ${new Date(postingDate).toLocaleDateString()}</p>
-            <button>Show Applications</button>
-        `;
-        jobPostingsContainer.appendChild(postingCard);
-
-        document.querySelector('.job-post-form').reset();
+    if (!titlePattern.test(title)) {
+        error.textContent = 'Job title must contain only alphabets and spaces, with no leading, trailing, or consecutive spaces.';
+    } else {
+        error.textContent = '';  // Clear error message
     }
+}
+
+function validateJobDescription() {
+    const description = document.getElementById('job-description').value;
+    const descriptionPattern = /^[A-Za-z]+(?: [A-Za-z]+)*$/;
+    const error = document.getElementById('job-description-error');
+
+    if (!descriptionPattern.test(description)) {
+        error.textContent = 'Job description must contain only alphabets and spaces, with no leading, trailing, or consecutive spaces.';
+    } else {
+        error.textContent = '';  // Clear error message
+    }
+}
+
+function validateJobSkills() {
+    const skills = document.getElementById('job-skills').value;
+    const skillsPattern = /^[A-Za-z]+(?: [A-Za-z]+)*$/;
+    const error = document.getElementById('job-skills-error');
+
+    if (!skillsPattern.test(skills)) {
+        error.textContent = 'Required skills must contain only alphabets and spaces, with no leading, trailing, or consecutive spaces.';
+    } else {
+        error.textContent = '';  // Clear error message
+    }
+}
+
+function validateJobPostingDate() {
+    const postingDate = document.getElementById('job-posting-date').value;
+    const error = document.getElementById('job-posting-date-error');
+    const today = new Date().toISOString().split('T')[0]; // Today's date in YYYY-MM-DD format
+
+    if (postingDate !== today) {
+        error.textContent = 'Job posting date must be today.';
+    } else {
+        error.textContent = '';  // Clear error message
+    }
+}
+
+function updateDescriptionCharCount() {
+    const description = document.getElementById('job-description').value;
+    const charCountElement = document.getElementById('job-description-char-count');
+    charCountElement.textContent = `${description.length}/100`;
+}
+
+function updateSkillsCharCount() {
+    const skills = document.getElementById('job-skills').value;
+    const charCountElement = document.getElementById('job-skills-char-count');
+    charCountElement.textContent = `${skills.length}/100`;
+}
+
+// Handle form submission
+function postJob(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Get values from the form
+    const title = document.getElementById('job-title').value;
+    const description = document.getElementById('job-description').value;
+    const skills = document.getElementById('job-skills').value;
+    const department = document.getElementById('job-department').value;
+    const postingDate = document.getElementById('job-posting-date').value;
+
+    // Perform final check before submitting the form
+    const titlePattern = /^[A-Za-z]+(?: [A-Za-z]+)*$/;
+    const descriptionPattern = /^[A-Za-z]+(?: [A-Za-z]+)*$/;
+    const skillsPattern = /^[A-Za-z]+(?: [A-Za-z]+)*$/;
+    const today = new Date().toISOString().split('T')[0];  // Today's date in YYYY-MM-DD format
+
+    if (!titlePattern.test(title) || !descriptionPattern.test(description) || !skillsPattern.test(skills) || postingDate !== today) {
+        // If there are any validation errors, stop form submission
+        alert("Please fix the errors before submitting the form.");
+        return;
+    }
+
+    // Create a new job posting card
+    const jobPostingsContainer = document.getElementById('job-postings');
+    const postingCard = document.createElement('div');
+    postingCard.classList.add('posting-card');
+
+    postingCard.innerHTML = `
+        <p><strong>Job Title:</strong> ${title}</p>
+        <p><strong>Department:</strong> ${department}</p>
+        <p><strong>Skills Required:</strong> ${skills}</p>
+        <p><strong>Description:</strong> ${description}</p>
+        <p><strong>Posting Date:</strong> ${new Date(postingDate).toLocaleDateString()}</p>
+        <button>Show Applications</button>
+    `;
+    jobPostingsContainer.appendChild(postingCard);
+
+    // Reset form after successful posting
+    document.querySelector('.job-post-form').reset();
+    document.getElementById('job-description-char-count').textContent = '0/100';
+    document.getElementById('job-skills-char-count').textContent = '0/100';
+}
+
     </script>
+    
 </body>
 </html>

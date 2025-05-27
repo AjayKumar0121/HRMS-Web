@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,86 +22,84 @@
         }
 
         header {
-      position: relative;
-      text-align: center;
-      height: 120px; 
-      background-color: #5f06a8;
-      color: #fff;
-      border-radius: 15px;
-      overflow: hidden;
-      display: flex;
-      width: 98%;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
+            position: relative;
+            text-align: center;
+            height: 110px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #f8f9fa;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+        }
 
-    header h1 {
-      margin: 0;
-      font-size: 36px;
-      color: white;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      position: relative;
-      z-index: 2;
-    }
-header p{
-    font-weight: 100;
-      font-size: 18px;
-      margin-top: 10px;
-}
-  
-    @keyframes moveCircles {
-      0% {
-        transform: translateY(0) translateX(0);
-      }
-      50% {
-        transform: translateY(-50%) translateX(-50%);
-      }
-      100% {
-        transform: translateY(0) translateX(0);
-      }
-    }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-    .banner-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      overflow: hidden;
-    }
+        header p {
+            font-weight: 300;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            max-width: 700px;
+            opacity: 0.9;
+            z-index: 2;
+        }
 
-    .circle {
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      animation: moveCircles 10s infinite linear;
-    }
+        @keyframes moveCircles {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-50%); }
+            100% { transform: translateY(0) translateX(0); }
+        }
 
-    .circle:nth-child(1) {
-      top: 10%;
-      left: 20%;
-      animation-duration: 8s;
-    }
+        .banner-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
 
-    .circle:nth-child(2) {
-      top: 50%;
-      left: 70%;
-      animation-duration: 12s;
-    }
+        .circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: moveCircles 10s infinite linear;
+        }
 
-    .circle:nth-child(3) {
-      top: 80%;
-      left: 40%;
-      animation-duration: 15s;
-    }
+        .circle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 8s;
+        }
+
+        .circle:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            animation-duration: 12s;
+        }
+
+        .circle:nth-child(3) {
+            top: 80%;
+            left: 40%;
+            animation-duration: 15s;
+        }
 
         .form-container {
             width: 90%;
@@ -705,7 +702,7 @@ header p{
             <div class="input-group">
                 <div>
                     <label for="employeeName">Employee Name:</label>
-                    <input type="text" id="employeeName" placeholder="Enter your Name" required minlength="3" maxlength="100"
+                    <input type="text" id="employeeName" placeholder="Enter your Name" required minlength="3" maxlength="40"
                         pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
                         title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
                     <p class="error-message" id="employeeNameError">Invalid name. Please follow the rules.</p>
@@ -713,7 +710,7 @@ header p{
                 <div>
                     <label for="employeeID">Employee ID:</label>
                     <input type="text" id="employeeID" placeholder="Enter Your ID" required minlength="7"
-                        maxlength="7" pattern="^[A-Z]{3}(?!0000)[0-9]{4}$"
+                        maxlength="7" pattern="^[ATS]{3}(?!0000)[0-9]{4}$"
                         title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits, starting from 0001 (cannot be 0000)">
                     <p class="error-message" id="employeeIDError">Invalid ID. Please follow the format (e.g., ABC1234).</p>
                 </div>
@@ -729,7 +726,7 @@ header p{
                     <label for="workingProject">Working Project:</label>
                     <input type="text" id="workingProject" placeholder="Enter Project Name"
                         pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$" required minlength="3"
-                        maxlength="100">
+                        maxlength="40">
                     <p class="error-message" id="workingProjectError">Invalid project name. Please follow the rules.</p>
                 </div>
             </div>
@@ -737,7 +734,7 @@ header p{
                 <div>
                     <label for="reportingManager">Reporting Manager:</label>
                     <input type="text" id="reportingManager" placeholder="Enter Manager's Name"
-                        required minlength="3" maxlength="100"
+                        required minlength="3" maxlength="40"
                         pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
                         title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
                     <p class="error-message" id="reportingManagerError">Invalid manager name. Please follow the rules.</p>
@@ -746,7 +743,7 @@ header p{
                     <label for="wfhLocation">WFH Location:</label>
                     <input type="text" id="wfhLocation" placeholder="Enter your WFH Location"
                         pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$" required minlength="3"
-                        maxlength="50">
+                        maxlength="30">
                     <p class="error-message" id="wfhLocationError">Invalid location. Please follow the rules.</p>
                 </div>
             </div>
@@ -764,7 +761,7 @@ header p{
             </div>
             <label for="reason">Reason for Work from Home:</label>
             <textarea id="reason" placeholder="Enter your reason for WFH" required minlength="10"
-                maxlength="200"></textarea>
+                maxlength="100"></textarea>
             <p class="error-message" id="reasonError">Invalid reason. Please follow the rules.</p><br>
             <button type="submit">Submit Request</button>
         </form>
@@ -805,12 +802,12 @@ header p{
             });
 
             document.getElementById('employeeID').addEventListener('input', function () {
-                const pattern = /^[A-Z]{3}(?!0000)[0-9]{4}$/;
+                const pattern = /^[ATS]{3}(?!0000)[0-9]{4}$/;
                 validateField(this, document.getElementById('employeeIDError'), pattern, 'Invalid ID. Please follow the format (e.g., ABC1234).');
             });
 
             document.getElementById('employeeEmail').addEventListener('input', function () {
-                const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                const pattern = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,3}$/;
                 validateField(this, document.getElementById('employeeEmailError'), pattern, 'Invalid email. Please enter a valid email address.');
             });
 
@@ -842,27 +839,63 @@ header p{
                 }
             });
 
-            document.getElementById('fromDate').addEventListener('change', function () {
-                const currentDate = new Date().toISOString().split('T')[0];
-                if (this.value < currentDate) {
-                    document.getElementById('fromDateError').style.display = 'block';
-                    this.setCustomValidity('Invalid date. Please select a valid date.');
-                } else {
-                    document.getElementById('fromDateError').style.display = 'none';
-                    this.setCustomValidity('');
-                }
-            });
+            document.getElementById('fromDate').addEventListener('change', function() {
+    const currentDate = new Date();
+    const selectedDate = new Date(this.value);
+    const oneYearFromNow = new Date();
+    oneYearFromNow.setFullYear(currentDate.getFullYear() + 1);
+    
+    // Reset previous validations
+    document.getElementById('fromDateError').style.display = 'none';
+    this.setCustomValidity('');
+    
+    // Validate from date
+    if (selectedDate < currentDate) {
+        document.getElementById('fromDateError').textContent = 'Date cannot be in the past.';
+        document.getElementById('fromDateError').style.display = 'block';
+        this.setCustomValidity('Date cannot be in the past.');
+    } else if (selectedDate > oneYearFromNow) {
+        document.getElementById('fromDateError').textContent = 'Date cannot be more than one year from today.';
+        document.getElementById('fromDateError').style.display = 'block';
+        this.setCustomValidity('Date cannot be more than one year from today.');
+    }
+    
+    // If from date changed, validate to date again if it exists
+    const toDateInput = document.getElementById('toDate');
+    if (toDateInput.value) {
+        toDateInput.dispatchEvent(new Event('change'));
+    }
+});
 
-            document.getElementById('toDate').addEventListener('change', function () {
-                const fromDate = document.getElementById('fromDate').value;
-                if (this.value <= fromDate) {
-                    document.getElementById('toDateError').style.display = 'block';
-                    this.setCustomValidity('Invalid date. Please select a valid date.');
-                } else {
-                    document.getElementById('toDateError').style.display = 'none';
-                    this.setCustomValidity('');
-                }
-            });
+document.getElementById('toDate').addEventListener('change', function() {
+    const fromDateInput = document.getElementById('fromDate');
+    const fromDate = new Date(fromDateInput.value);
+    const toDate = new Date(this.value);
+    const currentDate = new Date();
+    const oneYearFromNow = new Date();
+    oneYearFromNow.setFullYear(currentDate.getFullYear() + 1);
+    
+    // Reset previous validations
+    document.getElementById('toDateError').style.display = 'none';
+    this.setCustomValidity('');
+    
+    // Validate to date only if from date is valid
+    if (fromDateInput.validity.valid) {
+        if (toDate < fromDate) {
+            document.getElementById('toDateError').textContent = 'End date cannot be before start date.';
+            document.getElementById('toDateError').style.display = 'block';
+            this.setCustomValidity('End date cannot be before start date.');
+        } else if (toDate > oneYearFromNow) {
+            document.getElementById('toDateError').textContent = 'Date cannot be more than one year from today.';
+            document.getElementById('toDateError').style.display = 'block';
+            this.setCustomValidity('Date cannot be more than one year from today.');
+        }
+    } else {
+        document.getElementById('toDateError').textContent = 'Please select a valid start date first.';
+        document.getElementById('toDateError').style.display = 'block';
+        this.setCustomValidity('Please select a valid start date first.');
+    }
+});
 
             form.addEventListener('submit', function (event) {
                 event.preventDefault();
@@ -877,14 +910,14 @@ header p{
                 const isEmployeeIDValid = validateField(
                     document.getElementById('employeeID'),
                     document.getElementById('employeeIDError'),
-                    /^[A-Z]{3}(?!0000)[0-9]{4}$/,
-                    'Invalid ID. Please follow the format (e.g., ABC1234).'
+                    /^[ATS]{3}(?!0000)[0-9]{4}$/,
+                    'Invalid ID. Please follow the format (e.g., ABC0123).'
                 );
 
                 const isEmployeeEmailValid = validateField(
                     document.getElementById('employeeEmail'),
                     document.getElementById('employeeEmailError'),
-                    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    /^[a-zA-Z0-9._%+-]+@[a-zA-Z]{2,15}\.[a-zA-Z]{2,3}$/,
                     'Invalid email. Please enter a valid email address.'
                 );
 
@@ -957,7 +990,7 @@ header p{
         return;
     }
 
-    const recentSubmissions = allSubmissions.slice(-2);
+    const recentSubmissions = allSubmissions.slice(-3);
     recentSubmissions.forEach((submission, index) => {
         const card = document.createElement('div');
         card.className = 'submission-card';
@@ -973,7 +1006,7 @@ header p{
     });
 
     // Show "View More" button if there are more than 2 submissions
-    viewMoreBtn.style.display = allSubmissions.length > 2 ? 'block' : 'none';
+    viewMoreBtn.style.display = allSubmissions.length > 3 ? 'block' : 'none';
 }
 
             // Handle "View More" button click

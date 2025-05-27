@@ -17,27 +17,86 @@
             font-family: monospace;
             color: #333;
         }
-        .banner {
-            background-color: #3b145b;
-            color: white;
+       
+     header {
+            position: relative;
             text-align: center;
-            height: auto;
-            padding: 10px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            width: 98%;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            height: 90px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 20px;
         }
 
-        .banner h1 {
-            font-size: 36px;
+        header h1 {
             color: white;
-            font-weight: 600;
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .banner p {
-            font-size: 18px;
-            margin-top: 10px;
+
+        header p {
+            font-weight: 300;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            max-width: 700px;
+            opacity: 0.9;
+            z-index: 2;
+        }
+
+        @keyframes moveCircles {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-50%); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+
+        .banner-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: moveCircles 10s infinite linear;
+        }
+
+        .circle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 8s;
+        }
+
+        .circle:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            animation-duration: 12s;
+        }
+
+        .circle:nth-child(3) {
+            top: 80%;
+            left: 40%;
+            animation-duration: 15s;
         }
 
 
@@ -60,7 +119,7 @@
         .application-card {
             display: flex;
             flex-direction: column;
-            width: auto;
+            width: 550px;
             height: auto;
             padding: 20px;
             background-color: #f9f9f9;
@@ -191,16 +250,138 @@
     flex: 1; 
     text-align: left;
 }
+@media (max-width: 1024px) {
+    .banner {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .banner h1 {
+        font-size: 30px;
+    }
+
+    .banner p {
+        font-size: 16px;
+    }
+
+    .job-applications {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .application-card {
+        width: 80%;
+    }
+}
+
+/* Small Screens (Mobile & Small Tablets) */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .banner {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .banner h1 {
+        font-size: 24px;
+    }
+
+    .banner p {
+        font-size: 14px;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .job-applications {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .application-card {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .application-card p {
+        font-size: 16px;
+    }
+
+    .label {
+        width: 150px;
+    }
+
+    button {
+        font-size: 15px;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner {
+        padding: 8px;
+        text-align: center;
+    }
+
+    .banner h1 {
+        font-size: 20px;
+    }
+
+    .banner p {
+        font-size: 12px;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+
+    .job-applications {
+        gap: 15px;
+    }
+
+    .application-card {
+        width: 94%;
+        padding: 10px;
+    }
+
+    .application-card p {
+        font-size: 14px;
+    }
+
+    .label {
+        width: 120px;
+    }
+
+    button {
+        font-size: 14px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+    }
+}
 
     </style>
 </head>
 <body>
-    <div class="banner">
+   
+    <header>
+        <div class="banner-background">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+        </div>     
         <h1>Job Applications<h1>
             <p>Track job applications here</p>
-    </div>
+        
+      </header>
     <div class="main-content">
-        <h1>Job Applications</h1>
+
         
         <div class="job-applications">
             <div class="application-card">

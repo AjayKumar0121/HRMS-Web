@@ -3,302 +3,601 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Career Development Layout</title>
+    <title>Career Development Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --danger: #d63031;
+            --info: #0984e3;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            color: #333;
+            box-sizing: border-box;
         }
 
-        .top {
-            height: 100px;
-            padding: 20px;
-            width: 70%;
-            border-radius: 20px;
-            margin-left: 0;
-            display: flex;
-            flex-direction: column;
-            color: rgb(0, 0, 0);
-            border-radius: 10px;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #ffffff;
-            margin-bottom: 20px;
-            margin-left: 100px;
-            border: 1px solid #000000;
-            padding-left: 90px;
-            margin-top: 40px;
-        }
-        .banner {
-            background-color: #3b145b;
-            color: white;
-            text-align: center;
-            height: auto;
-            padding: 10px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            width: 98%;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            color: var(--dark);
+            line-height: 1.6;
         }
 
-        .banner h1 {
-            font-size: 36px;
-            color: white;
-            font-weight: 600;
-        }
-        .banner p {
-            font-size: 18px;
-            margin-top: 10px;
-        }
-
-        .top h1 {
-            font-size: 2.4rem;
-            margin: 0;
-            font-weight: bold;
-            color: rgb(108, 9, 108);
-        }
-
-        .top h1 span {
-            padding-top: 5px;
-            margin-top: 10px;
-            color: blueviolet;
-            display: inline-block;
-        }
-
-        .top p {
-            font-size: 1.7rem;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-            color: #62750e;
-        }
-
-    
-        .main-content {
-            display: flex;
-            justify-content: space-between;
-            width: 90%;
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            box-sizing: border-box;
-        }
-
-        .left-content {
-            flex: 2;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-       
-
-        
-
-        .right-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            margin-left: 50px;
-        }
-
-        .box, .Previous-Achievements, .Current-Progress, .Future-Plans, .Certifications {
             padding: 20px;
-            border-radius: 12px;
-            background-color: #fff;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            width: 100%;
-            box-sizing: border-box;
         }
 
-        .box:hover, .Previous-Achievements:hover, .Current-Progress:hover, .Future-Plans:hover, .Certifications:hover {
-            transform: translateY(-8px);
-            box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
-        }
+        /* Header Styles */
+         header {
+      position: relative;
+      text-align: center;
+      height: 110px;
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: #f8f9fa;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      padding: 20px;
+    }
 
-        .graph-container {
-            width: 100%;
-            margin-top: 20px;
-        }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 700;
+      position: relative;
+      z-index: 2;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-        .graph {
-            width: 100%;
-            height: 40px;
-            background-color: #e0e0e0;
-            border-radius: 8px;
-            margin-bottom: 20px;
+    header p {
+      font-weight: 300;
+      font-size: 1.1rem;
+      margin-top: 15px;
+      max-width: 700px;
+      opacity: 0.9;
+      z-index: 2;
+    }
+
+    @keyframes moveCircles {
+      0% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(-50%) translateX(-50%); }
+      100% { transform: translateY(0) translateX(0); }
+    }
+
+    .banner-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .circle {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: moveCircles 10s infinite linear;
+    }
+
+    .circle:nth-child(1) {
+      top: 10%;
+      left: 20%;
+      animation-duration: 8s;
+    }
+
+    .circle:nth-child(2) {
+      top: 50%;
+      left: 70%;
+      animation-duration: 12s;
+    }
+
+    .circle:nth-child(3) {
+      top: 80%;
+      left: 40%;
+      animation-duration: 15s;
+    }
+        /* Profile Card */
+        .profile-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
             display: flex;
             align-items: center;
+            transition: var(--transition);
         }
 
-        .progress-bar {
-            height: 100%;
-            border-radius: 8px;
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .career-progress {
-            width: 60%;
-            background-color: #4caf50;
-        }
-
-        .absent-days {
-            width: 10%;
-            background-color: #ff9800;
-        }
-
-        .performance {
-            width: 80%;
-            background-color: #2196f3;
-        }
-
-        .Previous-Achievements,
-        .Current-Progress,
-        .Future-Plans,
-        .Certifications {
-            font-size: 1.6rem;
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
             font-weight: bold;
-            color: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
+            margin-right: 20px;
+            flex-shrink: 0;
         }
 
-        .Previous-Achievements {
-            background-color: #a60f55;
+        .profile-info h2 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            color: var(--primary);
         }
 
-        .Current-Progress {
-            background-color: #088557;
-        }
-
-        .Future-Plans {
-            background-color: #ff9800;
-        }
-
-        .Certifications {
-            background-color: #730564;
-        }
-
-        ul {
-            font-size: 1.6rem;
-            list-style-type: disc;
-            padding-left: 20px;
-            margin-top: 0;
-        }
-
-        li {
+        .profile-info p {
+            color: #666;
             margin-bottom: 10px;
         }
 
-        .line {
-            border: 2px solid black;
-            width: 100%;
+        .experience-badge {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Main Content Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* Progress Bars */
+        .progress-container {
             margin: 20px 0;
         }
 
-        .heading {
-            font-size: 1.6rem;
-            background-color: darkgoldenrod;
-            color: white;
-            border-radius: 6px;
-            width: 100%;
-            padding: 5px;
-            text-align: center;
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #666;
         }
 
-        .heading2 {
-            font-size: 1.6rem;
-            background-color: rgb(141, 11, 184);
-            color: white;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            width: 100%;
-            padding: 5px;
-            text-align: center;
+        .progress-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
         }
 
-        .heading3 {
-            font-size: 1.6rem;
-            background-color: rgb(11, 152, 184);
+        .progress-fill {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 1s ease-in-out;
+        }
+
+        /* List Styles */
+        .achievement-list {
+            list-style: none;
+        }
+
+        .achievement-item {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .achievement-item:last-child {
+            border-bottom: none;
+        }
+
+        .achievement-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--secondary);
             color: white;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            width: 100%;
-            padding: 5px;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+        }
+
+        .achievement-content h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .achievement-content p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Skill Tags */
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .skill-tag {
+            background: #f0f0f0;
+            color: #555;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .skill-tag.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-img {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="banner">
-        <h1>Employee Career Development Page</h1>
-        <p>Review employee career development plans and goals</p>
-    </div>
-    <div class="top">
-        <h1><span>Career</span> Development</h1>
-        <p>Employee01 - Experience : 5 years</p>
-    </div>
+    <div class="container">
+         <header>
+      <div class="banner-background">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+        <h1>Employee Career Development</h1>
+            <p>Track your professional growth and set new milestones</p>
+    </header>
 
-    <div class="main-content">
-        <div class="left-content">
-            <div class="Current-Progress">Current Progress</div>
-            <ul>
-                <li><strong>Current Role:</strong> Junior Software Developer</li>
-                <li><strong>Ongoing Projects:</strong> Developing features for the company’s web application.</li>
-                <li><strong>Performance:</strong> Meeting project deadlines and contributing to team discussions.</li>
-            </ul>
-
-            <div class="line"></div>
-
-            <div class="Previous-Achievements">Previous Achievements</div>
-            <ul>
-                <li><strong>Intern of the Year (2022)</strong> - Recognized for outstanding contributions during internship.</li>
-                <li><strong>Best Team Player</strong> - Awarded for collaboration and support to team members.</li>
-            </ul>
-
-            <div class="line"></div>
-
-            <div class="Future-Plans">Future Plans</div>
-            <ul>
-                <li><strong>Goal 1:</strong> Complete a full-stack development course by Q2 2024.</li>
-                <li><strong>Goal 2:</strong> Contribute to open-source projects to enhance coding skills.</li>
-                <li><strong>Goal 3:</strong> Attend a tech conference in 2025 to network with industry professionals.</li>
-            </ul>
+        <div class="profile-card">
+            <div class="profile-img">E01</div>
+            <div class="profile-info">
+                <h2>Employee01</h2>
+                <p>Junior Software Developer</p>
+                <span class="experience-badge">5 years experience</span>
+            </div>
         </div>
 
-        <div class="right-content">
-            <div class="box">
-                <div class="heading">Career Progress</div>
-                <div class="graph-container">
-                    <div class="graph">
-                        <div class="progress-bar career-progress"></div>
+        <div class="dashboard-grid">
+            <div class="left-column">
+                <!-- Current Progress Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: var(--info);">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="card-title">Current Progress</h3>
                     </div>
-                    <ul>
-                        <li>Career Progress: 60%</li>
-                        <li>Absent Days: 10%</li>
-                        <li>Performance: 80%</li>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Project Completion</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%; background: var(--info);"></div>
+                        </div>
+                    </div>
+                    <ul class="achievement-list">
+                        <li class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>Current Role</h4>
+                                <p>Junior Software Developer working on web application features</p>
+                            </div>
+                        </li>
+                        <li class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>Ongoing Projects</h4>
+                                <p>Developing new UI components for customer portal</p>
+                            </div>
+                        </li>
+                        <li class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>Performance</h4>
+                                <p>Consistently meeting deadlines with high-quality code</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Previous Achievements Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: var(--success);">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3 class="card-title">Previous Achievements</h3>
+                    </div>
+                    <ul class="achievement-list">
+                        <li class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>Intern of the Year (2022)</h4>
+                                <p>Recognized for outstanding contributions during internship program</p>
+                            </div>
+                        </li>
+                        <li class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>Best Team Player Award</h4>
+                                <p>Awarded for exceptional collaboration and team support</p>
+                            </div>
+                        </li>
+                        <li class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>Project Excellence</h4>
+                                <p>Led successful implementation of customer feedback system</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Future Plans Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: var(--warning); color: #333;">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3 class="card-title">Future Goals</h3>
+                    </div>
+                    <ul class="achievement-list">
+                        <li class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>Complete Full-Stack Course</h4>
+                                <p>Enroll in advanced MERN stack development program by Q2 2024</p>
+                            </div>
+                        </li>
+                        <li class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>Open Source Contributions</h4>
+                                <p>Contribute to at least 3 open-source projects to enhance skills</p>
+                            </div>
+                        </li>
+                        <li class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>Professional Networking</h4>
+                                <p>Attend DevConf 2025 to connect with industry leaders</p>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="box">
-                <div class="heading2">Technical Skills</div>
-                <ul>
-                    <li>Proficient in JavaScript, HTML, and CSS.</li>
-                    <li>Familiar with React and Node.js.</li>
-                    <li>Basic knowledge of Python and SQL.</li>
-                </ul>
-            </div>
+            <div class="right-column">
+                <!-- Career Progress Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: var(--primary);">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3 class="card-title">Career Metrics</h3>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Career Progress</span>
+                            <span>60%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%; background: var(--primary);"></div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Attendance</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%; background: var(--success);"></div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Performance</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 80%; background: var(--info);"></div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="box">
-                <div class="heading3">Key Contributions</div>
-                <ul>
-                    <li>Implemented a new feature that improved user experience.</li>
-                    <li>Assisted in debugging and optimizing existing code.</li>
-                </ul>
+                <!-- Technical Skills Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: var(--danger);">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3 class="card-title">Technical Skills</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag primary">JavaScript</span>
+                        <span class="skill-tag primary">HTML5</span>
+                        <span class="skill-tag primary">CSS3</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Git</span>
+                    </div>
+                </div>
+
+                <!-- Key Contributions Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: var(--secondary);">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="card-title">Key Contributions</h3>
+                    </div>
+                    <ul class="achievement-list">
+                        <li class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>UX Improvement</h4>
+                                <p>Redesigned navigation flow increasing user satisfaction by 30%</p>
+                            </div>
+                        </li>
+                        <li class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>Performance Optimization</h4>
+                                <p>Reduced page load times by 40% through code refactoring</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Certifications Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: #730564; color: white;">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3 class="card-title">Certifications</h3>
+                    </div>
+                    <ul class="achievement-list">
+                        <li class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fab fa-js"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>JavaScript Fundamentals</h4>
+                                <p>Completed 2022 - Code Academy</p>
+                            </div>
+                        </li>
+                        <li class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>React Developer</h4>
+                                <p>Completed 2023 - Udemy</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-
 </body>
 </html>

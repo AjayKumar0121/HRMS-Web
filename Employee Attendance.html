@@ -8,7 +8,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-      
         * {
             margin: 0;
             padding: 0;
@@ -24,88 +23,86 @@
             align-items: center;
         }
        
-    header {
-      position: relative;
-      text-align: center;
-      height: 120px; 
-      background-color: #5f06a8;
-      color: #fff;
-      border-radius: 15px;
-      overflow: hidden;
-      display: flex;
-      width: 98%;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
+        header {
+            position: relative;
+            text-align: center;
+            height: 110px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #f8f9fa;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+        }
 
-    header h1 {
-      margin: 0;
-      font-size: 36px;
-      color: white;
-      font-weight: 600;
-      letter-spacing: 2px;
-      position: relative;
-      z-index: 2;
-    }
-header p{
-    font-weight: 100;
-      font-size: 18px;
-      margin-top: 10px;
-}
-  
-    @keyframes moveCircles {
-      0% {
-        transform: translateY(0) translateX(0);
-      }
-      50% {
-        transform: translateY(-50%) translateX(-50%);
-      }
-      100% {
-        transform: translateY(0) translateX(0);
-      }
-    }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-    .banner-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      overflow: hidden;
-    }
+        header p {
+            font-weight: 300;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            max-width: 700px;
+            opacity: 0.9;
+            z-index: 2;
+        }
 
-    .circle {
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      animation: moveCircles 10s infinite linear;
-    }
+        @keyframes moveCircles {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-50%); }
+            100% { transform: translateY(0) translateX(0); }
+        }
 
-    .circle:nth-child(1) {
-      top: 10%;
-      left: 20%;
-      animation-duration: 8s;
-    }
+        .banner-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
 
-    .circle:nth-child(2) {
-      top: 50%;
-      left: 70%;
-      animation-duration: 12s;
-    }
+        .circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: moveCircles 10s infinite linear;
+        }
 
-    .circle:nth-child(3) {
-      top: 80%;
-      left: 40%;
-      animation-duration: 15s;
-    }
+        .circle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 8s;
+        }
 
-        
+        .circle:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            animation-duration: 12s;
+        }
+
+        .circle:nth-child(3) {
+            top: 80%;
+            left: 40%;
+            animation-duration: 15s;
+        }
+
         .main-container {
             display: flex;
             align-items: flex-start;
@@ -116,21 +113,19 @@ header p{
             margin-top: 10px;
         }
 
-     
         .attendance-container {
             display: flex;
             flex-direction: column;
             width: 100%;
         }
 
-         h2 {
+        h2 {
             font-size: 28px;
             margin-bottom: 15px;
             color: #2b2b2b;
             font-weight: 700;
         }
 
-      
         .employee-details {
             display: flex;
             padding: 40px;
@@ -203,28 +198,28 @@ header p{
         }
 
         .password-container {
-        position: relative;
-        width: 90%;
-    }
+            position: relative;
+            width: 90%;
+        }
 
-    .password-container input {
-        width: 100%;
-        padding-right: 40px;
-    }
+        .password-container input {
+            width: 100%;
+            padding-right: 40px;
+        }
 
-    .password-container i {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        cursor: pointer;
-        color: #555;
-    }
+        .password-container i {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #555;
+        }
 
-    .password-container i:hover {
-        color: #000;
-    }
+        .password-container i:hover {
+            color: #000;
+        }
      
         .punch-container {
             display: flex;
@@ -284,7 +279,6 @@ header p{
             transform: translateX(26px);
         }
 
-       
         #punchStatusText {
             font-size: 18px;
             font-weight: 500;
@@ -292,7 +286,6 @@ header p{
             color: #2b2b2b;
         }
 
-       
         button {
             margin-top: 15px;
             background-color: #09b209;
@@ -327,262 +320,300 @@ header p{
             justify-content: center;
         }
 
+        /* New styles for paired records */
+        .punch-record {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .punch-in-card, .punch-out-card {
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .punch-in-card {
+            background-color: #d4edda;
+            border-left: 5px solid #28a745;
+        }
+
+        .punch-out-card {
+            background-color: #f8d7da;
+            border-left: 5px solid #dc3545;
+        }
+
+        .punch-time {
+            font-weight: bold;
+        }
+
+        .no-records {
+            text-align: center;
+            padding: 20px;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .time-remaining {
+            text-align: center;
+            margin-top: 10px;
+            color: #dc3545;
+            font-weight: bold;
+        }
+
         @media (max-width: 1024px) {
-    .main-container {
-        flex-direction: column;
-        align-items: center;
-        width: 90%;
-        padding: 20px;
-    }
+            .main-container {
+                flex-direction: column;
+                align-items: center;
+                width: 90%;
+                padding: 20px;
+            }
 
-    .attendance-container {
-        width: 100%;
-        padding: 25px;
-        margin-top: 20px;
-    }
+            .attendance-container {
+                width: 100%;
+                padding: 25px;
+                margin-top: 20px;
+            }
 
-    .employee-details {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 20px;
-    }
+            .employee-details {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 20px;
+            }
 
-    .attendance-image {
-        width: 120px;
-        height: 120px;
-    }
+            .attendance-image {
+                width: 120px;
+                height: 120px;
+            }
 
-    form {
-        width: 100%;
-    }
+            form {
+                width: 100%;
+            }
 
-    .pie-chart-container {
-        width: 400px;
-        height: 400px;
-    }
-}
+            .pie-chart-container {
+                width: 400px;
+                height: 400px;
+            }
+        }
 
-@media (max-width: 768px) {
-    .main-container {
-        width: 95%;
-        padding: 15px;
-    }
+        @media (max-width: 768px) {
+            .main-container {
+                width: 95%;
+                padding: 15px;
+            }
 
-    .attendance-container h2 {
-        font-size: 22px;
-        text-align: center;
-    }
+            .attendance-container h2 {
+                font-size: 22px;
+                text-align: center;
+            }
 
-    .employee-info {
-        font-size: 14px;
-        text-align: center;
-    }
+            .employee-info {
+                font-size: 14px;
+                text-align: center;
+            }
 
-    .attendance-image {
-        width: 100px;
-        height: 100px;
-    }
+            .attendance-image {
+                width: 100px;
+                height: 100px;
+            }
 
-    form {
-        width: 100%;
-        padding: 20px;
-    }
+            form {
+                width: 100%;
+                padding: 20px;
+            }
 
-    input {
-        width: 100%;
-    }
+            input {
+                width: 100%;
+            }
 
-    button {
-        width: 100%;
-    }
+            button {
+                width: 100%;
+            }
+        }
 
-  
-}
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
 
-@media (max-width: 480px) {
-    body {
-        padding: 10px;
-    }
+            header {
+                width: 100%;
+                padding: 10px;
+                border-radius: 10px;
+            }
 
-    .banner {
-        width: 100%;
-        padding: 10px;
-        border-radius: 10px;
-    }
+            header h1 {
+                font-size: 20px;
+            }
 
-    .banner h1 {
-        font-size: 20px;
-    }
+            header p {
+                font-size: 10px;
+            }
+            
+            .main-container {
+                width: 100%;
+                flex-direction: column;
+                padding: 10px;
+                margin-top: 0;
+            }
 
-    .banner p {
-        font-size: 10px;
-    }
-    .main-container {
-        width: 100%;
-        flex-direction: column;
-        padding: 10px;
-        margin-top: 0;
-    }
+            .attendance-container {
+                padding: 15px;
+                width: 100%;
+            }
 
-    .attendance-container {
-        padding: 15px;
-        width: 100%;
-    }
+            .attendance-container h2 {
+                font-size: 20px;
+                text-align: center;
+                display: none;
+            }
 
-    .attendance-container h2 {
-        font-size: 20px;
-        text-align: center;
-        display: none;
-    }
+            .employee-info {
+                font-size: 12px;
+                text-align: center;
+            }
 
-    .employee-info {
-        font-size: 12px;
-        text-align: center;
-    }
+            .employee-details {
+                padding: 15px;
+            }
 
-    .employee-details {
-        padding: 15px;
-    }
+            .attendance-image {
+                width: 80px;
+                height: 80px;
+            }
 
-    .attendance-image {
-        width: 80px;
-        height: 80px;
-    }
+            form {
+                padding: 15px;
+                width: 100%;
+            }
 
-    form {
-        padding: 15px;
-        width: 100%;
-    }
+            .password-container {
+                width: 100%;
+            }
 
-    .password-container {
-        width: 100%;
-    }
+            input {
+                width: 100%;
+            }
 
-    input {
-        width: 100%;
-    }
+            button {
+                width: 100%;
+            }
+        }
 
-    button {
-        width: 100%;
-    }
+        .dark-mode {
+            background-color: #000000;
+            color: #ffffff;
+        }
 
-   
-}
+        .dark-mode header {
+            background-color: #3a0369;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
 
+        .dark-mode header h1 {
+            color: #bb86fc;
+        }
 
-.dark-mode {
-    background-color: #000000;
-    color: #ffffff;
-}
+        .dark-mode header p {
+            color: #b0b0b0;
+        }
 
-.dark-mode header {
-    background-color: #3a0369;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
+        .dark-mode .circle {
+            background: rgba(187, 134, 252, 0.1);
+        }
 
-.dark-mode header h1 {
-    color: #bb86fc;
-}
+        .dark-mode .main-container {
+            background-color: #121212;
+        }
 
-.dark-mode header p {
-    color: #b0b0b0;
-}
+        .dark-mode h2 {
+            color: #bb86fc;
+        }
 
-.dark-mode .circle {
-    background: rgba(187, 134, 252, 0.1);
-}
+        .dark-mode .employee-details {
+            background: linear-gradient(rgba(30, 30, 40, 0.9), rgba(40, 20, 40, 0.9));
+            color: #e0e0e0;
+            box-shadow: 0 1px 3px rgba(187, 134, 252, 0.3);
+        }
 
-.dark-mode .main-container {
-    background-color: #121212;
-}
+        .dark-mode .employee-info {
+            color: #b0b0b0;
+        }
 
-.dark-mode h2 {
-    color: #bb86fc;
-}
+        .dark-mode .employee-info span {
+            color: #e0e0e0;
+        }
 
-.dark-mode .employee-details {
-    background: linear-gradient(rgba(30, 30, 40, 0.9), rgba(40, 20, 40, 0.9));
-    color: #e0e0e0;
-    box-shadow: 0 1px 3px rgba(187, 134, 252, 0.3);
-}
+        .dark-mode .employee-info i {
+            color: #ff9e4f;
+        }
 
-.dark-mode .employee-info {
-    color: #b0b0b0;
-}
+        .dark-mode form {
+            background: linear-gradient(rgba(20, 40, 50, 0.9), rgba(40, 20, 40, 0.9));
+            box-shadow: 0 1px 3px rgba(187, 134, 252, 0.3);
+            color: #e0e0e0;
+        }
 
-.dark-mode .employee-info span {
-    color: #e0e0e0;
-}
+        .dark-mode label {
+            color: #b0b0b0;
+        }
 
-.dark-mode .employee-info i {
-    color: #ff9e4f;
-}
+        .dark-mode input {
+            background-color: #333;
+            color: #e0e0e0;
+            border: 1px solid #444;
+        }
 
-.dark-mode form {
-    background: linear-gradient(rgba(20, 40, 50, 0.9), rgba(40, 20, 40, 0.9));
-    box-shadow: 0 1px 3px rgba(187, 134, 252, 0.3);
-    color: #e0e0e0;
-}
+        .dark-mode .password-container i {
+            color: #b0b0b0;
+        }
 
-.dark-mode label {
-    color: #b0b0b0;
-}
+        .dark-mode .password-container i:hover {
+            color: #ffffff;
+        }
 
-.dark-mode input {
-    background-color: #333;
-    color: #e0e0e0;
-    border: 1px solid #444;
-}
+        .dark-mode .punch-in-text,
+        .dark-mode .punch-out-text {
+            color: #e0e0e0;
+        }
 
-.dark-mode .password-container i {
-    color: #b0b0b0;
-}
+        .dark-mode .slider {
+            background-color: #555;
+        }
 
-.dark-mode .password-container i:hover {
-    color: #ffffff;
-}
+        .dark-mode #punchStatusText {
+            color: #e0e0e0;
+        }
 
-.dark-mode .punch-in-text,
-.dark-mode .punch-out-text {
-    color: #e0e0e0;
-}
+        .dark-mode button {
+            background-color: #bb86fc;
+            color: #000000;
+        }
 
-.dark-mode .slider {
-    background-color: #555;
-}
+        .dark-mode button:hover {
+            background-color: #a970f0;
+        }
 
-.dark-mode #punchStatusText {
-    color: #e0e0e0;
-}
+        /* Media Queries for Dark Mode */
+        @media (max-width: 768px) {
+            .dark-mode .attendance-container h2 {
+                color: #bb86fc;
+            }
+        }
 
-.dark-mode button {
-    background-color: #bb86fc;
-    color: #000000;
-}
-
-.dark-mode button:hover {
-    background-color: #a970f0;
-}
-
-/* Media Queries for Dark Mode */
-@media (max-width: 768px) {
-    .dark-mode .attendance-container h2 {
-        color: #bb86fc;
-    }
-}
-
-@media (max-width: 480px) {
-    .dark-mode .banner h1 {
-        color: #bb86fc;
-    }
-    
-    .dark-mode .banner p {
-        color: #b0b0b0;
-    }
-}
-
-</style>
+        @media (max-width: 480px) {
+            .dark-mode header h1 {
+                color: #bb86fc;
+            }
+            
+            .dark-mode header p {
+                color: #b0b0b0;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -611,11 +642,11 @@ header p{
             <form id="attendanceForm">
                 <label for="employeeId">Employee ID:</label>
                 <input type="text" id="employeeId" name="employeeId" placeholder="Enter Your Employee ID" minlength="7" maxlength="7"
-                    pattern="^[ATS]{3}(?!0000)[0-9]{4}$"
-                    title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits, starting from 0001 (cannot be 0000)">
+                    pattern="^[ATS]{3}\d{4}$"
+                    title="Employee ID should be 3 uppercase letters followed by 4 digits (e.g., ABC1234)">
                 <label for="password">Password:</label>
                 <div class="password-container">
-                    <input type="password" id="password" placeholder="Enter Your Password" name="password" required minlength="5" maxlength="50">
+                    <input type="password" id="password" placeholder="Enter Your Password" name="password" required minlength="8" maxlength="30">
                 </div>
 
                 <div class="punch-container">
@@ -628,11 +659,15 @@ header p{
                         <label for="punchOut">Punch Out</label>
                     </div>
                 </div>
+                <div id="timeRemaining" class="time-remaining"></div>
 
                 <button type="submit">Submit</button>
             </form>
 
-            <div id="punchRecords" style="margin-top: 20px; height:500px; overflow: auto;"></div>
+            <div id="punchRecords" style="margin-top: 20px; height:500px; overflow: auto;">
+                <h3>Punch History</h3>
+                <div class="no-records">No attendance records yet</div>
+            </div>
         </div>
     </div>
 
@@ -645,23 +680,168 @@ header p{
         document.getElementById("loginTime").textContent = loginTime;
         document.getElementById("loginDate").textContent = loginDate;
 
+        function is14HoursPassed(lastPunchTime) {
+            const now = new Date();
+            const lastPunch = new Date(lastPunchTime);
+            const diffInHours = Math.abs(now - lastPunch) / (1000 * 60 * 60);
+            return diffInHours >= 14;
+        }
+
+        // Function to get the last punch out time
+        function getLastPunchOutTime() {
+            let punches = JSON.parse(localStorage.getItem("punchData")) || [];
+            // Find the last punch out in reverse order
+            for (let i = punches.length - 1; i >= 0; i--) {
+                if (punches[i].punchType === "Punch Out") {
+                    return punches[i].punchTime;
+                }
+            }
+            return null;
+        }
+
+        // Function to update the time remaining display
+        function updateTimeRemaining() {
+            const lastPunchOutTime = getLastPunchOutTime();
+            const timeRemainingElement = document.getElementById("timeRemaining");
+            
+            if (lastPunchOutTime && !is14HoursPassed(lastPunchOutTime)) {
+                const hoursLeft = (14 - (Math.abs(new Date() - new Date(lastPunchOutTime))) / (1000 * 60 * 60)).toFixed(1);
+                timeRemainingElement.textContent = `Time remaining until next punch-in: ${hoursLeft} hours`;
+            } else {
+                timeRemainingElement.textContent = "";
+            }
+        }
+
         // Function to determine and set the next punch type
         function setNextPunchType() {
             let punches = JSON.parse(localStorage.getItem("punchData")) || [];
-            let lastPunchType = punches.length > 0 ? punches[punches.length - 1].punchType : "Punch Out"; // Default to Punch Out if no previous punch
+            let lastPunch = punches.length > 0 ? punches[punches.length - 1] : null;
 
-            // Toggle the radio buttons based on the last punch type
-            if (lastPunchType === "Punch In") {
-                document.getElementById("punchOut").checked = true;
-                document.getElementById("punchIn").checked = false;
+            const punchInRadio = document.getElementById("punchIn");
+            const punchOutRadio = document.getElementById("punchOut");
+
+            if (lastPunch) {
+                if (lastPunch.punchType === "Punch In") {
+                    // If last punch was "Punch In", enable "Punch Out"
+                    punchInRadio.disabled = true;
+                    punchOutRadio.disabled = false;
+                    punchOutRadio.checked = true;
+                } else if (lastPunch.punchType === "Punch Out") {
+                    // If last punch was "Punch Out", check if 14 hours have passed
+                    const lastPunchOutTime = getLastPunchOutTime();
+                    if (lastPunchOutTime && is14HoursPassed(lastPunchOutTime)) {
+                        punchInRadio.disabled = false;
+                        punchOutRadio.disabled = true;
+                        punchInRadio.checked = true;
+                    } else {
+                        // If 14 hours haven't passed, disable both options
+                        punchInRadio.disabled = true;
+                        punchOutRadio.disabled = true;
+                    }
+                }
             } else {
-                document.getElementById("punchIn").checked = true;
-                document.getElementById("punchOut").checked = false;
+                // If no punches, default to "Punch In"
+                punchInRadio.disabled = false;
+                punchOutRadio.disabled = true;
+                punchInRadio.checked = true;
             }
+            
+            updateTimeRemaining();
+        }
+
+        // Function to group punch records into pairs
+        function groupPunchRecords(punches) {
+            const grouped = [];
+            let currentPair = {};
+            
+            punches.forEach((punch, index) => {
+                if (punch.punchType === "Punch In") {
+                    // If we find a punch in and currentPair is empty, start new pair
+                    if (!currentPair.in) {
+                        currentPair.in = punch;
+                    } else {
+                        // If we already have a punch in, push it as incomplete and start new
+                        grouped.push({...currentPair});
+                        currentPair = { in: punch };
+                    }
+                } else if (punch.punchType === "Punch Out") {
+                    if (currentPair.in) {
+                        // If we have a punch in, add the out and push to grouped
+                        currentPair.out = punch;
+                        grouped.push({...currentPair});
+                        currentPair = {};
+                    } else {
+                        // If no punch in, push as incomplete out
+                        grouped.push({ out: punch });
+                    }
+                }
+            });
+            
+            // Push any remaining incomplete pair
+            if (currentPair.in || currentPair.out) {
+                grouped.push(currentPair);
+            }
+            
+            return grouped;
+        }
+
+        // Function to display punch records
+        function displayPunchRecords() {
+            const punchRecords = document.getElementById("punchRecords");
+            let punches = JSON.parse(localStorage.getItem("punchData")) || [];
+            
+            // Clear existing records but keep the h3 title
+            punchRecords.innerHTML = "<h3>Punch History</h3>";
+            
+            if (punches.length === 0) {
+                punchRecords.innerHTML += '<div class="no-records">No attendance records yet</div>';
+                return;
+            }
+            
+            // Group punches into in/out pairs
+            const groupedPunches = groupPunchRecords(punches);
+            
+            groupedPunches.forEach((pair, index) => {
+                const recordContainer = document.createElement("div");
+                recordContainer.className = "punch-record";
+                
+                if (pair.in) {
+                    const punchInCard = document.createElement("div");
+                    punchInCard.className = "punch-in-card";
+                    const inTime = new Date(pair.in.punchTime).toLocaleString();
+                    punchInCard.innerHTML = `
+                        <div>
+                            <strong>Punch In</strong>
+                            <div class="punch-time">${inTime}</div>
+                        </div>
+                        <div>ID: ${pair.in.employeeId}</div>
+                    `;
+                    recordContainer.appendChild(punchInCard);
+                }
+                
+                if (pair.out) {
+                    const punchOutCard = document.createElement("div");
+                    punchOutCard.className = "punch-out-card";
+                    const outTime = new Date(pair.out.punchTime).toLocaleString();
+                    punchOutCard.innerHTML = `
+                        <div>
+                            <strong>Punch Out</strong>
+                            <div class="punch-time">${outTime}</div>
+                        </div>
+                        <div>ID: ${pair.out.employeeId}</div>
+                    `;
+                    recordContainer.appendChild(punchOutCard);
+                }
+                
+                punchRecords.appendChild(recordContainer);
+            });
         }
 
         // Call the function on page load to set the initial state of the radio buttons
         setNextPunchType();
+
+        // Update time remaining every minute
+        setInterval(updateTimeRemaining, 60000);
 
         // Handle form submission
         document.getElementById("attendanceForm").addEventListener("submit", function (event) {
@@ -671,152 +851,65 @@ header p{
             const password = document.getElementById("password").value;
 
             // Get the next punch type based on the radio button selected
-            const punchType = document.querySelector('input[name="punchType"]:checked').value;
-            const punchTime = new Date().toISOString(); // Store timestamp in ISO format
+            const punchType = document.querySelector('input[name="punchType"]:checked');
+            
+            if (!punchType) {
+                // Check if both options are disabled (14-hour restriction)
+                const lastPunchOutTime = getLastPunchOutTime();
+                if (lastPunchOutTime && !is14HoursPassed(lastPunchOutTime)) {
+                    const hoursLeft = (14 - (Math.abs(new Date() - new Date(lastPunchOutTime))) / (1000 * 60 * 60)).toFixed(1);
+                    alert(`You can only punch in after 14 hours from your last punch out. Time remaining: ${hoursLeft} hours`);
+                } else {
+                    alert("Please select punch type!");
+                }
+                return;
+            }
 
             if (!employeeId || !password) {
                 alert("Please enter Employee ID and Password!");
                 return;
             }
 
+            const punchTime = new Date().toISOString(); // Store timestamp in ISO format
+
             // Store the punch data in localStorage
             let punches = JSON.parse(localStorage.getItem("punchData")) || [];
-            punches.push({ employeeId, punchType, punchTime });
+            punches.push({ employeeId, punchType: punchType.value, punchTime });
             localStorage.setItem("punchData", JSON.stringify(punches));
 
             displayPunchRecords();
 
             // After submitting, set the next punch type
             setNextPunchType();
+            
+            // Clear the form
+            document.getElementById("password").value = "";
         });
 
-        // Function to display punch records
-        function displayPunchRecords() {
-            const punchRecords = document.getElementById("punchRecords");
-            punchRecords.innerHTML = "<h3>Punch History</h3>";
-
-            let punches = JSON.parse(localStorage.getItem("punchData")) || [];
-            punches.forEach(punch => {
-                let punchCard = document.createElement("div");
-                punchCard.style.padding = "10px";
-                punchCard.style.margin = "5px 0";
-                punchCard.style.background = punch.punchType === "Punch In" ? "#d4edda" : "#f8d7da";
-                punchCard.style.borderLeft = punch.punchType === "Punch In" ? "5px solid #28a745" : "5px solid #dc3545";
-
-                // Convert ISO timestamp to a readable format
-                const punchTime = new Date(punch.punchTime).toLocaleTimeString();
-                punchCard.innerHTML = `<strong>${punch.punchType}</strong> at ${punchTime} (ID: ${punch.employeeId})`;
-                punchRecords.appendChild(punchCard);
-            });
-        }
-// Function to check if 14 hours have passed since the last punch out
-function is14HoursPassed(lastPunchTime) {
-    const now = new Date();
-    const lastPunch = new Date(lastPunchTime);
-    const diffInHours = Math.abs(now - lastPunch) / (1000 * 60 * 60); // Difference in hours
-    return diffInHours >= 14;
-}
-
-// Function to set the next punch type and disable/enable radio buttons
-function setNextPunchType() {
-    let punches = JSON.parse(localStorage.getItem("punchData")) || [];
-    let lastPunch = punches.length > 0 ? punches[punches.length - 1] : null;
-
-    const punchInRadio = document.getElementById("punchIn");
-    const punchOutRadio = document.getElementById("punchOut");
-
-    if (lastPunch) {
-        if (lastPunch.punchType === "Punch In") {
-            // If last punch was "Punch In", disable "Punch In" and enable "Punch Out"
-            punchInRadio.disabled = true;
-            punchOutRadio.disabled = false;
-            punchOutRadio.checked = true;
-        } else if (lastPunch.punchType === "Punch Out") {
-            // If last punch was "Punch Out", check if 14 hours have passed
-            if (is14HoursPassed(lastPunch.punchTime)) {
-                punchInRadio.disabled = false;
-                punchOutRadio.disabled = true;
-                punchInRadio.checked = true;
-            } else {
-                // If 14 hours haven't passed, disable both options
-                punchInRadio.disabled = true;
-                punchOutRadio.disabled = true;
-                alert("You can only punch in after 14 hours from your last punch out.");
-            }
-        }
-    } else {
-        // If no punches, default to "Punch In"
-        punchInRadio.disabled = false;
-        punchOutRadio.disabled = true;
-        punchInRadio.checked = true;
-    }
-}
-
-// Call the function on page load to set the initial state of the radio buttons
-setNextPunchType();
-
-// Handle form submission
-document.getElementById("attendanceForm").addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const employeeId = document.getElementById("employeeId").value;
-    const password = document.getElementById("password").value;
-
-    // Get the next punch type based on the radio button selected
-    const punchType = document.querySelector('input[name="punchType"]:checked').value;
-    const punchTime = new Date().toISOString(); // Store timestamp in ISO format
-
-    if (!employeeId || !password) {
-        alert("Please enter Employee ID and Password!");
-        return;
-    }
-
-    // Store the punch data in localStorage
-    let punches = JSON.parse(localStorage.getItem("punchData")) || [];
-    punches.push({ employeeId, punchType, punchTime });
-    localStorage.setItem("punchData", JSON.stringify(punches));
-
-    displayPunchRecords();
-
-    // After submitting, set the next punch type
-    setNextPunchType();
-});
         // Initial render
         displayPunchRecords();
 
         // Check localStorage for dark mode preference on iframe load
-window.onload = function () {
- const isDarkMode = localStorage.getItem('darkMode') === 'true';
- if (isDarkMode) {
-   document.body.classList.add('dark-mode');
- } else {
-   document.body.classList.remove('dark-mode');
- }
-};
+        window.onload = function () {
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+        };
 
-window.addEventListener('message', function (event) {
- 
- if (event.data && typeof event.data.darkMode === 'boolean') {
-   const isDarkMode = event.data.darkMode;
-
-   
-   if (isDarkMode) {
-     document.body.classList.add('dark-mode');
-   } else {
-     document.body.classList.remove('dark-mode');
-   }
- }
-});
-
-// Check localStorage for dark mode preference on iframe load
-window.onload = function () {
- const isDarkMode = localStorage.getItem('darkMode') === 'true';
- if (isDarkMode) {
-   document.body.classList.add('dark-mode');
- } else {
-   document.body.classList.remove('dark-mode');
- }
-};
+        window.addEventListener('message', function (event) {
+            if (event.data && typeof event.data.darkMode === 'boolean') {
+                const isDarkMode = event.data.darkMode;
+                
+                if (isDarkMode) {
+                    document.body.classList.add('dark-mode');
+                } else {
+                    document.body.classList.remove('dark-mode');
+                }
+            }
+        });
     </script>
 </body>
 </html>

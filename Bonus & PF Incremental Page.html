@@ -14,80 +14,84 @@
 
  
     header {
-      position: relative;
-      text-align: center;
-      height: 120px; 
-      background-color: #3f0370;
-      color: #fff;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
+            position: relative;
+            text-align: center;
+            height: 110px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #f8f9fa;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 99%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+        }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      position: relative;
-      z-index: 2;
-    }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-    /* Background Animation for Banner */
-    @keyframes moveCircles {
-      0% {
-        transform: translateY(0) translateX(0);
-      }
-      50% {
-        transform: translateY(-50%) translateX(-50%);
-      }
-      100% {
-        transform: translateY(0) translateX(0);
-      }
-    }
+        header p {
+            font-weight: 300;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            max-width: 700px;
+            opacity: 0.9;
+            z-index: 2;
+        }
 
-    .banner-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      overflow: hidden;
-    }
+        @keyframes moveCircles {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-50%); }
+            100% { transform: translateY(0) translateX(0); }
+        }
 
-    .circle {
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      animation: moveCircles 10s infinite linear;
-    }
+        .banner-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
 
-    .circle:nth-child(1) {
-      top: 10%;
-      left: 20%;
-      animation-duration: 8s;
-    }
+        .circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: moveCircles 10s infinite linear;
+        }
 
-    .circle:nth-child(2) {
-      top: 50%;
-      left: 70%;
-      animation-duration: 12s;
-    }
+        .circle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 8s;
+        }
 
-    .circle:nth-child(3) {
-      top: 80%;
-      left: 40%;
-      animation-duration: 15s;
-    }
+        .circle:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            animation-duration: 12s;
+        }
 
+        .circle:nth-child(3) {
+            top: 80%;
+            left: 40%;
+            animation-duration: 15s;
+        }
 
     .form-container {
       max-width: 90%;
@@ -229,13 +233,13 @@
     <form id="bonusForm">
       <div class="form-group">
         <label for="empName">Employee Name:</label>
-        <input type="text" id="empName" name="empName" placeholder="Enter Employee Name (e.g., John Doe)" minlength="3" maxlength="35" required>
+        <input type="text" id="empName" name="empName" placeholder="Enter Your Name" minlength="3" maxlength="35" required>
         <div class="error" id="empNameError">Employee Name must contain only alphabets and single spaces. Min: 3, Max: 35 characters.</div>
       </div>
       <div class="form-group">
         <label for="empId">Employee ID:</label>
-        <input type="text" id="empId" name="empId" placeholder="Enter Employee ID (e.g., ABC0123)" minlength="7" maxlength="7" required>
-        <div class="error" id="empIdError">Employee ID must be exactly 7 characters (e.g., ABC0123).</div>
+        <input type="text" id="empId" name="empId" placeholder="Enter Your Employee ID (e.g., ABC0123)" minlength="7" maxlength="7" required>
+        <div class="error" id="empIdError">Employee ID must be exactly 7 characters (e.g., ATS0123).</div>
       </div>
       <div class="form-group">
         <label for="incrementType">Increment Type:</label>
@@ -276,7 +280,7 @@
     // Real-time validation for Employee Name
     document.getElementById('empName').addEventListener('input', function () {
       const empName = this.value.trim();
-      const empNameRegex = /^[A-Za-z]+(?: [A-Za-z]+)*$/;
+      const empNameRegex =/^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
       const errorElement = document.getElementById('empNameError');
       if (!empNameRegex.test(empName) || empName.length < 3 || empName.length > 35) {
         errorElement.style.display = 'block';
@@ -288,7 +292,7 @@
     // Real-time validation for Employee ID
     document.getElementById('empId').addEventListener('input', function () {
       const empId = this.value.trim();
-      const empIdRegex = /^[A-Z]{3}0[1-9]{2}[0-9]$/;
+      const empIdRegex =  /^[ATS]{3}0(?!000)[0-9]{3}$/;
       const errorElement = document.getElementById('empIdError');
       if (!empIdRegex.test(empId) || empId.length !== 7) {
         errorElement.style.display = 'block';
@@ -308,17 +312,25 @@
       }
     });
 
-    // Real-time validation for Reason
     document.getElementById('reason').addEventListener('input', function () {
-      const reason = this.value.trim();
-      const reasonRegex = /^[A-Za-z]+(?:[ .][A-Za-z]+)*$/;
-      const errorElement = document.getElementById('reasonError');
-      if (!reasonRegex.test(reason) || reason.length < 5 || reason.length > 100) {
-        errorElement.style.display = 'block';
-      } else {
-        errorElement.style.display = 'none';
-      }
-    });
+  const reason = this.value.trim();
+
+  const reasonRegex = /^[A-Za-z][A-Za-z0-9\s,.]*$/;
+  const invalidConsecutive = /(,{2,}|\.{2,}|\s{2,}|,\s,|\.\s\.|,\s\.|\.\s,)/;
+
+  const errorElement = document.getElementById('reasonError');
+
+  if (
+    !reasonRegex.test(reason) ||
+    reason.length < 5 ||
+    reason.length > 100 ||
+    invalidConsecutive.test(reason) 
+  ) {
+    errorElement.style.display = 'block';
+  } else {
+    errorElement.style.display = 'none';
+  }
+});
 
     // Form submission
     document.getElementById('bonusForm').addEventListener('submit', function (e) {
@@ -331,9 +343,9 @@
       const amount = document.getElementById('amount').value;
       const reason = document.getElementById('reason').value.trim();
 
-      const empNameRegex = /^[A-Za-z]+(?: [A-Za-z]+)*$/;
-      const empIdRegex = /^[A-Z]{3}0[1-9]{2}[0-9]$/;
-      const reasonRegex = /^[A-Za-z]+(?:[ .][A-Za-z]+)*$/;
+      const empNameRegex = /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
+      const empIdRegex = /^[ATS]{3}0(?!000)[0-9]{3}$/;
+      const reasonRegex = /^[A-Za-z][A-Za-z0-9\s,.]*$/;
 
       if (
         !empNameRegex.test(empName) || empName.length < 3 || empName.length > 35 ||

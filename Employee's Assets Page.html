@@ -15,36 +15,90 @@
             color: #333;
             padding: 0;
         }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-top: 30px;
-            color: #72105d;
-            margin-left: 80px;
-        }
-        .banner {
-            background-color: #3b145b;
-            color: white;
+        header {
+            position: relative;
             text-align: center;
-            height: auto;
-            padding: 10px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            width: 98%;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            height: 90px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 20px;
         }
 
-        .banner h1 {
-            font-size: 36px;
+        header h1 {
             color: white;
-            font-weight: 600;
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .banner p {
-            font-size: 18px;
-            margin-top: 10px;
+
+        header p {
+            font-weight: 300;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            max-width: 700px;
+            opacity: 0.9;
+            z-index: 2;
         }
-        .container {
+
+        @keyframes moveCircles {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-50%); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+
+        .banner-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: moveCircles 10s infinite linear;
+        }
+
+        .circle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 8s;
+        }
+
+        .circle:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            animation-duration: 12s;
+        }
+
+        .circle:nth-child(3) {
+            top: 80%;
+            left: 40%;
+            animation-duration: 15s;
+        }
+
+
+   
+.container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 20px;
@@ -117,61 +171,143 @@
             font-weight: bold;
             color: #f39c12;
         }
+        .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.approve-btn {
+    background-color: #0b8a2b; /* Green */
+    color: white;
+    border: none;
+    width: 150px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.approve-btn:hover {
+    background-color: #08691f; /* Darker Green */
+}
+
+.reject-btn {
+    background-color: #d32f2f; /* Red */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    width: 150px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.reject-btn:hover {
+    background-color: #b22222; /* Darker Red */
+}
+
+        @media (max-width: 480px) {
+            body{
+                padding: 0;
+            }
+            .container {
+        grid-template-columns: 1fr;
+        padding-right: 10px;
+    }
+    .banner {
+        padding: 8px;
+      
+        margin-right: 30px
+    }
+
+    .banner h1 {
+        font-size:16px;
+        margin-right: 30px
+    }
+
+    .banner p {
+        font-size: 12px;
+    }
+    .employee-card {
+        padding: 15px;
+    }
+
+    .employee-card-header {
+        font-size: 1rem;
+    }
+.asset-heading{
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+
+}
+    .employee-card p {
+        font-size: 0.9rem;
+    }
+
+    .track-button {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+}
 
     </style>
 </head>
 <body>
-    <div class="banner">
+  
+   
+    <header>
+        <div class="banner-background">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+        </div>      
         <h1>Employee Assets Management</h1>
         <p>Track and manage employee assets.</p>
-    </div>
-   
-
+      </header>
     <div class="container">
        
         <div class="employee-card">
             <div class="employee-card-header">Employee 1</div>
-            <p class="employee-position">Asset: Laptop</p>
-            <p class="asset-status">Status: Assigned</p>
+            <p class="asset-status">Status:<span style="color: #15c03d; font-weight: bold;"> Active</span></p>
             <p class="asset-date">Issue Date: March 15, 2022</p>
-            <a href="individual employee assets tracker.html" class="track-button">View Asset Details</a>
+            <a href="./assets management.html" class="track-button">View Asset Details</a>
         </div>
 
         <div class="employee-card">
             <div class="employee-card-header">Employee 2</div>
-            <p class="employee-position">Asset: Smartphone</p>
-            <p class="asset-status">Status: Assigned</p>
+            <p class="asset-status">Status:<span style="color: #15c03d; font-weight: bold;"> Active</span></p>
             <p class="asset-date">Issue Date: June 5, 2022</p>
-            <a href="individual employee assets tracker.html" class="track-button">View Asset Details</a>
+            <a href="./assets management.html" class="track-button">View Asset Details</a>
         </div>
 
         <div class="employee-card">
             <div class="employee-card-header">Employee 3</div>
-            <p class="employee-position">Asset: Desktop PC</p>
-            <p class="asset-status">Status: Assigned</p>
+            <p class="asset-status">Status: <span style="color: #15c03d; font-weight: bold;"> Active</span></p>
             <p class="asset-date">Issue Date: January 10, 2023</p>
             <a href="./assets management.html" class="track-button">View Asset Details</a>
         </div>
 
         <div class="employee-card">
             <div class="employee-card-header">Employee 4</div>
-            <p class="employee-position">Asset: Office Chair</p>
-            <p class="asset-status">Status: Assigned</p>
+            <p class="asset-status">Status:<span style="color: #15c03d; font-weight: bold;"> Active</span></p>
             <p class="asset-date">Issue Date: August 22, 2024</p>
-            <a href="individual employee assets tracker.html" class="track-button">View Asset Details</a>
+            <a href="./assets management.html" class="track-button">View Asset Details</a>
         </div>
 
         <div class="employee-card">
             <div class="employee-card-header">Employee 5</div>
-            <p class="employee-position">Asset: Headphones</p>
-            <p class="asset-status">Status: Assigned</p>
+            <p class="asset-status">Status: <span style="color: #15c03d; font-weight: bold;"> Active</span></p>
             <p class="asset-date">Issue Date: February 12, 2023</p>
-            <a href="individual employee assets tracker.html" class="track-button">View Asset Details</a>
+            <a href="./assets management.html" class="track-button">View Asset Details</a>
         </div>
 
     </div>
-
-    <h1>Employee Asset Requests</h1>
+    <h1 class="asset-heading" style="margin-left: 50px;">Employee Asset Request</h1>
     <div id="requests-container" class="container">
         
         <div class="request-card">
@@ -209,39 +345,65 @@
         <div class="request-card">
             <div class="request-card-header">Employee 5</div>
             <p class="request-status">Request: Headphones</p>
-            <p class="request-status">Status: Approved</p>
+            <p class="request-status">Status:<span style="color: #15c03d; font-weight: bold;">Active</span></p>
             <p class="request-date">Request Date: February 28, 2024</p>
             <a href="" class="track-button">View Request Details</a>
         </div>
 
     </div>
-
     <script>
-       
-        function renderSavedRequests() {
-         
-            const requests = JSON.parse(localStorage.getItem('assetRequests')) || [];
-            const requestsContainer = document.getElementById('requests-container');
+    function renderSavedRequests() {
+    const requests = JSON.parse(localStorage.getItem('assetRequests')) || [];
+    const requestsContainer = document.getElementById('requests-container');
 
-            requests.forEach(request => {
-                const requestCard = document.createElement('div');
-                requestCard.classList.add('request-card');
-                
-                requestCard.innerHTML = `
-                    <div class="request-card-header">${request.employeeName}</div>
-                    <p class="request-status">Request: ${request.name}</p>
-                    <p class="request-status">Status: ${request.status || 'Pending'}</p>
-                    <p class="request-date">Request Date: ${request.requestDate}</p>
-                    <a href="./request-details.html" class="track-button">View Request Details</a>
-                `;
-             
-                requestsContainer.appendChild(requestCard);
-            });
-        }
+    // Clear the container before rendering
+    requestsContainer.innerHTML = '';
 
-  
-        window.onload = renderSavedRequests;
+    requests.forEach((request, index) => {
+        const requestCard = document.createElement('div');
+        requestCard.classList.add('request-card');
+
+        const isPending = request.status === 'Pending' || !request.status;
+
+        requestCard.innerHTML = `
+            <div class="request-card-header">${request.employeeName}</div>
+            <p class="request-status">Request: ${request.name}</p>
+            <p class="request-status">Status: ${request.status || 'Pending'}</p>
+            <p class="request-date">Request Date: ${request.requestDate}</p>
+            <a href="./request-details.html" class="track-button">View Request Details</a>
+            <div class="action-buttons">
+                <button class="approve-btn" ${isPending ? '' : 'style="display:none"'} onclick="confirmStatusUpdate(${index}, 'Approved')">Approve</button>
+                <button class="reject-btn" ${isPending ? '' : 'style="display:none"'} onclick="confirmStatusUpdate(${index}, 'Rejected')">Reject</button>
+            </div>
+        `;
+        
+        requestsContainer.appendChild(requestCard);
+    });
+}
+
+function confirmStatusUpdate(index, status) {
+    const confirmation = confirm(`Are you sure you want to mark this request as ${status}?`);
+    if (confirmation) {
+        updateStatus(index, status);
+    }
+}
+
+function updateStatus(index, status) {
+    let requests = JSON.parse(localStorage.getItem('assetRequests')) || [];
+
+    // Update the status of the request at the specified index
+    if (requests[index]) {
+        requests[index].status = status;
+        localStorage.setItem('assetRequests', JSON.stringify(requests));
+        alert(`Marked as ${status}`); // Show success message
+        renderSavedRequests(); // Re-render the list after status change
+    }
+}
+
+window.onload = renderSavedRequests;
+
     </script>
+    
 
 </body>
 </html>

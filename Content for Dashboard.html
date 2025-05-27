@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1361,7 +1359,7 @@ h3 {
             <canvas id="chartGender"></canvas>
         </div>
         <div class="chart-card">
-            <h3 class="heading">March</h3>
+            <h3 class="heading">May</h3>
             <canvas id="chartWorkDays"></canvas>
         </div>
         <div class="chart-card">
@@ -1389,22 +1387,22 @@ h3 {
     <div class="menu" id="menu">
         <div class="side-icons">
             <div class="menu-item">
-                <a href="welcome Hrms.html" target="_blank"><img src="hrm-human-resource-management-icon-label-badge-vector-44362975-removebg-preview.png" alt="HRMS" class="submenu-icon">
+                <a href="./welcome Hrms.html" target="_blank"><img src="hrm-human-resource-management-icon-label-badge-vector-44362975-removebg-preview.png" alt="HRMS" class="submenu-icon">
                     <span class="tooltip">HRMS</span>
                 </a>
             </div>
             <div class="menu-item">
-                <a href="welcome crms.html" target="_blank"><img src="Screenshot_2025-03-10_195556-removebg-preview.png" alt="CRM" class="submenu-icon">
+                <a href="./welcome crms.html" target="_blank"><img src="Screenshot_2025-03-10_195556-removebg-preview.png" alt="CRM" class="submenu-icon">
                     <span class="tooltip">CRM</span>
                 </a>
             </div>
             <div class="menu-item">
-                <a href="welcome bank.html" target="_blank"><img src="https://www.freeiconspng.com/uploads/bank-icon-19.png" alt="Banking" class="submenu-icon">
+                <a href="./welcome bank.html" target="_blank"><img src="https://www.freeiconspng.com/uploads/bank-icon-19.png" alt="Banking" class="submenu-icon">
                     <span class="tooltip">Banking</span>
                 </a>
             </div>
             <div class="menu-item">
-                <a href="welcome client.html"><img src="https://cdn-icons-png.freepik.com/256/13339/13339266.png?semt=ais_hybrid" alt="Clients" class="submenu-icon">
+                <a href="./welcome company.html"><img src="https://cdn-icons-png.freepik.com/256/13339/13339266.png?semt=ais_hybrid" alt="Clients" class="submenu-icon">
                     <span class="tooltip">Clients</span>
                 </a>
             </div>
@@ -1478,82 +1476,80 @@ h3 {
 <div class="dashboard-container">
 
  
+<div class="info-card wide" id="hrms">
+    <div class="card-details">
+        <h2 class="project-heading">
+            <i class="fas fa-users-cog project-icon" style="color: #4CAF50; margin-top: 12px;"></i> HRMS Portal
+        </h2>
+        <p class="employee-info">No. of Employees: <strong>12</strong></p>
+        <p class="status-info">Status: <span class="active-status" style="color: rgb(5, 120, 30);">Testing</span></p>
+    </div>
+    <div class="chart-section">
+        <div class="progress-circle">
+            <svg width="100" height="100">
+                <defs>
+                    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#2196F3"/>
+                        <stop offset="100%" stop-color="#4CAF50"/>
+                    </linearGradient>
+                </defs>
+                <circle cx="50" cy="50" r="40" class="circle-background"></circle>
+                <circle cx="50" cy="50" r="40" class="circle-progress" stroke="url(#gradient1)" data-progress="75"></circle>
+                <text x="50" y="55" class="circle-label">75%</text>
+            </svg>
+        </div>
+    </div>
+</div>
 
-    <div class="info-card wide" id="hrms">
-        <div class="card-details">
-            <h2 class="project-heading">
-                <img src="hrm-human-resource-management-icon-label-badge-vector-44362975-removebg-preview.png" alt="" class="project-icon"> HRMS Protal
-            </h2>
-            <p class="employee-info">No. of Employees: <strong>12</strong></p>
-            <p class="status-info">Status: <span class="active-status" style="color: rgb(5, 120, 30);">Testing</span></p>
-        </div>
-        <div class="chart-section">
-            <div class="progress-circle ">
-                <svg width="100" height="100">
-                    <defs>
-                        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#2196F3"/>
-                            <stop offset="100%" stop-color="#4CAF50"/>
-                        </linearGradient>
-                    </defs>
-                    <circle cx="50" cy="50" r="40" class="circle-background"></circle>
-                    <circle cx="50" cy="50" r="40" class="circle-progress" stroke="url(#gradient1)" data-progress="75"></circle>
-                    <text x="50" y="55" class="circle-label">75%</text>
-                </svg>
-            </div>
+<div class="info-card medium" id="crm">
+    <div class="card-details">
+        <h2 class="project-heading">
+            <i class="fas fa-handshake project-icon" style="color: #FF5722; margin-top: 12px;"></i> CRM 
+        </h2>
+        <p class="employee-info">No. of Employees: <strong>15</strong></p>
+        <p class="status-info">Status: <span class="active-status">Development</span></p>
+    </div>
+    <div class="chart-section">
+        <div class="progress-circle">
+            <svg width="100" height="100">
+                <defs>
+                    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#FF9800"/>
+                        <stop offset="100%" stop-color="#FF5722"/>
+                    </linearGradient>
+                </defs>
+                <circle cx="50" cy="50" r="40" class="circle-background"></circle>
+                <circle cx="50" cy="50" r="40" class="circle-progress" stroke="url(#gradient2)" data-progress="45"></circle>
+                <text x="50" y="55" class="circle-label">45%</text>
+            </svg>
         </div>
     </div>
-    <div class="info-card medium" id="crm">
-        <div class="card-details">
-            <h2 class="project-heading">
-                <img src="Screenshot_2025-03-10_195556-removebg-preview.png" alt="" class="project-icon"> CRM 
-            </h2>
-            <p class="employee-info">No. of Employees: <strong>15</strong></p>
-            <p class="status-info">Status: <span class="active-status">Development</span></p>
-        </div>
-        <div class="chart-section">
-            <div class="progress-circle">
-                <svg width="100" height="100">
-                    <defs>
-                        <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#FF980"/>
-                            <stop offset="100%" stop-color="#FF5722"/>
-                        </linearGradient>
-                    </defs>
-                    <circle cx="50" cy="50" r="40" class="circle-background"></circle>
-                    <circle cx="50" cy="50" r="40" class="circle-progress" stroke="url(#gradient2)" data-progress="45"></circle>
-                    <text x="50" y="55" class="circle-label">45%</text>
-                </svg>
-            </div>
+</div>
+
+<div class="info-card wide" id="bank">
+    <div class="card-details">
+        <h2 class="project-heading">
+            <i class="fas fa-university project-icon" style="color: #3F51B5; margin-top: 12px;"></i> Banking 
+        </h2>
+        <p class="employee-info">No. of Employees: <strong>14</strong></p>
+        <p class="status-info">Status: <span class="active-status">Development</span></p>
+    </div>
+    <div class="chart-section">
+        <div class="progress-circle">
+            <svg width="100" height="100">
+                <defs>
+                    <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#673AB7"/>
+                        <stop offset="100%" stop-color="#3F51B5"/>
+                    </linearGradient>
+                </defs>
+                <circle cx="50" cy="50" r="40" class="circle-background"></circle>
+                <circle cx="50" cy="50" r="40" class="circle-progress" stroke="url(#gradient3)" data-progress="60"></circle>
+                <text x="50" y="55" class="circle-label">60%</text>
+            </svg>
         </div>
     </div>
-    
-    <div class="info-card wide" id="bank">
-        <div class="card-details">
-            <h2 class="project-heading">
-                <img src="./Screenshot_2025-03-10_195806-removebg-preview.png" alt="" class="project-icon"> Banking 
-            </h2>
-            <p class="employee-info">No. of Employees: <strong>14</strong></p>
-            <p class="status-info">Status: <span class="active-status">Development</span></p>
-        </div>
-        <div class="chart-section">
-            <div class="progress-circle">
-                <svg width="100" height="100">
-                    <defs>
-                        <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#673A7"/>
-                            <stop offset="100%" stop-color="#3F51B5"/>
-                        </linearGradient>
-                    </defs>
-                    <circle cx="50" cy="50" r="40" class="circle-background"></circle>
-                    <circle cx="50" cy="50" r="40" class="circle-progress" stroke="url(#gradient3)" data-progress="60"></circle>
-                    <text x="50" y="55" class="circle-label">60%</text>
-                </svg>
-            </div>
-        </div>
-    </div>
-    
-    
+</div>
 </div>
 
 

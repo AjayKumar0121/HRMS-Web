@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,30 +19,90 @@
             display: flex;
             justify-content: center;
             align-items: center;
+         
+        }
+        header {
+            position: relative;
+            text-align: center;
+            height: 140px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #f8f9fa;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             padding: 20px;
         }
-        .banner {
-            background-color: #3b145b;
-            color: white;
-            text-align: center;
-            height: auto;
-            padding: 10px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            width: 98%;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .banner h1 {
-            font-size: 36px;
-            color: white;
-            font-weight: 600;
+        header p {
+            font-weight: 300;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            max-width: 700px;
+            opacity: 0.9;
+            z-index: 2;
         }
-        .banner p {
-            font-size: 18px;
-            margin-top: 10px;
+
+        @keyframes moveCircles {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-50%); }
+            100% { transform: translateY(0) translateX(0); }
         }
+
+        .banner-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: moveCircles 10s infinite linear;
+        }
+
+        .circle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 8s;
+        }
+
+        .circle:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            animation-duration: 12s;
+        }
+
+        .circle:nth-child(3) {
+            top: 80%;
+            left: 40%;
+            animation-duration: 15s;
+        }
+
+      
+
+      
         main {
             display: flex;
             flex-wrap: wrap;
@@ -123,6 +182,22 @@
             border-radius: 10px;
             font-size: 20px;
         }
+        form input, form section{
+            font-size: 18px;
+        }
+        #audience{
+            font-size: 18px;
+        }
+         input::placeholder{
+            color: #000;
+            padding: 5px;
+        }
+        textarea::placeholder{
+            color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+            padding: 5px;
+        }
         .buttons{
             display: flex;
             flex-direction: row;
@@ -151,6 +226,7 @@
             resize: none;
         }
 
+
         select {
             height: 35px;
         }
@@ -159,9 +235,12 @@
             display: flex;
             flex-direction: column;
             gap: 40px;
+            flex-wrap: wrap;
+            width: 100%;
         }
         .notification-history, .draft-history {
             width: 100%;
+            flex-wrap: wrap;
         }
         .notification-history h2, .draft-history h2{
             margin-top: 20px;
@@ -172,19 +251,20 @@
             background-color: rgba(212, 232, 255, 0.436);
             padding: 15px;
             border-radius: 8px;
-            width: auto;
+            width:650px ;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             height: auto;
         }
         .notification-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-4px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
             border: 3px solid #d710ff;
         }
         #sent-notifications{
             display: flex;
             flex-direction: row;
-            gap: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .notification-header {
@@ -233,157 +313,421 @@
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             font-size: 25px;
         }
+        /* Default layout for large screens */
+main {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1400px;
+    width: 100%;
+    gap: 30px;
+}
+
+/* Extra Large Screens (Desktops, 1200px and above) */
+@media screen and (min-width: 1200px) {
+    main {
+        justify-content: space-between;
+    }
+}
+
+/* Large Screens (Laptops, 992px - 1199px) */
+@media screen and (max-width: 1199px) {
+    main {
+        width: 90%;
+        justify-content: center;
+    }
+    .form-container {
+        width: 80%;
+    }
+    .banner h1 {
+        font-size: 32px;
+    }
+}
+
+/* Medium Screens (Tablets, 768px - 991px) */
+@media screen and (max-width: 991px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .form-container {
+        width: 90%;
+    }
+    .banner h1 {
+        font-size: 28px;
+    }
+    label {
+        font-size: 22px;
+    }
+    form input, form select, form textarea, form button {
+        font-size: 18px;
+    }
+}
+
+/* Small Screens (Phones, 576px - 767px) */
+@media screen and (max-width: 767px) {
+    body {
+        flex-direction: column;
+        align-items: center;
+    }
+    .banner {
+        width: 95%;
+        padding: 15px;
+    }
+    .banner h1 {
+        font-size: 24px;
+    }
+    .form-container {
+        width: 95%;
+    }
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .notification-history, .draft-history {
+        width: 100%;
+    }
+    #sent-notifications {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+
+@media screen and (max-width: 575px) {
+    .banner {
+        width: 98%;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .banner h1 {
+        font-size: 20px;
+    }
+
+    .banner p {
+        font-size: 12px;
+    }
+    .form-container {
+        width: 100%;
+        padding: 10px;
+    }
+    label {
+        font-size: 20px;
+    }
+    form input, form select, form textarea, form button {
+        font-size: 16px;
+    }
+    .notification-card {
+        padding: 10px;
+    }
+    .notification-card:hover {
+        transform: translateY(-5px);
+    }
+}
+.no-data-message {
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.no-data-img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.no-data-message h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+.no-data-message p {
+  font-size: 1.1rem;
+  color: #666;
+}
+.notification-history{
+    width: 100%;
+}
+
     </style>
 </head>
 <body>
 
 <main>
-    <div class="banner">
-        <h1>Notification To Staff</h1>
+    <header>
+        <div class="banner-background">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+ <h1>Notification To Staff</h1>
         <p>Create new notifications to staff</p>
-    </div>
+    </header>
     <div class="form-container">
         
-        <i class="fa-solid fa-bell" id="icon1"></i>
+        <!-- <i class="fa-solid fa-bell" id="icon1"></i>
         <i class="fa-regular fa-bell" id="icon2"></i>
         <i class="fa-solid fa-bell" id="icon3"></i>
         <i class="fa-regular fa-bell" id="icon4"></i>
         <i class="fa-solid fa-bell" id="icon5"></i>
-        <i class="fa-regular fa-bell" id="icon6"></i>
+        <i class="fa-regular fa-bell" id="icon6"></i> -->
         
         <section class="create-notification">
-            <h2>Create New Notification</h2>
             <form id="notification-form">
                 <label for="notification-title">Title:</label>
-                <input type="text" id="notification-title" name="notification-title" required minlength="3" maxlength="40">
-
+                <input type="text" id="notification-title" placeholder="Enter message title" name="notification-title" required minlength="3" maxlength="40" pattern="^[A-Za-z][A-Za-z ]*( [A-Za-z ]+)*$" title="Title should only contain alphabets and spaces, start with an alphabet, have no consecutive spaces, and no leading or trailing spaces.">
+              
                 <label for="message-body">Message:</label>
-                <textarea id="message-body" name="message-body" rows="5" required minlength="10" maxlength="200"></textarea>
-
+                <textarea id="message-body" placeholder="Enter Message" name="message-body" rows="5" required minlength="10" maxlength="200" pattern="^[A-Za-z][A-Za-z0-9 ]*( [A-Za-z0-9]+)*$" title="Message should only contain alphabets, numbers, and spaces, start with an alphabet, have no consecutive spaces, and no leading or trailing spaces."></textarea>
+              
                 <label for="notification-type">Notification Type:</label>
                 <select id="notification-type" name="notification-type" required>
-                    <option value="general">General Announcement</option>
-                    <option value="urgent">Urgent Update</option>
-                    <option value="reminder">Employee Reminder</option>
-                    <option value="event">Event Notification</option>
-                    <option value="policy">Policy Change</option>
+                  <option value="general">General Announcement</option>
+                  <option value="urgent">Urgent Update</option>
+                  <option value="reminder">Employee Reminder</option>
+                  <option value="event">Event Notification</option>
+                  <option value="policy">Policy Change</option>
                 </select>
-
+              
                 <label for="audience">Target Audience:</label>
                 <select id="audience" name="audience" required>
-                    <option value="all">All Employees</option>
-                    <option value="department">Specific Department</option>
-                    <option value="employee">Specific Employee</option>
+                  <option value="all">All Employees</option>
+                  <option value="department">Specific Department</option>
+                  <option value="employee">Specific Employee</option>
                 </select>
-
+              
+                <div id="additional-input" style="display: none;">
+                  <!-- Additional input fields will be appended here -->
+                </div>
               
                 <div class="buttons">
-                    <button type="submit">Send Now</button>
-                    <button type="button" id="save-draft">Save as Draft</button>
+                  <button type="submit">Send Now</button>
+                  <button type="button" id="save-draft">Save as Draft</button>
                 </div>
-
-            </form>
-        </section>
-
-        <div class="notificaionss">
-            <div class="notification-history">
-                <h2>Notification History</h2>
-                <div id="sent-notifications"></div>
-
-                <h2>Draft Messages</h2>
-                <div id="draft-notifications"></div>
-            </div>
-        </div>
-
-    </div>
-</main>
-<script>
-    document.addEventListener('DOMContentLoaded', loadNotifications);
-
-    document.getElementById('notification-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const title = document.getElementById('notification-title').value;
-        const message = document.getElementById('message-body').value;
-        const date = new Date().toLocaleDateString();
-        const notification = {
-            title,
-            message,
-            date,
-            type: 'sent'
-        };
-
-        saveNotification(notification);  
-        createNotificationCard('sent-notifications', title, message, date);
-        this.reset();
-    });
-
-    document.getElementById('save-draft').addEventListener('click', function() {
-        const title = document.getElementById('notification-title').value;
-        const message = document.getElementById('message-body').value;
-        const date = new Date().toLocaleDateString();
-        const notification = {
-            title,
-            message,
-            date,
-            type: 'draft'
-        };
-
-        createNotificationCard('draft-notifications', `Draft: ${title}`, message, date);
-        document.getElementById('notification-form').reset();
-    });
-
-    function saveNotification(notification) {
-        let notifications = JSON.parse(localStorage.getItem('sentNotifications')) || [];
-        notifications.push(notification);
-        localStorage.setItem('sentNotifications', JSON.stringify(notifications));
-    }
-
-    function loadNotifications() {
-        let notifications = JSON.parse(localStorage.getItem('sentNotifications')) || [];
-        notifications.forEach(notification => {
-            createNotificationCard('sent-notifications', notification.title, notification.message, notification.date);
-        });
-    }
-
-    function createNotificationCard(sectionId, title, message, date) {
-        const notificationCard = document.createElement('div');
-        notificationCard.className = 'notification-card';
-        notificationCard.innerHTML = `
-            <div class="notification-header">
-                <span class="title">${title}</span>
-                <span class="date">${date}</span>
-            </div>
-            <div class="notification-body">
-                <p class="view-mode">${message}</p>
-                <textarea class="edit-mode" style="display:none;">${message}</textarea>
-            </div>
-            <div class="notification-actions">
-                <button class="edit-button" onclick="toggleNotification(this, true)">Edit</button> 
-                <button class="save-button" style="display:none;" onclick="toggleNotification(this, false)">Save</button>
-                <button class="button">Update</button> 
-            </div>
-        `;
-        document.getElementById(sectionId).appendChild(notificationCard);
-    }
-
-    function toggleNotification(button, isEditing) {
-        const card = button.closest('.notification-card');
-        const textView = card.querySelector('.view-mode');
-        const textEdit = card.querySelector('.edit-mode');
-        const saveButton = card.querySelector('.save-button');
-        const editButton = card.querySelector('.edit-button');
-
-        textView.style.display = isEditing ? 'none' : 'block';
-        textEdit.style.display = isEditing ? 'block' : 'none';
-        saveButton.style.display = isEditing ? 'inline-block' : 'none';
-        editButton.style.display = isEditing ? 'none' : 'inline-block';
-
-        if (!isEditing) {
-            textView.textContent = textEdit.value;
-        }
-    }
-</script>
-
+              </form>
+              
+              <div class="notifications">
+                <div class="notification-history">
+                  <h2>Notification History</h2>
+                  <div id="sent-notifications"></div>
+              
+                  <h2>Draft Messages</h2>
+                  <div id="draft-notifications"></div>
+                </div>
+              </div>
+              
+              <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                  // Load existing notifications from localStorage when the page is loaded
+                  loadNotifications();
+                
+                  // Handle form submission (Send Now)
+                  document.getElementById('notification-form').addEventListener('submit', function (event) {
+                    event.preventDefault();
+                
+                    const title = document.getElementById('notification-title').value.trim();
+                    const message = document.getElementById('message-body').value.trim();
+                    const date = new Date().toLocaleDateString();
+                
+                    // Validate title
+                    const titlePattern = /^[A-Za-z][A-Za-z ]*( [A-Za-z ]+)*$/;
+                    if (!titlePattern.test(title)) {
+                      alert('Title should only contain alphabets and spaces, start with an alphabet, and have no consecutive spaces.');
+                      return;
+                    }
+                
+                    // Validate message field
+                    const messagePattern = /^[A-Za-z][A-Za-z0-9 ]*( [A-Za-z0-9]+)*$/;
+                    if (!messagePattern.test(message)) {
+                      alert('Message should only contain alphabets, numbers, and spaces, start with an alphabet, and have no consecutive spaces.');
+                      return;
+                    }
+                
+                    const notification = {
+                      title,
+                      message,
+                      date,
+                      type: 'sent'
+                    };
+                
+                    saveNotification(notification);  // Save to localStorage
+                    createNotificationCard('sent-notifications', title, message, date);
+                    this.reset();  // Reset the form
+                    document.getElementById('additional-input').innerHTML = ''; // Clear additional input fields
+                  });
+                
+                  // Handle "Save as Draft" button click
+                  document.getElementById('save-draft').addEventListener('click', function () {
+                    const title = document.getElementById('notification-title').value.trim();
+                    const message = document.getElementById('message-body').value.trim();
+                    const date = new Date().toLocaleDateString();
+                
+                    // Validate message field before saving as draft
+                    const messagePattern = /^[A-Za-z][A-Za-z0-9 ]*( [A-Za-z0-9]+)*$/;
+                    if (!messagePattern.test(message)) {
+                      alert('Message should only contain alphabets, numbers, and spaces, start with an alphabet, and have no consecutive spaces.');
+                      return;
+                    }
+                
+                    const notification = {
+                      title,
+                      message,
+                      date,
+                      type: 'draft'
+                    };
+                
+                    createNotificationCard('draft-notifications', `Draft: ${title}`, message, date);
+                    document.getElementById('notification-form').reset();  // Reset form
+                    document.getElementById('additional-input').innerHTML = ''; // Clear additional input fields
+                  });
+                
+                  // Load sent notifications from localStorage
+                  function loadNotifications() {
+                    let sentNotifications = JSON.parse(localStorage.getItem('sentNotifications')) || [];
+                    let draftNotifications = JSON.parse(localStorage.getItem('draftNotifications')) || [];
+                
+                    if (sentNotifications.length === 0) {
+                      displayNoDataMessage('sent-notifications');
+                    } else {
+                      sentNotifications.forEach(notification => {
+                        createNotificationCard('sent-notifications', notification.title, notification.message, notification.date);
+                      });
+                    }
+                
+                    if (draftNotifications.length === 0) {
+                      displayNoDataMessage('draft-notifications');
+                    } else {
+                      draftNotifications.forEach(notification => {
+                        createNotificationCard('draft-notifications', `Draft: ${notification.title}`, notification.message, notification.date);
+                      });
+                    }
+                  }
+                
+                  // Display No Data Message
+                  function displayNoDataMessage(sectionId) {
+                    const container = document.getElementById(sectionId);
+                    const noDataMessage = document.createElement('div');
+                    noDataMessage.className = 'no-data-message';
+                    noDataMessage.innerHTML = `
+                      <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="No Data Available" class="no-data-img">
+                      <h3>No Data Found</h3>
+                      <p>No notifications found in this section. Please try again later.</p>
+                    `;
+                    container.appendChild(noDataMessage);
+                  }
+                
+                  // Save the notification to localStorage
+                  function saveNotification(notification) {
+                    let notifications = JSON.parse(localStorage.getItem('sentNotifications')) || [];
+                    notifications.push(notification);
+                    localStorage.setItem('sentNotifications', JSON.stringify(notifications));
+                  }
+                
+                  // Create and display notification card
+                  function createNotificationCard(sectionId, title, message, date) {
+                    const notificationCard = document.createElement('div');
+                    notificationCard.className = 'notification-card';
+                    notificationCard.innerHTML = `
+                      <div class="notification-header">
+                        <span class="title">${title}</span>
+                        <span class="date">${date}</span>
+                      </div>
+                      <div class="notification-body">
+                        <p class="view-mode">${message}</p>
+                        <textarea class="edit-mode" style="display:none;">${message}</textarea>
+                      </div>
+                      <div class="notification-actions">
+                        <button class="edit-button" onclick="toggleNotification(this)">Edit</button>
+                        <button class="save-button" style="display:none;" onclick="saveEditedNotification(this)">Save</button>
+                      </div>
+                    `;
+                    document.getElementById(sectionId).appendChild(notificationCard);
+                  }
+                
+                  // Toggle between viewing and editing notification content
+                  function toggleNotification(button) {
+                    const card = button.closest('.notification-card');
+                    const textView = card.querySelector('.view-mode');
+                    const textEdit = card.querySelector('.edit-mode');
+                    const saveButton = card.querySelector('.save-button');
+                    const editButton = card.querySelector('.edit-button');
+                
+                    // Toggle visibility between view and edit mode
+                    textView.style.display = textView.style.display === 'none' ? 'block' : 'none';
+                    textEdit.style.display = textEdit.style.display === 'none' ? 'block' : 'none';
+                    saveButton.style.display = saveButton.style.display === 'none' ? 'inline-block' : 'none';
+                    editButton.style.display = editButton.style.display === 'none' ? 'inline-block' : 'none';
+                  }
+                
+                  // Save the edited notification after modifying it
+                  function saveEditedNotification(button) {
+                    const card = button.closest('.notification-card');
+                    const textView = card.querySelector('.view-mode');
+                    const textEdit = card.querySelector('.edit-mode');
+                
+                    // Save the edited content into the view mode
+                    textView.textContent = textEdit.value;
+                
+                    // Hide the edit and show the save button
+                    toggleNotification(button);
+                
+                    // Update the specific notification in localStorage
+                    updateNotification(card.querySelector('.title').textContent, textEdit.value, card.querySelector('.date').textContent);
+                  }
+                
+                  // Update notification in localStorage
+                  function updateNotification(title, updatedMessage, date) {
+                    let notifications = JSON.parse(localStorage.getItem('sentNotifications')) || [];
+                
+                    // Find and update the specific notification
+                    notifications = notifications.map(notification => {
+                      if (notification.title === title && notification.date === date) {
+                        return { ...notification, message: updatedMessage };
+                      }
+                      return notification;
+                    });
+                
+                    localStorage.setItem('sentNotifications', JSON.stringify(notifications));
+                  }
+                
+                  // Add dynamic input fields for specific department and employee selection
+                  document.getElementById('audience').addEventListener('change', function () {
+                    const additionalInputContainer = document.getElementById('additional-input');
+                    additionalInputContainer.innerHTML = ''; // Clear any existing fields
+                
+                    if (this.value === 'department') {
+                      const departmentSelect = document.createElement('select');
+                      departmentSelect.id = 'department-select';
+                      departmentSelect.name = 'department-select';
+                      departmentSelect.required = true;
+                      departmentSelect.innerHTML = `
+                        <option value="HR">HR</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="Marketing">Marketing</option>
+                      `;
+                      additionalInputContainer.appendChild(departmentSelect);
+                    } else if (this.value === 'employee') {
+                      const employeeIdInput = document.createElement('input');
+                      employeeIdInput.type = 'text';
+                      employeeIdInput.id = 'employee-id';
+                      employeeIdInput.name = 'employee-id';
+                      employeeIdInput.placeholder = 'Enter Employee ID';
+                      employeeIdInput.required = true;
+                      employeeIdInput.pattern = '^[ATS]{3}0(?!000)[0-9]{3}$'
+                      additionalInputContainer.appendChild(employeeIdInput);
+                    }
+                
+                    additionalInputContainer.style.display = 'block';
+                  });
+                });
+                </script>
+                
 </body>
 </html>

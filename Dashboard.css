@@ -388,7 +388,7 @@ iframe {
   position: absolute;
   top: 100%;
   right: 0; 
-  height: 1075px;
+  height: 375px;
   color: white;
   width: 180px;
   gap: 10px;
@@ -396,7 +396,7 @@ iframe {
   overflow-y: auto;
   background: linear-gradient(135deg, #f4ccff 30%, #e9e8ff 70%);
   border-radius: 20px;
-  z-index: 1000; /* Ensure it appears above other elements */
+  z-index: 1000; 
 }
 .menu a {
   white-space: normal;

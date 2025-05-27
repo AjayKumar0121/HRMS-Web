@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,27 +11,84 @@
             padding: 20px;
         }
 
-        .banner {
-            background-color: #3b145b;
-            color: white;
+        header {
+            position: relative;
             text-align: center;
-            height: auto;
-            padding: 10px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            width: 98%;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            height: 110px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #f8f9fa;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 20px;
         }
 
-        .banner h1 {
-            font-size: 36px;
-            color: white;
-            font-weight: 600;
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .banner p {
-            font-size: 18px;
-            margin-top: 10px;
+
+        header p {
+            font-weight: 300;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            max-width: 700px;
+            opacity: 0.9;
+            z-index: 2;
+        }
+
+        @keyframes moveCircles {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-50%); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+
+        .banner-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: moveCircles 10s infinite linear;
+        }
+
+        .circle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 8s;
+        }
+
+        .circle:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            animation-duration: 12s;
+        }
+
+        .circle:nth-child(3) {
+            top: 80%;
+            left: 40%;
+            animation-duration: 15s;
         }
 
         .main-content {
@@ -208,31 +264,172 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), inset 0 0 50px rgba(255, 255, 255, 0.3);
             transform: scale(1.05);
         }
+        @media (max-width: 1024px) {
+    .banner h1 {
+        font-size: 30px;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .interview-form input,
+    .interview-form select {
+        width: 90%;
+    }
+
+    .btn {
+        width: 280px;
+    }
+
+    .interview-schedules {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .schedule-card {
+        width: 80%;
+        max-width: 350px;
+    }
+}
+
+/* Media Queries for Responsiveness */
+
+/* Small Screens (Mobile & Small Tablets) */
+@media (max-width: 768px) {
+    .banner h1 {
+        font-size: 24px;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+
+    .interview-form input,
+    .interview-form select {
+        width: 100%;
+    }
+
+    .btn {
+        width: 260px;
+        font-size: 15px;
+    }
+
+    .interview-schedules {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .schedule-card {
+        width: 100%;
+        max-width: 280px;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        text-align: left;  
+        align-items: flex-start; 
+        margin-bottom: 15px;
+    }
+
+    .schedule-card p {
+        font-size: 16px;
+        margin: 5px 0;
+    }
+
+    .schedule-card button {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .banner h1 {
+        font-size: 20px;
+    }
+
+    .main-content {
+        padding: 5px;
+    }
+    .interview-form{
+        padding: 10px;
+    }
+
+    .interview-form input {
+        width: 94%;
+    }
+    
+    .btn {
+        font-size: 12px;
+       display: flex;
+       width: 90%;
+       justify-content: center;
+       align-items: center;
+    }
+
+    .interview-schedules {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .schedule-card {
+        width: 96%;
+        overflow-y: auto;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        text-align: left;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    .schedule-card p {
+        font-size: 14px;
+        margin: 5px 0;
+    }
+
+    .schedule-card button {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
     </style>
 </head>
 <body>
-    <div class="banner">
+  
+
+
+    <header>
+        <div class="banner-background">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+        </div>
         <h1>Interviews Scheduling Page</h1>
         <p>Schedule interviews and manage hiring process</p>
-    </div>
+      </header>
     <div class="main-content">
         <form class="interview-form" onsubmit="scheduleInterview(event)">
-            <h2>Schedule an Interview</h2>
-
-        
-                <label for="candidate-name">Candidate Name</label>    
+            <label for="candidate-name">Candidate Name</label>    
             <input type="text" placeholder="Candidate Name" id="candidate-name" required 
             minlength="3" 
-            maxlength="100"
+            maxlength="30"
             pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
-                title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
-
-             <label for="candidate-email">Candidate Email</label>
-            <input type="email" placeholder="Candidate Email" id="candidate-email" required minlength="6" maxlength="40">
-
+            title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+            <span id="candidate-name-error" style="color: red;"></span>
+        
+            <label for="candidate-email">Candidate Email</label>
+            <input type="email"  placeholder="Candidate Email" id="candidate-email" required minlength="3" maxlength="30">
+            <span id="candidate-email-error" style="color: red;"></span>
+        
             <label for="interview-date">Interview Date</label>
             <input type="date" id="interview-date" required>
-
+            <span id="interview-date-error" style="color: red;"></span>
+        
             <label for="interview-time">Interview Time</label>
             <select id="interview-time" required>
                 <option value="">Select Time</option>
@@ -241,7 +438,8 @@
                 <option value="1:00 PM">1:00 PM</option>
                 <option value="3:00 PM">3:00 PM</option>
             </select>
-
+            <span id="interview-time-error" style="color: red;"></span>
+        
             <label for="interview-position">Position</label>
             <select id="interview-position" required>
                 <option value="">Select Position</option>
@@ -249,11 +447,14 @@
                 <option value="Project Manager">Project Manager</option>
                 <option value="Marketing Manager">Marketing Manager</option>
             </select>
+            <span id="interview-position-error" style="color: red;"></span>
+        
             <button class="btn" type="submit">Schedule Interview</button>
         </form>
+        
 
         <div class="interview-schedules" id="interview-schedules">
-            <div class="schedule-card">
+            <!-- <div class="schedule-card">
                 <p><span class="label">Candidate Name</span> <span class="colon">:</span> <span class="value">Applicant 1</span></p>
                 <p><span class="label">Candidate Email</span> <span class="colon">:</span> <span class="value">applicant1@email.com</span></p>
                 <p><span class="label">Position</span> <span class="colon">:</span> <span class="value">Software Developer</span></p>
@@ -284,67 +485,175 @@
                 <p><span class="label">Interview Date</span> <span class="colon">:</span> <span class="value">15-12-2024</span></p>
                 <p><span class="label">Time</span> <span class="colon">:</span> <span class="value">11:00 AM</span></p>
                 <button>View Details</button>
-            </div>
+            </div> -->
           
         </div>
         </div>
     </div>
-
     <script>
+        let interviewSchedules = [];
+        
         function scheduleInterview(event) {
-    event.preventDefault();
-
-    var candidateName = document.getElementById('candidate-name').value;
-    var candidateEmail = document.getElementById('candidate-email').value;
-    var interviewDate = document.getElementById('interview-date').value;
-    var interviewTime = document.getElementById('interview-time').value;
-    var interviewPosition = document.getElementById('interview-position').value;
-
-    if (!candidateName || !candidateEmail || !interviewDate || !interviewTime || !interviewPosition) {
-        alert("Please fill out all fields correctly.");
-        return;
-    }
-
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailPattern.test(candidateEmail)) {
-        alert('Please enter a valid email address.');
-        return;
-    }
-
-    var today = new Date();
-    var interviewDateObj = new Date(interviewDate);
-
+            event.preventDefault();
+        
+            var candidateName = document.getElementById('candidate-name').value;
+            var candidateEmail = document.getElementById('candidate-email').value.trim();
+            var interviewDate = document.getElementById('interview-date').value;
+            var interviewTime = document.getElementById('interview-time').value;
+            var interviewPosition = document.getElementById('interview-position').value;
+        
+            // Validation check for empty fields
+            if (!candidateName || !candidateEmail || !interviewDate || !interviewTime || !interviewPosition) {
+                alert("Please fill out all fields correctly.");
+                return;
+            }
+        
+            // Email validation
+            if (candidateEmail !== candidateEmail.trim()) {
+                alert("Email cannot have leading or trailing spaces.");
+                return;
+            }
+        
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
+        
+            if (!emailPattern.test(candidateEmail)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+        
+            var today = new Date();
+            var interviewDateObj = new Date(interviewDate);
+            var maxDate = new Date();
+            maxDate.setFullYear(today.getFullYear() + 1);
+        
+            if (interviewDateObj < today) {
+                alert("The interview date must be a future date.");
+                return;
+            }
+        
+            if (interviewDateObj > maxDate) {
+                alert("The interview date cannot be more than 1 year from today.");
+                return;
+            }
+        
+            // Check for duplicate date and time
+            var conflict = interviewSchedules.some(function(schedule) {
+                return schedule.date === interviewDate && schedule.time === interviewTime;
+            });
+        
+            if (conflict) {
+                alert("An interview is already scheduled for the same date and time.");
+                return;
+            }
+        
+            // Add to schedule
+            interviewSchedules.push({ date: interviewDate, time: interviewTime, candidateName, candidateEmail, interviewPosition });
+        
+            var newCard = document.createElement('div');
+            newCard.classList.add('schedule-card');
+        
+            newCard.innerHTML = `
+                <p><span class="label">Candidate Name</span> <span class="colon">:</span> <span class="value">${candidateName}</span></p>
+                <p><span class="label">Mail ID</span> <span class="colon">:</span> <span class="value">${candidateEmail}</span></p>
+                <p><span class="label">Position</span> <span class="colon">:</span> <span class="value">${interviewPosition}</span></p>
+                <p><span class="label">Interview Date</span> <span class="colon">:</span> <span class="value">${new Date(interviewDate).toLocaleDateString()}</span></p>
+                <p><span class="label">Time</span> <span class="colon">:</span> <span class="value">${interviewTime}</span></p>
+                <button class="view-details-btn">View Details</button>
+            `;
+        
+            document.getElementById('interview-schedules').appendChild(newCard);
+        
+            newCard.querySelector('.view-details-btn').addEventListener('click', function () {
+                viewInterviewDetails(candidateName, candidateEmail, interviewPosition, interviewDate, interviewTime);
+            });
+        
+            document.querySelector('.interview-form').reset();
+        }
+        
+        // Show interview details
+        function viewInterviewDetails(candidateName, candidateEmail, interviewPosition, interviewDate, interviewTime) {
+            alert(`
+                Interview Details:
+                Candidate Name: ${candidateName}
+                Candidate Email: ${candidateEmail}
+                Position: ${interviewPosition}
+                Interview Date: ${new Date(interviewDate).toLocaleDateString()}
+                Time: ${interviewTime}
+            `);
+        }
+        
+        // Prevent space while typing email
+        document.getElementById('candidate-email').addEventListener('keydown', function (e) {
+            if (e.key === ' ') {
+                e.preventDefault();
+            }
+        });
+        
+        // Real-time name validation
+        document.getElementById('candidate-name').addEventListener('input', function () {
+            var candidateName = this.value;
+            var nameError = document.getElementById('candidate-name-error');
+            if (candidateName && !/^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/.test(candidateName)) {
+                nameError.textContent = 'Name format is incorrect. Max 8 spaces and 3 periods allowed.';
+            } else {
+                nameError.textContent = '';
+            }
+        });
+        
+        // Real-time email validation
+        document.getElementById('candidate-email').addEventListener('input', function () {
+            var candidateEmail = this.value;
+            var emailError = document.getElementById('candidate-email-error');
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
+            if (candidateEmail && !emailPattern.test(candidateEmail)) {
+                emailError.textContent = 'Please enter a valid email address.';
+            } else {
+                emailError.textContent = '';
+            }
+        });
+        
+        // Date validation
+        document.getElementById('interview-date').addEventListener('input', function () {
+            var interviewDate = this.value;
+            var dateError = document.getElementById('interview-date-error');
+            var today = new Date();
+            var interviewDateObj = new Date(interviewDate);
+            var maxDate = new Date();
+            maxDate.setFullYear(today.getFullYear() + 1);
+        
+            if (interviewDateObj < today) {
+                dateError.textContent = 'The interview date must be a future date.';
+            } else if (interviewDateObj > maxDate) {
+                dateError.textContent = 'The interview date cannot be more than 1 year from today.';
+            } else {
+                dateError.textContent = '';
+            }
+        });
+        
+        // Time validation
+        document.getElementById('interview-time').addEventListener('change', function () {
+            var interviewTime = this.value;
+            var timeError = document.getElementById('interview-time-error');
+            if (!interviewTime) {
+                timeError.textContent = 'Please select an interview time.';
+            } else {
+                timeError.textContent = '';
+            }
+        });
+        
+        // Position validation
+        document.getElementById('interview-position').addEventListener('change', function () {
+            var interviewPosition = this.value;
+            var positionError = document.getElementById('interview-position-error');
+            if (!interviewPosition) {
+                positionError.textContent = 'Please select a position.';
+            } else {
+                positionError.textContent = '';
+            }
+        });
+        </script>
+        
     
-    var maxDate = new Date();
-    maxDate.setFullYear(today.getFullYear() + 1);
-
-    if (interviewDateObj <= today) {
-        alert("The interview date must be a future date.");
-        return;
-    }
-
-    if (interviewDateObj > maxDate) {
-        alert("The interview date cannot be more than 1 year from today.");
-        return;
-    }
-    var newCard = document.createElement('div');
-newCard.classList.add('schedule-card');
-
-newCard.innerHTML = `
-    <p><span class="label">Candidate Name</span> <span class="colon">:</span> <span class="value">${candidateName}</span></p>
-    <p><span class="label">Mail ID</span> <span class="colon">:</span> <span class="value">${candidateEmail}</span></p>
-    <p><span class="label">Position</span> <span class="colon">:</span> <span class="value">${interviewPosition}</span></p>
-    <p><span class="label">Interview Date</span> <span class="colon">:</span> <span class="value">${new Date(interviewDate).toLocaleDateString()}</span></p>
-    <p><span class="label">Time</span> <span class="colon">:</span> <span class="value">${interviewTime}</span></p>
-    <button>View Details</button>
-`;
-
-document.getElementById('interview-schedules').appendChild(newCard);
-
-    document.querySelector('.interview-form').reset();
-}
-
-    </script>
     
 </body>
 </html>

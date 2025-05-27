@@ -12,44 +12,105 @@
             display: flex;
             justify-content: center;
             flex-direction: column;
-        
+            align-items: center;
+            background-color: #ffffff;
         }
+
+        
+        header {
+            position: relative;
+            text-align: center;
+            height: 90px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #f8f9fa;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header p {
+            font-weight: 300;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            max-width: 700px;
+            opacity: 0.9;
+            z-index: 2;
+        }
+
+        @keyframes moveCircles {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-50%); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+
+        .banner-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: moveCircles 10s infinite linear;
+        }
+
+        .circle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 8s;
+        }
+
+        .circle:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            animation-duration: 12s;
+        }
+
+        .circle:nth-child(3) {
+            top: 80%;
+            left: 40%;
+            animation-duration: 15s;
+        }
+
 
         .container {
             display: flex;
             justify-content: space-between;
-            width: 100%;
+            width: 95%;
             margin-top: 20px;
             gap: 30px;
         }
-        .banner {
-            background-color: #3b145b;
-            color: white;
-            text-align: center;
-            height: auto;
-            padding: 10px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            width: 98%;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .banner h1 {
-            font-size: 36px;
-            color: white;
-            font-weight: 600;
-        }
-        .banner p {
-            font-size: 18px;
-            margin-top: 10px;
-        }
 
         .left-side {
-            width: 60%;
+            width: 50%;
             background: linear-gradient(rgba(224, 224, 255, 0.45), rgba(253, 240, 227, 0.61), rgba(247, 222, 255, 0.568));
             padding: 20px;
-            height: 750px;
+            height: auto;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
@@ -78,108 +139,55 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-        textarea{
+
+        textarea {
             resize: none;
             height: 120px;
         }
 
-        .star-rating {
-            display: flex;
-            gap: 5px;
-        }
-
-        .star {
-            font-size: 25px;
-            color: #ddd;
-            cursor: pointer;
-        }
-
-        .star.selected {
-            color: gold;
-        }
         button {
-  --color: #560bad; 
-  --bg-color: #fff; 
-  font-family: inherit;
-  display: inline-block;
-  width: 8em;
-  height: 2.6em;
-  line-height: 2.5em;
-  margin: 20px;
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  border: 2px solid var(--color);
-  transition: color 0.5s, background 0.5s;
-  z-index: 1;
-  width: 360px;
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: center;
-  font-size: 17px;
-  border-radius: 6px;
-  font-weight: 500;
-  color: var(--color);
-  background-color: var(--bg-color); 
-}
+            font-family: inherit;
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            cursor: pointer;
+            border: 2px solid #560bad;
+            transition: 0.5s;
+            font-size: 17px;
+            border-radius: 6px;
+            font-weight: 500;
+            color: #560bad;
+            background-color: #fff;
+        }
 
-button:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  background: var(--color); 
-  height: 150px;
-  width: 200px;
-  border-radius: 50%;
-  transition: all 0.7s;
-}
+        button:hover {
+            color: #fff;
+            background-color: #560bad;
+        }
 
-button:hover {
-  color: var(--bg-color); 
-  background-color: var(--color); 
-}
-
-button:before {
-  top: 100%;
-  left: 100%;
-}
-
-button:hover:before {
-  top: -30px;
-  left: -30px;
-}
-
-button:active:before {
-  background: #ffffff; 
-  transition: background 0s;
-}
-
-button:active {
-  color: var(--color); 
-  background-color: #ffffff; 
-}
-
-        
         .right-side {
-            width: 60%;
+            width: 50%;
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            height: 900px;
-            overflow-y: scroll;
+            height: 750px;
+            overflow-y: auto;
             justify-content: flex-start;
         }
 
         .appraisal-card {
-            background-color: #8e35e857;
+            background-color: #f0e0ff57;
             color: rgb(0, 0, 0);
             border: 1px solid #ddd;
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 5px rgb(0, 0, 0, 0.1);
             width: 80%;
+            min-height: 140px;
+            max-height: 140px;
             display: block;
+            overflow: auto;
+            flex-wrap: wrap;
             margin-left: auto;
             margin-right: auto;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -190,170 +198,318 @@ button:active {
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .appraisal-card .title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+        /* Mobile Responsive */
+        @media screen and (max-width: 575px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
 
-        .appraisal-card .details {
-            margin-bottom: 10px;
+            .left-side, .right-side {
+                width: 100%;
+                height: auto;
+                padding: 15px;
+            }
+
+            button {
+                width: 100%;
+            }
         }
+        .error-message {
+    color: red;
+    font-size: 0.9em;
+    display: none; 
+}
+.no-data-message {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.no-data-img {
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.no-data-text h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 10px 0;
+}
+
+.no-data-text p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
     </style>
 </head>
 <body>
+
     <div class="banner">
-        <h1>Employee Appraisals</h1>
-        <p>Create new appraisal for employees</p>
+      
     </div>
-    <div class="container">
-        <form class="left-side" onsubmit="submitReview(event)">
-            <h3>Employee Appraisal Form</h3>
-
-            <div class="form-group">
-                <label for="emp-name-input">Employee Name</label>
-                <input type="text" id="emp-name-input" placeholder="Enter Employee Name" required minlength="3" maxlength="50"
-                pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
-                title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
-            </div>
-
-            <div class="form-group">
-                <label for="emp-id-input">Employee ID</label>
-                <input type="text" id="emp-id-input" placeholder="Enter Employee ID" required 
-                    pattern="[A-Z]{3}0[0-9]{3}" minlength="7" maxlength="7">
-            </div>
-
-            <div class="form-group">
-                <label for="task-input">Present Task</label>
-                <input type="text" id="task-input" placeholder="Enter Task" required minlength="3" maxlength="60">
-            </div>
-
-            <div class="form-group">
-                <label for="project-input">Project</label>
-                <input type="text" id="project-input" placeholder="Enter Project" required minlength="3" maxlength="50">
-            </div>
-
-            <div class="form-group">
-                <label>Review</label>
-                <input type="text" id="review-input" required placeholder="Enter review (e.g., Good, Bad, Excellent)">
-            </div>
-            
-
-            <div class="form-group">
-                <label>Remarks</label>
-                <textarea id="remarks-input" rows="3" placeholder="Add Comments" required minlength="3" maxlength="200"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>Rating</label>
-                <div class="star-rating">
-                    <span class="star" data-value="1">★</span>
-                    <span class="star" data-value="2">★</span>
-                    <span class="star" data-value="3">★</span>
-                    <span class="star" data-value="4">★</span>
-                    <span class="star" data-value="5">★</span>
-                </div>
-            </div>
-
-            <button type="submit" class="submit-btn">Submit</button>
-        </form>
-
-        <div class="right-side">
-         
+    <header>
+        <div class="banner-background">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
         </div>
+        <h1>Employee Appraisal Form</h1>
+        <p>Submit your appraisal feedback below.</p>
+      </header>
+    <div class="container">
+        <div class="left-side">
+       
+            <form id="appraisalForm">
+                <div class="form-group">
+                    <label for="empName">Employee Name:</label>
+                    <input type="text" id="empName" placeholder="Enter Employee Name" required minlength="3" maxlength="40">
+                    <span id="empName-error" class="error-message"></span>
+                </div>
+            
+                <div class="form-group">
+                    <label for="empId">Employee ID:</label>
+                    <input type="text" id="empId" placeholder="Enter Employee ID" required minlength="7" maxlength="7">
+                    <span id="empId-error" class="error-message"></span>
+                </div>
+            
+                <div class="form-group">
+                    <label for="taskName">Task Name:</label>
+                    <input type="text" id="taskName" placeholder="Enter Task Name" required minlength="3" maxlength="40">
+                    <span id="taskName-error" class="error-message"></span>
+                </div>
+            
+                <div class="form-group">
+                    <label for="feedback">Feedback:</label>
+                    <textarea id="feedback" placeholder="Enter reason" required minlength="5" maxlength="80"></textarea>
+                    <span id="feedback-error" class="error-message"></span>
+                </div>
+            
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <select id="rating" required>
+                        <option value="">Select Rating</option>
+                        <option value="1">⭐</option>
+                        <option value="2">⭐⭐</option>
+                        <option value="3">⭐⭐⭐</option>
+                        <option value="4">⭐⭐⭐⭐</option>
+                        <option value="5">⭐⭐⭐⭐⭐</option>
+                    </select>
+                    <span id="rating-error" class="error-message"></span>
+                </div>
+            
+                <button type="submit">Submit</button>
+            </form>
+            
+        
+            
+        </div>
+        <div class="right-side" id="cardsContainer">  <div id="cardsContainer"></div></div>
+      
+
     </div>
 
-    <script>
-        document.querySelectorAll('.star').forEach(star => {
-            star.addEventListener('click', function () {
-                const rating = this.getAttribute('data-value');
-                const stars = this.closest('.star-rating').querySelectorAll('.star');
-                
-                stars.forEach(star => star.classList.toggle('selected', star.getAttribute('data-value') <= rating));
-            });
-        });
+  <script>
+   document.addEventListener("DOMContentLoaded", function () {
+    loadAppraisals();
 
-        window.onload = function() {
-            loadAppraisalCards();
+    document.getElementById("empName").addEventListener("input", validateEmpName);
+    document.getElementById("empId").addEventListener("input", validateEmpId);
+    document.getElementById("taskName").addEventListener("input", validateTaskName);
+    document.getElementById("feedback").addEventListener("input", validateFeedback);
+    document.getElementById("rating").addEventListener("change", validateRating);
+
+    document.getElementById("appraisalForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        let empName = document.getElementById("empName").value.trim();
+        let empId = document.getElementById("empId").value.trim();
+        let taskName = document.getElementById("taskName").value.trim();
+        let feedback = document.getElementById("feedback").value.trim();
+        let rating = document.getElementById("rating").value;
+
+        if (
+            !validateEmpName() ||
+            !validateEmpId() ||
+            !validateTaskName() ||
+            !validateFeedback() ||
+            !validateRating()
+        ) {
+            return;
         }
 
-        function submitReview(event) {
-    event.preventDefault();
+        let appraisal = {
+            empName,
+            empId,
+            taskName,
+            feedback,
+            rating,
+        };
 
-    const empNameInput = document.getElementById("emp-name-input");
-    const empIdInput = document.getElementById("emp-id-input");
-    const taskInput = document.getElementById("task-input");
-    const projectInput = document.getElementById("project-input");
-    const reviewInput = document.getElementById("review-input");  
-    const remarksInput = document.getElementById("remarks-input");
-    const selectedRating = document.querySelectorAll(".left-side .star.selected").length;
+        saveAppraisal(appraisal);
+        displayAppraisals();
+        document.getElementById("appraisalForm").reset();
+    });
 
-    const empName = empNameInput.value.trim();
-    const empId = empIdInput.value.trim();
-    const task = taskInput.value.trim();
-    const project = projectInput.value.trim();
-    const review = reviewInput.value.trim();  
-    const remarks = remarksInput.value.trim();
+    function validateEmpName() {
+        let empName = document.getElementById("empName").value;
+        let error = document.getElementById("empName-error");
 
-    const newAppraisal = {
-        empName,
-        empId,
-        task,
-        project,
-        review,
-        rating: selectedRating,
-        remarks
-    };
+        if (empName.startsWith(" ") || empName.endsWith(" ")) {
+            error.innerText = "Employee Name cannot have leading or trailing spaces.";
+            error.style.display = "inline";
+            return false;
+        }
 
-    const storedAppraisals = JSON.parse(localStorage.getItem('appraisals')) || [];
-    storedAppraisals.push(newAppraisal);
-    localStorage.setItem('appraisals', JSON.stringify(storedAppraisals));
+        let pattern = /^(?!.*\.\.)(?!.* \.)(?!.*\. )(?!^\.)[A-Za-z.]+(?:\s[A-Za-z.]+)*$/;
+        let dotCount = (empName.match(/\./g) || []).length;
 
-    const rightSideContainer = document.querySelector(".right-side");
-    const newAppraisalCard = document.createElement("div");
-    newAppraisalCard.classList.add("appraisal-card");
+        if (!pattern.test(empName) || dotCount > 2) {
+            error.innerText = "Invalid Employee Name format.";
+            error.style.display = "inline";
+            return false;
+        }
 
-    newAppraisalCard.innerHTML = `
-        <div class="title">${empName} - Recent Appraisal (ID: ${empId})</div>
-        <div class="details">Task: ${task}</div>
-        <div class="details">Project: ${project}</div>
-        <div class="details">Review: ${review}</div>
-        <div class="details">Rating: ${selectedRating} ★</div>
-        <div class="details">Remarks: ${remarks}</div>
-    `;
+        error.style.display = "none";
+        return true;
+    }
 
-    rightSideContainer.appendChild(newAppraisalCard);
+    function validateEmpId() {
+        let empId = document.getElementById("empId").value;
+        let error = document.getElementById("empId-error");
 
-    empNameInput.value = "";
-    empIdInput.value = "";
-    taskInput.value = "";
-    projectInput.value = "";
-    reviewInput.value = "";  
-    remarksInput.value = "";
-    document.querySelectorAll(".left-side .star").forEach(star => star.classList.remove("selected"));
-}
+        if (empId.startsWith(" ") || empId.endsWith(" ")) {
+            error.innerText = "Employee ID cannot have leading or trailing spaces.";
+            error.style.display = "inline";
+            return false;
+        }
 
-        function loadAppraisalCards() {
-            const storedAppraisals = JSON.parse(localStorage.getItem('appraisals')) || [];
-            const rightSideContainer = document.querySelector(".right-side");
+        let pattern = /^[A-Z]{3}0\d{3}$/;
+        if (!pattern.test(empId)) {
+            error.innerText = "Employee ID should be in format: ABC0123.";
+            error.style.display = "inline";
+            return false;
+        }
 
-            storedAppraisals.forEach(appraisal => {
-                const newAppraisalCard = document.createElement("div");
-                newAppraisalCard.classList.add("appraisal-card");
+        error.style.display = "none";
+        return true;
+    }
 
-                newAppraisalCard.innerHTML = `
-                    <div class="title">${appraisal.empName} - Recent Appraisal (ID: ${appraisal.empId})</div>
-                    <div class="details">Task: ${appraisal.task}</div>
-                    <div class="details">Project: ${appraisal.project}</div>
-                    <div class="details">Review: ${appraisal.review}</div>
-                    <div class="details">Rating: ${appraisal.rating} ★</div>
-                    <div class="details">Remarks: ${appraisal.remarks}</div>
+    function validateTaskName() {
+        let taskName = document.getElementById("taskName").value;
+        let error = document.getElementById("taskName-error");
+
+        if (taskName.startsWith(" ") || taskName.endsWith(" ")) {
+            error.innerText = "Task Name cannot have leading or trailing spaces.";
+            error.style.display = "inline";
+            return false;
+        }
+
+        let pattern = /^[A-Za-z]+(?:\s[A-Za-z]+)*$/;
+        if (!pattern.test(taskName)) {
+            error.innerText = "Task Name should only contain alphabets and single spaces.";
+            error.style.display = "inline";
+            return false;
+        }
+
+        error.style.display = "none";
+        return true;
+    }
+
+    function validateFeedback() {
+        let feedback = document.getElementById("feedback").value;
+        let error = document.getElementById("feedback-error");
+
+        if (feedback.startsWith(" ") || feedback.endsWith(" ")) {
+            error.innerText = "Feedback cannot have leading or trailing spaces.";
+            error.style.display = "inline";
+            return false;
+        }
+
+        let pattern = /^[A-Za-z]+(?:\s[A-Za-z]+)*$/;
+        if (!pattern.test(feedback)) {
+            error.innerText = "Feedback should only contain alphabets and single spaces.";
+            error.style.display = "inline";
+            return false;
+        }
+
+        error.style.display = "none";
+        return true;
+    }
+
+    function validateRating() {
+        let rating = document.getElementById("rating").value;
+        let error = document.getElementById("rating-error");
+
+        if (!rating) {
+            error.innerText = "Please select a rating.";
+            error.style.display = "inline";
+            return false;
+        }
+
+        error.style.display = "none";
+        return true;
+    }
+
+    function saveAppraisal(appraisal) {
+        let appraisals = JSON.parse(localStorage.getItem("appraisals")) || [];
+        appraisals.push(appraisal);
+        localStorage.setItem("appraisals", JSON.stringify(appraisals));
+    }
+
+    function loadAppraisals() {
+        displayAppraisals();
+    }
+
+    function displayAppraisals() {
+        let container = document.getElementById("cardsContainer");
+        container.innerHTML = "";
+
+        let appraisals = JSON.parse(localStorage.getItem("appraisals")) || [];
+
+        if (appraisals.length === 0) {
+            let noDataDiv = document.createElement("div");
+            noDataDiv.classList.add("no-data-message");
+
+            let noDataImage = document.createElement("img");
+            noDataImage.src = "https://cdn-icons-png.flaticon.com/512/4076/4076478.png";
+            noDataImage.alt = "No Appraisals";
+            noDataImage.classList.add("no-data-img");
+
+            let noDataText = document.createElement("div");
+            noDataText.classList.add("no-data-text");
+            noDataText.innerHTML = `
+                <h3>No Appraisals Given</h3>
+                <p>You don't have given any performance appraisals yet. Submit the form for new appraisal.</p>
+            `;
+
+            noDataDiv.appendChild(noDataImage);
+            noDataDiv.appendChild(noDataText);
+            container.appendChild(noDataDiv);
+        } else {
+            appraisals.forEach((appraisal) => {
+                let card = document.createElement("div");
+                card.classList.add("appraisal-card");
+                card.innerHTML = `
+                    <strong>Employee Name:</strong> ${appraisal.empName} <br>
+                    <strong>Employee ID:</strong> ${appraisal.empId} <br>
+                    <strong>Task Name:</strong> ${appraisal.taskName} <br>
+                    <strong>Feedback:</strong> ${appraisal.feedback} <br>
+                    <strong>Rating:</strong> <span class="stars">${"⭐".repeat(appraisal.rating)}</span>
                 `;
-
-                rightSideContainer.appendChild(newAppraisalCard);
+                container.appendChild(card);
             });
         }
+    }
+});
     </script>
-
 </body>
 </html>
+
+
+   

@@ -3,447 +3,563 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HR Meeting Management</title>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Meeting Scheduler</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    html {
-      box-sizing: border-box;
-      font-size: 100%;
+    /* Add this CSS for error messages */
+    .error-message {
+      color: red;
+      font-size: 0.9rem;
+      margin-top: 5px;
+      display: none;
     }
 
-    *, *::before, *::after {
-      box-sizing: inherit;
-      margin: 0;
-      padding: 0;
+    .error-message.show {
+      display: block;
     }
 
+    /* Rest of the CSS remains the same */
     body {
-      font-family: 'Source Code Pro', monospace;
-      background-color: #ffffff;
       margin: 0;
       padding: 0;
+      font-family: 'Arial', sans-serif;
+      color: #333;
     }
-    .banner {
-            background-color: #3b145b;
-            color: white;
+
+   
+header {
+            position: relative;
             text-align: center;
-            height: auto;
-            padding: 10px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            width: 98%;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            height: 90px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #f8f9fa;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 20px;
         }
 
-        .banner h1 {
-            font-size: 36px;
-            color: white;
-            font-weight: 600;
-        }
-        .banner p {
-            font-size: 18px;
-            margin-top: 10px;
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-    .container {
-      display: flex;
-      flex-direction: row;
-      gap: 50px;
-      max-width: 1200px;
-      margin-left: 20px;
-      margin-top: 20px;
+        header p {
+            font-weight: 300;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            max-width: 700px;
+            opacity: 0.9;
+            z-index: 2;
+        }
+
+        @keyframes moveCircles {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-50%); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+
+        .banner-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: moveCircles 10s infinite linear;
+        }
+
+        .circle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 8s;
+        }
+
+        .circle:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            animation-duration: 12s;
+        }
+
+        .circle:nth-child(3) {
+            top: 80%;
+            left: 40%;
+            animation-duration: 15s;
+        }
+    .form-container {
+      max-width: 90%;
+      margin: 20px auto;
       padding: 20px;
+      background: linear-gradient(rgb(249, 255, 254), rgb(255, 229, 255));
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .meeting-form-container {
-      background-color: #ffffff;
-      padding: 20px;
-      border-radius: 1% 10% 1% 2%;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      flex: 1;
+    .form-group {
+      margin-bottom: 15px;
+      position: relative;
     }
 
-    .header {
-      text-align: center;
-      margin-bottom: 30px;
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #555;
     }
 
-    .header h1 {
-      color: #000000;
-      font-size: 32px;
-      margin: 0;
+    .form-group label i {
+      margin-right: 10px;
+      color: #181b1f;
     }
 
-    .meeting-form {
-      display: flex;
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
       width: 100%;
-      min-width: 500px;
-      flex-direction: column;
-    }
-
-    .meeting-form input,
-    .meeting-form textarea {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 2px solid #ccc;
+      padding: 10px;
+      border: 1px solid #ddd;
       border-radius: 5px;
-    }
-    textarea{
-      height: 120px;
-      resize: none;
-    }
-
-    .meeting-form input:focus, .meeting-form textarea:focus {
-      border-color: #007bff;
-      outline: none;
-    }
-
-    .meeting-form button,
-    .meeting-actions button {
-      background-color: #28a745;
-      color: white;
-      cursor: pointer;
       font-size: 16px;
+      box-sizing: border-box;
+    }
+ 
+    textarea {
+            width: 100%;
+            padding: 10px;
+            
+            box-sizing: border-box;
+            resize: none;
+            font-size: 16px;
+        }
+    .counter {
+            position: absolute;
+            bottom: 5px;
+            top: 80px;
+            right: 10px;
+            font-size: 14px;
+            color: gray;
+            
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+
+    button {
+      width: 60%;
+      display: block;
+      margin: auto;
+      padding: 10px;
+      background-color: #48006b;
+      color: #fff;
       border: none;
-      padding: 12px;
       border-radius: 5px;
-      margin: 10px 0;
-      transition: background-color 0.3s;
-      outline: none;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
-    .meeting-form button:hover {
-      background-color: #218838;
+    button:hover {
+      background-color: #2ca4ff;
     }
 
-    .meeting-cards-container {
-      background-color: #ffffff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      width: 100%;
-    }
-
-    .meeting-cards-container h3 {
-      margin-bottom: 20px;
-      font-size: 24px;
-      color: #343a40;
-    }
-
-    .cards {
+    .meeting-list {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      gap: 55px;
-      width: 700px;
+      width: 90%;
+      gap: 30px;
+      margin-top: 20px;
+      margin-left: 60px;
     }
 
-    .card {
-      width: 17rem;
-      color: #000000da;
-      padding: 1.5rem;
-      background-color: #ffffff;
-      pointer-events: auto;
-      transform: scale(1);
-      opacity: 1;
-      font-family:Verdana, Geneva, Tahoma, sans-serif;
-      transition: all 150ms ease-in-out;
-      display: flex;
-      flex-direction: column;
+    .meeting-card {
+      background: #ffffff;
+      width: 300px;
+      max-width: 500px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .meeting-card h3 {
+      margin: 0;
+      color: #4a90e2;
+    }
+
+    .meeting-card p {
+      margin: 5px 0;
+      color: #555;
+    }
+
+    .meeting-card .details-btn {
+      background: #4a90e2;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .meeting-card .details-btn:hover {
+      background: #0052a5a1;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      width: 90%;
+      max-width: 500px;
       position: relative;
     }
 
-    .card-title {
-      position: relative;
-      margin-bottom: 1rem;
-    }
-
-    .date {
-      color: #bb86fc;
-      font-size: 0.85rem;
-      margin-bottom: 1.5rem;
-    }
-    .description {
-      font-size: 0.9rem;
-    }
-
-    .cards:hover > .card:hover {
-      transform: scale(1.09);
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-      z-index: 10;
-      border-top: 4px solid rgb(186, 111, 12);
-    }
-
-    .cards:hover > .card:not(:hover) {
-      opacity: 0.5;
-    }
-
-    .meeting-actions .edit-btn {
-      background-color: #ffc107;
-      color: white;
-      cursor: pointer;
-      font-size: 14px;
+    .modal-content .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #ff4d4d;
+      color: #fff;
       border: none;
-      padding: 8px;
-      border-radius: 5px;
-      margin: 5px;
-      transition: background-color 0.3s;
-    }
-    .meeting-actions .cancel-btn {
-      background-color: #ff1c7b;
-      color: white;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
       cursor: pointer;
-      font-size: 14px;
-      border: none;
-      padding: 8px;
-      border-radius: 5px;
-      margin: 5px;
-      transition: background-color 0.3s;
-    }
-    .meeting-actions .update-btn {
-      background-color: #6f79ff;
-      color: white;
-      cursor: pointer;
-      font-size: 14px;
-      border: none;
-      padding: 8px;
-      border-radius: 5px;
-      margin: 5px;
-      transition: background-color 0.3s;
-    }
-    .meeting-actions .edit-btn:hover {
-      background-color: #e0a800;
-    }
-
-    .update-btn {
-      background-color: #cbc8da;
-    }
-
-    .update-btn:hover {
-      background-color: #091d52;
-    }
-
-    .cancel-btn {
-      background-color: #e81f33;
-    }
-
-    .cancel-btn:hover {
-      background-color: #c82333;
-    }
-
-    .glowing-container {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 15px;
-      margin-top: 50px;
     }
 
-    .circle {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #fff;
-      animation: glow 1.6s ease-in-out infinite;
+    .modal-content .close-btn:hover {
+      background: #cc0000;
     }
 
-    @keyframes glow {
-      0% {
-        transform: scale(1);
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-      }
-      20% {
-        transform: scale(1.2);
-        box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
-      }
-      50% {
-        transform: scale(1.4);
-        box-shadow: 0 0 50px rgba(255, 255, 255, 1);
-      }
-      80% {
-        transform: scale(1.2);
-        box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
-      }
-      100% {
-        transform: scale(1);
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-      }
+    #viewAllModal .modal-content {
+      max-height: 80vh;
+      overflow-y: auto;
     }
 
-    .glowing-container .circle:nth-child(1) {
-      background: #fff000;
-      animation-delay: -1.4s;
-      box-shadow: 0 0 10px #fff000;
+    .popup {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: linear-gradient(135deg, #4a90e2, #357abd);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: none;
+      z-index: 1000;
     }
 
-    .glowing-container .circle:nth-child(2) {
-      background: #f06292;
-      animation-delay: -1.2s;
-      box-shadow: 0 0 10px #f06292;
+    .popup.show {
+      display: block;
+      animation: fadeOut 5s forwards;
     }
 
-    .glowing-container .circle:nth-child(3) {
-      background: #4fc3f7;
-      animation-delay: -1.0s;
-      box-shadow: 0 0 10px #4fc3f7;
-    }
-
-    .glowing-container .circle:nth-child(4) {
-      background: #f57c00;
-      animation-delay: -0.8s;
-      box-shadow: 0 0 10px #f57c00;
-    }
-
-    .glowing-container .circle:nth-child(5) {
-      background: #673ab7;
-      animation-delay: -0.6s;
-      box-shadow: 0 0 10px #673ab7;
-    }
-
-    .glowing-container .circle:nth-child(6) {
-      background: #ba68c8;
-      animation-delay: -0.4s;
-      box-shadow: 0 0 10px #ba68c8;
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; }
     }
   </style>
 </head>
 <body>
-  <div class="banner">
-    <h1>Meetings Page</h1>
-    <p>schedule new meetings</p>
-</div>
-  <div class="container">
-    <div class="meeting-form-container">
-      <div class="header">
-        <h1>Create a Meeting</h1>
-      </div>
-      <form class="meeting-form" id="meeting-form">
-        <label for="meeting-title">Meeting Title</label>
-        <input type="text" id="meeting-title" placeholder="Meeting Title" required minlength="3" maxlength="50">
-        <label for="meeting-date">Meeting Date</label>
-        <input type="date" id="meeting-date" required >
-        <label for="meeting-time">Meeting time</label>
-        <input type="time" id="meeting-time" required >
-        <label for="meeting-time">Meeting Link</label>
-        <input type="text" id="meeting-link" placeholder="Meeting Link" required minlength="5" maxlength="200">
-        <label for="meeting-description">Meeting Description</label>
-        <textarea id="meeting-agenda" placeholder="Agenda" rows="4" required minlength="10" maxlength="100"></textarea>
-        <button type="submit">Create Meeting</button>
-      </form>
-      <div class="glowing-container">
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-      </div>
+  <header>
+    <div class="banner-background">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
     </div>
+    <h1>Meeting</h1>
+  </header>
 
-    <div class="meeting-cards-container">
-      <h3>Upcoming Meetings</h3>
-      <div class="cards" id="cards-container">
-        <div class="card meeting-card">
-          <h4 class="card-title">Employee Performance Review</h4>
-          <p class="date">Date: 2024-11-10</p>
-          
-          <div class="meeting-agenda">
-            <strong>Agenda:</strong>
-            <ul>
-              <li>Quarterly review of employee performance</li>
-            </ul>
-          </div>
-          <div class="meeting-actions">
-            <button class="edit-btn">Edit</button>
-            <button class="update-btn">Update</button>
-            <button class="cancel-btn">Cancel</button>
-          </div>
-        </div>
-
-        <div class="card meeting-card">
-          <h4 class="card-title">New Hire Orientation</h4>
-          <p class="date">Date: 2024-11-12</p>
-          <div class="meeting-agenda">
-            <strong>Agenda:</strong>
-            <ul>
-              <li>Introduction to company policies</li>
-            </ul>
-          </div>
-          <div class="meeting-actions">
-            <button class="edit-btn">Edit</button>
-            <button class="update-btn">Update</button>
-            <button class="cancel-btn">Cancel</button>
-          </div>
-        </div>
-
-        <div class="card meeting-card">
-          <h4 class="card-title">Compliance Training</h4>
-          <p class="date">Date: 2024-11-15</p>
-          <div class="meeting-agenda">
-            <strong>Agenda:</strong>
-            <ul>
-              <li>Annual compliance updates</li>
-            </ul>
-          </div>
-          <div class="meeting-actions">
-            <button class="edit-btn">Edit</button>
-            <button class="update-btn">Update</button>
-            <button class="cancel-btn">Cancel</button>
-          </div>
-        </div>
+  <div class="form-container">
+    <form id="meetingForm">
+      <div class="form-group">
+        <label for="title"> Title</label>
+        <input type="text" id="title" placeholder="Enter meeting title" required>
+        <div id="titleError" class="error-message">Title should contain only alphabets, numbers, and single spaces, with at least 3 alphabets.</div>
       </div>
+      <div class="form-group">
+        <label for="date"> Date</label>
+        <input type="date" id="date" required>
+        <div id="dateError" class="error-message">Date should be today or a future date within the next 6 months.</div>
+      </div>
+      <div class="form-group">
+        <label for="time"> Time</label>
+        <input type="time" id="time" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" placeholder="Enter meeting description" rows="3" maxlength="100"></textarea>
+        <div class="counter"><span id="charCount">0</span>/100</div>
+        <div id="descriptionError" class="error-message">
+            Description should contain only alphabets, numbers, and single spaces, with at least 3 alphabets.
+        </div>
+    </div>
+      <div class="form-group">
+        <label for="employeeType"> Select Employee Type</label>
+        <select id="employeeType" onchange="handleEmployeeTypeChange()">
+          <option value="all">All Employees</option>
+          <option value="department">Department</option>
+          <option value="particular">Particular Employee</option>
+        </select>
+      </div>
+      <div id="particularEmployeeFields" class="form-group" style="display: none;">
+        <label for="empName"><i class="fas fa-user"></i> Employee Name</label>
+        <input type="text" id="empName" placeholder="Enter employee name" minlength="3" maxlength="40" pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$">
+        <label for="empId"><i class="fas fa-id-card"></i> Employee ID</label>
+        <input type="text" id="empId" placeholder="Enter employee ID" minlength="7" maxlength="7"  pattern="^[ATS]{3}(?!0000)[0-9]{4}$" >
+      </div>
+      <button type="submit"> Add Meeting</button>
+    </form>
+  </div>
+
+  <h2 style="margin-left: 40px;">Upcoming meetings</h2>
+  <div id="meetingList" class="meeting-list"></div>
+  <button id="viewAllBtn" style="display: none;"><i class="fas fa-eye"></i> View All</button>
+
+
+  <div id="detailsModal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('detailsModal')">&times;</button>
+      <h3 id="modalTitle"></h3>
+      <p><strong>Date:</strong> <span id="modalDate"></span></p>
+      <p><strong>Time:</strong> <span id="modalTime"></span></p>
+      <p><strong>Description:</strong> <span id="modalDescription"></span></p>
     </div>
   </div>
 
+  <div id="viewAllModal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('viewAllModal')">&times;</button>
+      <div id="viewAllList"></div>
+    </div>
+  </div>
+
+
+  <div id="popup" class="popup">Meeting added successfully!</div>
   <script>
-  document.getElementById('meeting-form').addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  const title = document.getElementById('meeting-title').value;
-  const date = document.getElementById('meeting-date').value;
-  const time = document.getElementById('meeting-time').value;
-  const link = document.getElementById('meeting-link').value;
-  const agenda = document.getElementById('meeting-agenda').value;
-
+    let meetings = JSON.parse(localStorage.getItem('meetings')) || [];
   
-  const today = new Date().toISOString().split('T')[0]; 
+    function removeOldMeetings() {
+      const today = new Date();
+      meetings = meetings.filter(meeting => {
+        const meetingDate = new Date(meeting.date);
+        const diffInTime = today.getTime() - meetingDate.getTime();
+        const diffInDays = diffInTime / (1000 * 3600 * 24);
+        return diffInDays <= 2;
+      });
+      localStorage.setItem('meetings', JSON.stringify(meetings));
+    }
   
-
-  if (date < today) {
-    alert("The meeting date must be today or in the future.");
-    return; 
-  }
-
-  const newCard = document.createElement('div');
-  newCard.classList.add('card', 'meeting-card');
-
-  newCard.innerHTML = `
-    <h4 class="card-title">${title}</h4>
-    <p class="date">Date: ${date}</p>
-        <p class="time">time: ${time}</p>
-    <p class="description">Location: ${link}</p>
-    <div class="meeting-agenda">
-      <strong>Agenda:</strong>
-      <ul>
-        <li>${agenda}</li>
-      </ul>
-    </div>
-    <div class="meeting-actions">
-      <button class="edit-btn">Edit</button>
-      <button class="update-btn">Update</button>
-      <button class="cancel-btn">Cancel</button>
-    </div>
-  `;
-
-  document.getElementById('cards-container').appendChild(newCard);
-
+    function handleEmployeeTypeChange() {
+      const employeeType = document.getElementById('employeeType').value;
+      const particularEmployeeFields = document.getElementById('particularEmployeeFields');
+      particularEmployeeFields.style.display = employeeType === 'particular' ? 'block' : 'none';
+    }
   
-  document.getElementById('meeting-form').reset();
-});
-
+    function validateText(input, fieldName) {
+      const regex = /^[A-Za-z0-9]+(?: [A-Za-z0-9]+)*$/;
+      if (!regex.test(input)) {
+        return `${fieldName} should contain only alphabets, numbers, and single spaces.`;
+      }
+      if (input.trim().length < 3) {
+        return `${fieldName} should contain at least 3 alphabets.`;
+      }
+      return '';
+    }
+  
+    function validateDate(date) {
+      const today = new Date();
+      const sixMonthsLater = new Date();
+      sixMonthsLater.setMonth(today.getMonth() + 6);
+      const selectedDate = new Date(date);
+      if (selectedDate < today) return "Date should be a future date.";
+      if (selectedDate > sixMonthsLater) return "Date should be within the next 6 months.";
+      return '';
+    }
+  
+    function isDuplicateMeeting(newMeeting) {
+      return meetings.some(meeting =>
+        meeting.date === newMeeting.date &&
+        meeting.time === newMeeting.time &&
+        meeting.employeeType === newMeeting.employeeType &&
+        (meeting.employeeType !== 'particular' ||
+          (meeting.empName === newMeeting.empName && meeting.empId === newMeeting.empId))
+      );
+    }
+  
+    function renderMeetings() {
+      const meetingList = document.getElementById('meetingList');
+      const viewAllBtn = document.getElementById('viewAllBtn');
+      meetingList.innerHTML = '';
+      const limitedMeetings = meetings.slice(0, 5);
+      limitedMeetings.forEach((meeting, index) => {
+        const card = document.createElement('div');
+        card.className = 'meeting-card';
+        card.innerHTML = `
+          <h3>${meeting.title}</h3>
+          <p><strong>Date:</strong> ${meeting.date}</p>
+          <p><strong>Time:</strong> ${meeting.time}</p>
+          <button class="details-btn" onclick="showDetails(${index})">Details</button>
+        `;
+        meetingList.appendChild(card);
+      });
+      viewAllBtn.style.display = meetings.length > 5 ? 'block' : 'none';
+    }
+  
+    function showDetails(index) {
+      const meeting = meetings[index];
+      document.getElementById('modalTitle').textContent = meeting.title;
+      document.getElementById('modalDate').textContent = meeting.date;
+      document.getElementById('modalTime').textContent = meeting.time;
+      document.getElementById('modalDescription').textContent = meeting.description;
+      openModal('detailsModal');
+    }
+  
+    function openModal(modalId) {
+      document.getElementById(modalId).style.display = 'flex';
+    }
+  
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+    }
+  
+    function showPopup() {
+      const popup = document.getElementById('popup');
+      popup.classList.add('show');
+      setTimeout(() => popup.classList.remove('show'), 5000);
+    }
+  
+    document.getElementById('meetingForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = document.getElementById('title').value.trim();
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const description = document.getElementById('description').value.trim();
+      const employeeType = document.getElementById('employeeType').value;
+      const empName = document.getElementById('empName').value.trim();
+      const empId = document.getElementById('empId').value.trim();
+  
+      const titleError = validateText(title, "Title");
+      if (titleError) {
+        document.getElementById('titleError').textContent = titleError;
+        document.getElementById('titleError').classList.add('show');
+        return;
+      } else {
+        document.getElementById('titleError').classList.remove('show');
+      }
+  
+      const descriptionError = validateText(description, "Description");
+      if (descriptionError) {
+        document.getElementById('descriptionError').textContent = descriptionError;
+        document.getElementById('descriptionError').classList.add('show');
+        return;
+      } else {
+        document.getElementById('descriptionError').classList.remove('show');
+      }
+  
+      const dateError = validateDate(date);
+      if (dateError) {
+        document.getElementById('dateError').textContent = dateError;
+        document.getElementById('dateError').classList.add('show');
+        return;
+      } else {
+        document.getElementById('dateError').classList.remove('show');
+      }
+  
+      const newMeeting = { title, date, time, description, employeeType, empName, empId };
+      if (isDuplicateMeeting(newMeeting)) {
+        alert("A meeting already exists for the same date, time, and employee type.");
+        return;
+      }
+  
+      meetings.push(newMeeting);
+      localStorage.setItem('meetings', JSON.stringify(meetings));
+      renderMeetings();
+      document.getElementById('meetingForm').reset();
+      showPopup();
+    });
+  
+    // Real-time validations
+    document.getElementById('title').addEventListener('input', () => {
+      const title = document.getElementById('title').value.trimStart();
+      document.getElementById('title').value = title; // Prevent leading spaces
+      const error = validateText(title, "Title");
+      document.getElementById('titleError').textContent = error;
+      document.getElementById('titleError').classList.toggle('show', !!error);
+    });
+  
+    const descriptionInput = document.getElementById("description");
+    const charCount = document.getElementById("charCount");
+    const errorMessage = document.getElementById("descriptionError");
+  
+    descriptionInput.addEventListener("input", function () {
+      this.value = this.value.replace(/^\s+|\s+$/g, ''); // remove leading/trailing spaces
+      charCount.textContent = this.value.length;
+      const regex = /^(?=(.*[a-zA-Z]){3,})[a-zA-Z0-9 ]*$/;
+      errorMessage.style.display = regex.test(this.value) ? "none" : "block";
+    });
+  
+    document.getElementById('date').addEventListener('input', () => {
+      const date = document.getElementById('date').value;
+      const error = validateDate(date);
+      document.getElementById('dateError').textContent = error;
+      document.getElementById('dateError').classList.toggle('show', !!error);
+    });
+  
+   
+    document.getElementById("email").addEventListener("input", function () {
+      this.value = this.value.replace(/\s+/g, "");
+    });
+  
+   
+    document.getElementById("empName").addEventListener("input", function () {
+      this.value = this.value.replace(/^\s+|\s+$/g, '');
+    });
+    document.getElementById("empId").addEventListener("input", function () {
+      this.value = this.value.replace(/^\s+|\s+$/g, '');
+    });
+  
+    // Init
+    removeOldMeetings();
+    renderMeetings();
   </script>
-
+  
 </body>
 </html>

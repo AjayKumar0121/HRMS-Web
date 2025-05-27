@@ -1,119 +1,375 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Details - HRMS Portal</title>
+    <title>Project History - HRMS Portal</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
+       body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    
+    font-size: 18px; 
+}
+header {
+            position: relative;
+            text-align: center;
+            height: 90px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #f8f9fa;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             padding: 20px;
         }
 
-       
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            color: white !important;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-        .project-details {
-            display: flex;
-            flex-direction: column;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(145deg, #e5dbfccb, #ffe0f600);
-            width: auto;
+        header p {
+            font-weight: 300;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            max-width: 700px;
+            opacity: 0.9;
+            z-index: 2;
+        }
+
+        @keyframes moveCircles {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-50%); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+
+        .banner-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
-            padding-bottom: 100px;
-            margin-left: 20px;
-            margin-top: 20px;
+            z-index: 1;
+            overflow: hidden;
         }
 
-        .banner {
-            background-color: #3b145b;
-            color: white;
-            text-align: center;
-            height: auto;
-            padding: 10px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            width: 98%;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        .circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: moveCircles 10s infinite linear;
         }
 
-        .banner h1 {
-            font-size: 36px;
-            color: white;
-            font-weight: 600;
-        }
-        .banner p {
-            font-size: 18px;
-            margin-top: 10px;
-        }
-        h2 {
-            text-align: center;
-            font-size: 38px;
-            text-decoration: underline;
-            margin: 10px 0;
+        .circle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 8s;
         }
 
-        p, ul {
-            font-size: 25px;
-            line-height: 1.4;
-            margin: 2px 0;
+        .circle:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            animation-duration: 12s;
         }
 
-        button {
-            margin-top: 40px;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-            width: 50%;
-            display: flex;
-           
-           justify-content: center;
-           
-            margin-left: auto;
-            margin-right: auto;
-            transition: background-color 0.3s ease;
-            font-size: 18px;
+        .circle:nth-child(3) {
+            top: 80%;
+            left: 40%;
+            animation-duration: 15s;
         }
 
-        button:hover {
-            background-color: #0056b3;
-        }
-        .icon{
-            display: flex;
-            justify-content: center;
-            font-size: 28px;
-            color: brown;
-            font-weight: bold;
-        }
+     
+h1 {
+    text-align: center;
+    font-size: 48px;
+    font-family: monospace;
+    color: #333;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column; 
+    width: 100%;
+    height: auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.project-history {
+    display: flex;
+    flex-direction: row;
+    gap: 30px; 
+}
+
+.part-1, .part-2 {
+    display: flex;
+    flex-direction: column; 
+    width: 90%;
+    height: auto;
+    padding: 30px; 
+    background-color: #e8f0fe;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.part-1 ul {
+    list-style: none;
+    font-size: 28px; 
+}
+
+.milestone {
+    margin-bottom: 10px; 
+    font-size: 30px; 
+    border-radius: 6px;
+    padding: 10px;
+    background-color: #d1e7dd;
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #e0e0e0; 
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 5px;
+    font-size: 26px; 
+}
+
+.progress {
+    height: 20px;
+    background-color: #0cef36; 
+    width: 70%; 
+}
+
+button {
+    margin-top: 10px;
+    padding: 15px 20px; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 22px; 
+    background-color: #238dff;
+    color: #fff;
+}
+
+button:hover {
+    background-color: #1a6cb3; 
+}
+
+.employee-list {
+    list-style-type: none; 
+    font-size: 26px;
+    padding: 0;
+}
+
+.employee-list li {
+    margin: 8px 0; 
+    padding: 12px; 
+    border-radius: 5px;
+    background-color: #e9ecef;
+    transition: background-color 0.3s ease;
+}
+
+.employee-list li:hover {
+    background-color: #d1e7dd; 
+}
+
+.milestones {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 30px; 
+}
+
+      .projectname{
+        font-size: 32px;
+      }
+      h3{
+        font-size: 28px;
+      }
+
+      /* Large Screens (Desktops, 1200px and above) */
+@media screen and (min-width: 1200px) {
+    .project-history {
+        flex-direction: row;
+    }
+    .part-1, .part-2 {
+        width: 45%;
+    }
+    h1 {
+        font-size: 48px;
+    }
+    .projectname {
+        font-size: 32px;
+    }
+    h3 {
+        font-size: 28px;
+    }
+}
+
+/* Medium Screens (Tablets, 768px - 1199px) */
+@media screen and (max-width: 1199px) {
+    .project-history {
+        flex-direction: column;
+    }
+    .part-1, .part-2 {
+        width: 90%;
+    }
+    h1 {
+        font-size: 40px;
+    }
+    .projectname {
+        font-size: 28px;
+    }
+    h3 {
+        font-size: 24px;
+    }
+    .milestone, .progress-bar, .employee-list {
+        font-size: 22px;
+    }
+}
+
+/* Small Screens (Phones, 576px - 767px) */
+@media screen and (max-width: 767px) {
+    .main-content {
+        padding: 20px;
+    }
+    .banner h1 {
+        font-size: 28px;
+    }
+    h1 {
+        font-size: 32px;
+    }
+    .projectname {
+        font-size: 24px;
+    }
+    h3 {
+        font-size: 20px;
+    }
+    .milestone, .progress-bar, .employee-list {
+        font-size: 20px;
+    }
+    button {
+        font-size: 18px;
+        padding: 12px 18px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .main-content {
+        padding: 15px;
+    }
+    .banner {
+        width: 98%;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .banner h1 {
+        font-size: 20px;
+    }
+
+    .banner p {
+        font-size: 12px;
+    }
+    h1 {
+        font-size: 28px;
+    }
+    .part-1,.part-2{
+        width: 85%;
+    }
+    .projectname {
+        font-size: 20px;
+    }
+    h3 {
+        font-size: 18px;
+    }
+    .milestone, .progress-bar, .employee-list {
+        font-size: 18px;
+    }
+    .milestones{
+        font-size: 19px;
+    }
+    .phases{
+        font-size: 16px;
+    }
+    button {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+}
+
     </style>
 </head>
-<body> <div class="banner">
-    <h1>Project Details</h1>
-    <p>Track and download project Details</p>
-</div>
-    
-    <div class="project-details">
-        <h2>Project Details</h2>
-        <p><strong>Project Name:</strong> Human Resources Management System</p>
-        <p><strong>Client:</strong> Astrolite Tech Solutions</p>
-        <p><strong>Description:</strong> A comprehensive system to manage HR functions including employee records, attendance tracking, and payroll management.</p>
-        <p><strong>Technologies Used:</strong> HTML, CSS, JavaScript, Node.js, Angular, React, MongoDB</p>
-        <p><strong>Time Line:</strong></p>
-        <ul>
-            <li>Start Date: 01-08-2024</li>
-            <li>End Date: 31-12-2024</li>
-        </ul>
-        <p><strong>Team Size:</strong> 10 Members</p>
-        <p><strong>Project Status:</strong> In Progress</p>
-        <p class="icon">Complete Details: 👇</p>
-        <button class="Document">Download Documentation</button>
+<body>
+  
+    <header>
+        <div class="banner-background">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+        </div>     
+        <h1>Project History</h1>
+        <p>Track complete project history</p>
+       
+      </header>
+    <div class="main-content">
+       
+        <div class="project-history">
+            <div class="part-1">
+                <p class="projectname"><strong>Name of the Project:</strong> HRMS Portal</p>
+                <p class="projectname"><strong>Current Phase:</strong> Development</p>
+                <p class="milestones"><strong>Milestones:</strong></p>
+                <div class="milestone">Project Kickoff - <span style="color: green;">Completed</span></div>
+                <div class="milestone">Requirements Gathering - <span style="color: green;">Completed</span></div>
+                <div class="milestone">Design Phase - <span style="color: green;">Completed</span></div>
+                <div class="milestone">Development Phase - <span style="color: red;">Upcoming</span></div>
+                <p class="milestones"><strong>Upcoming Deadlines:</strong></p>
+                <ul>
+                    <li class="phases">Design Phase Completion: <strong>15-08-2024</strong></li>
+                    <li class="phases">Development Phase Start: <strong>09-09-2024</strong></li>
+                </ul>
+            </div>
+            <div class="part-2">
+                <p class="milestones"><strong>Current Progress:</strong></p>
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+                <p>70% Complete</p>
+                <h3>Employee Contributions:</h3>
+                <ul class="employee-list">
+                    <li>Frontend Development: 5 Employees</li>
+                    <li>Backend Development: 4 Employees</li>
+                    <li>Database Management: 3 Employees</li>
+                    <li>UI/UX Design: 2 Employees</li>
+                    <li>Project Management: 1 Employee</li>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+           <h3>Employee Roles and Responsibilities: 
+               <a href="/Hr Modules/employee task details.html" style="text-decoration: none;">
+                   <button>Check Details</button>
+               </a>
+           </h3>
+        </div>
     </div>
 </body>
 </html>
+            

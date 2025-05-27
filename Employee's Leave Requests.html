@@ -9,234 +9,520 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-        body {
             font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        .banner {
-            background-color: #3b145b;
-            color: white;
-            text-align: center;
-            height: auto;
-            padding: 10px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            width: 98%;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .banner h1 {
-            font-size: 36px;
-            color: white;
-            font-weight: 600;
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
-        .banner p {
-            font-size: 18px;
-            margin-top: 10px;
-        }
-        .main {
+        header {
+            position: relative;
+            text-align: center;
+            height: 140px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #f8f9fa;
+            border-radius: 16px;
+            overflow: hidden;
             display: flex;
             width: 100%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header p {
+            font-weight: 300;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            max-width: 700px;
+            opacity: 0.9;
+            z-index: 2;
+        }
+
+        @keyframes moveCircles {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-50%); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+
+        .banner-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: moveCircles 10s infinite linear;
+        }
+
+        .circle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 8s;
+        }
+
+        .circle:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            animation-duration: 12s;
+        }
+
+        .circle:nth-child(3) {
+            top: 80%;
+            left: 40%;
+            animation-duration: 15s;
+        }
+        .leave-container {
+            display: flex;
             flex-wrap: wrap;
-            justify-content: flex-start;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .leave-card {
+            width: 420px;
+            background:linear-gradient(rgba(0, 0, 255, 0.187),white);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .profile-info {
+            font-size: 25px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        .applied-date {
+            font-size: 12px;
+            color: rgb(0, 0, 0);
+            text-align: right;
+        }
+
+        .leave-badge {
+            display: inline-block;
+            border: 2px solid #2839a7;
+            color: #210358;
+            padding: 5px 12px;
+            border-radius: 15px;
+            width: 140px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .leave-details {
+            font-size: 16px;
+            color: #000000;
+        }
+
+        .leave-details p {
+            margin: 5px 0;
+        }
+
+        .leave-details span {
+            font-weight: bold;
+        }
+
+        .card-btn {
+            display: flex;
+            margin-top: 15px;
             gap: 20px;
         }
-        .leave-cards {
-            width:300px;
-            overflow-wrap: break-word;
-            height: auto;
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: inset 0 0 10px rgba(225, 0, 255, 0.6);
-            transition: box-shadow 0.3s ease-in-out;
-        }
-        .leave-cards:hover {
-            box-shadow: inset 0 0 20px rgba(0, 255, 0, 1);
-        }
-        .leave-cards p {
-            font-size: 14px;
-            color: #333;
-            margin-bottom: 8px;
-        }
-        .leave-cards strong {
-            color: #2c3e50;
-        }
-        button {
-            width: 100px;
-            height: 30px;
-            margin-top: 10px;
-            cursor: pointer;
-            border-radius: 10px;
+
+        .btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
             border: none;
+            cursor: pointer;
             font-size: 14px;
-            transition: background-color 0.3s ease;
+            font-weight: bold;
+            transition: 0.3s;
+            text-align: center;
         }
-        .approve {
-            background-color: springgreen;
+
+        .approve-btn {
+            background: #dff0d8;
+            color: #05751f;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
         }
-        .approve:hover {
-            background-color: #28a745;
+
+        .reject-btn {
+            background: #f8d7da;
+            color: #990816;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
         }
-        .reject {
-            background-color: tomato;
+
+        .approve-btn:hover {
+            background: #c8e6c9;
         }
-        .reject:hover {
-            background-color: #dc3545;
+
+        .reject-btn:hover {
+            background: #f5c6cb;
         }
-        .temporary-message {
-    color: white;
-    padding: 10px;
-    text-align: center;
-    border-radius: 5px;
-    margin-top: 10px;
-    font-weight: bold;
-    transition: opacity 1s ease;
+
+        .confirmation-box {
+            background: transparent;
+            border: 1px solid #ffeeba;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .confirmation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .yes-btn {
+            background: #28a745;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .no-btn {
+            background: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+    .leave-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .leave-card {
+        width: 90%;
+    }
+
+    .banner h1 {
+        font-size: 28px;
+    }
+
+    .banner p {
+        font-size: 16px;
+    }
+
+    .profile img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .profile-info {
+        font-size: 18px;
+    }
+
+    .leave-details {
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 13px;
+    }
 }
 
-        .see-details {
-            font-size: 12px;
-            color: #ffffff;
-            background: rgb(91, 91, 237);
-            border: 1px solid #ccc;
-            cursor: pointer;
-            text-decoration: none;
+
+@media (max-width: 480px) {
+    .leave-card {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .profile img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .profile-info {
+        font-size: 16px;
+    }
+
+    .leave-badge {
+        font-size: 14px;
+        padding: 4px 10px;
+    }
+
+    .leave-details {
+        font-size: 12px;
+    }
+
+    .btn {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .banner {
+        padding: 15px;
+    }
+
+    .banner h1 {
+        font-size: 24px;
+    }
+
+    .banner p {
+        font-size: 14px;
+    }
+}
+
+.leave-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: baseline;
+}
+
+.label {
+    width: 150px;  /* Adjust width to align labels */
+    text-align: left;  /* Align the labels to the right */
+    margin-right: 5px;  /* Space between label and colon */
+}
+
+.colon {
+    margin-right: 25px;  /* Space between colon and value */
+}
+
+.value {
+    flex: 1;
+    font-weight: 100;
+    color: #000d62;  /* Ensure values take the remaining space */
+}
+.no-data {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin: 40px auto;
+            grid-column: 1 / -1;
         }
-        .status {
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: 10px;
+
+        .no-data-img {
+            width: 250px;
+            height: auto;
+            opacity: 0.7;
+            margin-bottom: 20px;
         }
-        .approved {
-            color: green;
+
+        .no-data h3 {
+            font-size: 1.5rem;
+            color: #495057;
+            margin-bottom: 10px;
         }
-        .rejected {
-            color: red;
+
+        .no-data p {
+            font-size: 1rem;
+            color: #495057;
+            opacity: 0.7;
+            max-width: 500px;
         }
+
+
+
     </style>
 </head>
 <body>
     <div class="banner">
-        <h1>Employee's Leave Management Page</h1>
-        <p>View and manage employee's leave requests</p>
-    </div>
-    <div class="main" id="leave-requests">
-    </div>
-    
+        
+      </div>
+      <header>
+        <div class="banner-background">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+<h1>Employee Leave Requests</h1>
+        <p>Track and manage employee leave requests</p>
+    </header>
+
+    <div class="leave-container" id="leave-requests"></div>
+
     <script>
-       
-       function displayLeaveRequests() {
-            const leaveApplications = JSON.parse(localStorage.getItem('leaveApplications')) || [];
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            const options = { day: '2-digit', month: 'short', year: 'numeric' };
+            return date.toLocaleDateString('en-GB', options);
+        }
+
+        function displayLeaveRequests() {
+            const leaveApplications = JSON.parse(localStorage.getItem('leaves')) || [];
             const leaveRequestsContainer = document.getElementById('leave-requests');
             leaveRequestsContainer.innerHTML = '';
-    
+            if (leaveApplications.length === 0) {
+        leaveRequestsContainer.innerHTML = `
+              <div class="no-data">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="No leaves" class="no-data-img">
+                        <h3>No Requested Leaves Found</h3>
+                        <p>You don't have any requested leaves yet. Check back later.</p>
+                    </div>
+        `;
+        return;
+    }
+
             leaveApplications.forEach((leaveDetails, index) => {
-                const leaveRequestCard = document.createElement('div');
-                leaveRequestCard.classList.add('leave-cards');
-                leaveRequestCard.setAttribute('data-index', index);
-    
-                let leavePeriod = `${leaveDetails.fromDate} to ${leaveDetails.toDate}`;
-                if (leaveDetails.fromHour && leaveDetails.toHour) {
-                    leavePeriod += `, From: ${leaveDetails.fromHour} to ${leaveDetails.toHour}`;
-                }
-    
-                leaveRequestCard.innerHTML = `
-                    <p>Name: <strong>${leaveDetails.name}</strong></p>
-                    <p>Employee ID: ${leaveDetails.empId}</p>
-                    <p>Leave Type: ${leaveDetails.leaveType}</p>
-                    <p>Leave Period: ${leavePeriod}</p>
-                    <p>Reason for Leave: <button class="see-details">See Details</button></p>
-                    <div class="reason-details" style="display: none;"><p>${leaveDetails.reason}</p></div>
-                    <button class="approve">Approve</button>
-                    <button class="reject">Reject</button>
-                    <div class="temporary-message" style="display:none;"></div>
+                const leaveCard = document.createElement('div');
+                leaveCard.classList.add('leave-card');
+                leaveCard.setAttribute('data-index', index);
+
+                let leavePeriod = `${formatDate(leaveDetails.fromDate)} - ${formatDate(leaveDetails.toDate)}`;
+                let leaveDuration = leaveDetails.fromDate === leaveDetails.toDate && leaveDetails.fromHour && leaveDetails.toHour
+                    ? `${leaveDetails.fromHour} to ${leaveDetails.toHour}`
+                    : `${leaveDetails.leaveDuration || '1 day(s)'}`;
+
+                leaveCard.innerHTML = `
+                    <div class="card-header">
+                        <div class="profile">
+                            <img src="https://www.shutterstock.com/image-photo/east-asian-handsome-man-wearing-260nw-421534108.jpg" alt="Profile">
+                            <div class="profile-info">${leaveDetails.name}</div>
+                        </div>
+                        <div class="applied-date">Applied on <br> ${formatDate(new Date())}</div>
+                    </div>
+
+                    <span class="leave-badge">${leaveDetails.leaveType}</span>
+
+               <div class="leave-details">
+                    <div class="detail-item">
+                        <span class="label">Leave Date</span><span class="colon">:</span> <span class="value">${leavePeriod}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Duration</span><span class="colon">:</span> <span class="value">${leaveDuration}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Leave Balance</span><span class="colon">:</span> <span class="value">10 day(s)</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Reason</span><span class="colon">:</span> <span class="value">${leaveDetails.reason}</span>
+                    </div>
+                </div>
+                    <div class="card-btn">
+                        <button class="btn approve-btn">APPROVE</button>
+                        <button class="btn reject-btn">REJECT</button>
+                    </div>
+                    <div class="confirmation-box">
+                        <p class="confirmation-text"></p>
+                        <div class="confirmation-buttons">
+                            <button class="yes-btn">Yes</button>
+                            <button class="no-btn">No</button>
+                        </div>
+                    </div>
                 `;
-    
-                const seeDetailsButton = leaveRequestCard.querySelector('.see-details');
-                const reasonDetails = leaveRequestCard.querySelector('.reason-details');
-                const approveButton = leaveRequestCard.querySelector('.approve');
-                const rejectButton = leaveRequestCard.querySelector('.reject');
-                const messageContainer = leaveRequestCard.querySelector('.temporary-message');
-    
-                seeDetailsButton.addEventListener('click', function() {
-                    reasonDetails.style.display = reasonDetails.style.display === 'none' ? 'block' : 'none';
+
+                const approveButton = leaveCard.querySelector('.approve-btn');
+                const rejectButton = leaveCard.querySelector('.reject-btn');
+                const confirmationBox = leaveCard.querySelector('.confirmation-box');
+                const confirmationText = leaveCard.querySelector('.confirmation-text');
+                const yesButton = leaveCard.querySelector('.yes-btn');
+                const noButton = leaveCard.querySelector('.no-btn');
+
+                approveButton.addEventListener('click', () => {
+                    showConfirmationBox(confirmationBox, confirmationText, index, 'approve');
                 });
-    
-                approveButton.addEventListener('click', function() {
-                    messageContainer.innerHTML = `
-                        <p>Are you sure you want to approve this leave request?</p>
-                        <button class="confirm-approve">Yes</button>
-                        <button class="cancel">No</button>
-                    `;
-                    messageContainer.style.display = 'block';
-    
-                    const confirmApproveButton = messageContainer.querySelector('.confirm-approve');
-                    const cancelButton = messageContainer.querySelector('.cancel');
-    
-                    confirmApproveButton.addEventListener('click', function() {
-                        messageContainer.textContent = 'Approved';
-                        messageContainer.style.backgroundColor = '#4CAF50';
-    
-                        updateStatusInLocalStorage(index, 'Approved');
-                        removeLeaveRequestFromLocalStorage(index);
-    
-                        leaveRequestCard.remove();
-                    });
-    
-                    cancelButton.addEventListener('click', function() {
-                        messageContainer.style.display = 'none';
-                    });
+
+                rejectButton.addEventListener('click', () => {
+                    showConfirmationBox(confirmationBox, confirmationText, index, 'reject');
                 });
-    
-                rejectButton.addEventListener('click', function() {
-                    messageContainer.innerHTML = `
-                        <p>Are you sure you want to reject this leave request?</p>
-                        <button class="confirm-reject">Yes</button>
-                        <button class="cancel">No</button>
-                    `;
-                    messageContainer.style.display = 'block';
-    
-                    const confirmRejectButton = messageContainer.querySelector('.confirm-reject');
-                    const cancelButton = messageContainer.querySelector('.cancel');
-    
-                    confirmRejectButton.addEventListener('click', function() {
-                        messageContainer.textContent = 'Rejected';
-                        messageContainer.style.backgroundColor = '#f44336';
-    
-                        updateStatusInLocalStorage(index, 'Rejected');
-                        removeLeaveRequestFromLocalStorage(index);
-    
-                        leaveRequestCard.remove();
-                    });
-    
-                    cancelButton.addEventListener('click', function() {
-                        messageContainer.style.display = 'none';
-                    });
+
+                yesButton.addEventListener('click', () => {
+                    handleDecision(index, confirmationBox.dataset.action === 'approve' ? 'Approved' : 'Rejected', leaveCard);
                 });
-    
-                leaveRequestsContainer.appendChild(leaveRequestCard);
+
+                noButton.addEventListener('click', () => {
+                    confirmationBox.style.display = 'none';
+                });
+
+                leaveRequestsContainer.appendChild(leaveCard);
             });
         }
-    
+
+        function showConfirmationBox(box, text, index, action) {
+            text.textContent = `Are you sure you want to ${action} this leave request?`;
+            box.dataset.action = action;
+            box.style.display = 'block';
+        }
+
+        function handleDecision(index, status, card) {
+            updateStatusInLocalStorage(index, status);
+            card.remove();
+        }
+
         function updateStatusInLocalStorage(index, status) {
-            const leaveApplications = JSON.parse(localStorage.getItem('leaveApplications')) || [];
-            leaveApplications[index].status = status;
-            localStorage.setItem('leaveApplications', JSON.stringify(leaveApplications));
-        }
+    const leaveApplications = JSON.parse(localStorage.getItem('leaves')) || [];
     
-        function removeLeaveRequestFromLocalStorage(index) {
-            const leaveApplications = JSON.parse(localStorage.getItem('leaveApplications')) || [];
-            leaveApplications.splice(index, 1);  
-            localStorage.setItem('leaveApplications', JSON.stringify(leaveApplications));  
-        }
-    
-        window.onload = function() {
-            displayLeaveRequests();
-        };
+    if (leaveApplications[index]) {
+        leaveApplications[index].status = status; // Update status
+    }
+
+    localStorage.setItem('leaves', JSON.stringify(leaveApplications)); // Save updated data
+    window.dispatchEvent(new Event("storage")); // Notify other tabs about changes
+}
+
+
+
+        window.onload = displayLeaveRequests;
     </script>
 </body>
-
 </html>

@@ -41,7 +41,7 @@
         .welcome-text {
             position: absolute;
             top: 40%;
-            left: 4%;
+            left: 30%;
             color: #000000;
             background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
@@ -64,6 +64,7 @@
             color: white;
             border: none;
             border-radius: 5px;
+            margin-left: auto;
             padding: 10px 20px;
             font-size: 1rem;
             cursor: pointer;
@@ -74,6 +75,90 @@
         button:hover {
             background-color: rgb(5, 70, 90);
         }
+        /* Large Screens (Desktops, 1200px and above) */
+@media screen and (min-width: 1200px) {
+    .welcome-text {
+        top: 40%;
+        left: 30%;
+        padding: 30px;
+    }
+    .welcome-text h1 {
+        font-size: 3rem;
+    }
+    .welcome-text p {
+        font-size: 1.5rem;
+    }
+    button {
+        font-size: 1.2rem;
+        padding: 12px 24px;
+    }
+}
+
+/* Medium Screens (Tablets, 768px - 1199px) */
+@media screen and (max-width: 1199px) {
+    .welcome-text {
+        top: 35%;
+        left: 20%;
+        width: 60%;
+        padding: 20px;
+        text-align: center;
+    }
+    .welcome-text h1 {
+        font-size: 2.5rem;
+    }
+    .welcome-text p {
+        font-size: 1.2rem;
+    }
+    button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}
+
+/* Small Screens (Phones, 576px - 767px) */
+@media screen and (max-width: 767px) {
+    .welcome-text {
+        top: 30%;
+        left: 10%;
+        width: 80%;
+        padding: 15px;
+        text-align: center;
+    }
+    .welcome-text h1 {
+        font-size: 2rem;
+    }
+    .welcome-text p {
+        font-size: 1rem;
+    }
+    button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    .video-container {
+        height: 50%;
+    }
+    .welcome-text {
+        top: 20%;
+        left: 5%;
+        width: 90%;
+        padding: 10px;
+        text-align: center;
+    }
+    .welcome-text h1 {
+        font-size: 1.8rem;
+    }
+    .welcome-text p {
+        font-size: 0.9rem;
+    }
+    button {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+}
+
     </style>
 </head>
 <body>

@@ -18,27 +18,83 @@
             width: 1000px;
             margin: 50px auto;
         }
-        .banner {
-            background-color: #3b145b;
-            color: white;
+        header {
+            position: relative;
             text-align: center;
-            height: auto;
-            padding: 10px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            width: 98%;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            height: 140px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #f8f9fa;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 20px;
         }
 
-        .banner h1 {
-            font-size: 36px;
-            color: white;
-            font-weight: 600;
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .banner p {
-            font-size: 18px;
-            margin-top: 10px;
+
+        header p {
+            font-weight: 300;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            max-width: 700px;
+            opacity: 0.9;
+            z-index: 2;
+        }
+
+        @keyframes moveCircles {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-50%); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+
+        .banner-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: moveCircles 10s infinite linear;
+        }
+
+        .circle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 8s;
+        }
+
+        .circle:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            animation-duration: 12s;
+        }
+
+        .circle:nth-child(3) {
+            top: 80%;
+            left: 40%;
+            animation-duration: 15s;
         }
 
         .form {
@@ -48,7 +104,7 @@
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
             width: 400px; 
-            height: 350px; 
+            height: 400px; 
             margin: 50px auto;
         }
         .form h2 {
@@ -62,7 +118,7 @@
         }
         .form input {
             padding: 10px;
-            width: 90%;
+            width: 96%;
             border-radius: 5px;
             border: 1px solid #ddd;
             margin-bottom: 10px;
@@ -92,6 +148,7 @@
   width: 320px;
   font-size: 17px;
   border-radius: 6px;
+  margin-left: 40px;
   font-weight: 500;
   color: var(--color);
   background-color: var(--bg-color); 
@@ -198,26 +255,225 @@ button:active {
             flex: 1;
             padding: 0 10px;
         }
+        /* Tablets and smaller screens */
+@media screen and (max-width: 1024px) {
+    .container {
+        width: 90%;
+        padding: 15px;
+        margin: 30px auto;
+    }
+
+    .banner {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .banner h1 {
+        font-size: 30px;
+    }
+
+    .banner p {
+        font-size: 16px;
+    }
+
+    .form {
+        width: 80%;
+        height: auto;
+        padding: 15px;
+    }
+
+    .form input, .form select {
+        width: 95%;
+    }
+
+    button {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .details, .section {
+        flex-direction: column;
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .row {
+        flex-direction: column;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .signature {
+        text-align: center;
+        font-size: 22px;
+    }
+}
+
+/* Mobile devices */
+@media screen and (max-width: 768px) {
+    .banner h1 {
+        font-size: 24px;
+    }
+
+    .banner p {
+        font-size: 14px;
+    }
+
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .form {
+        width: 90%;
+        height: auto;
+        padding: 10px;
+    }
+
+    .form input, .form select {
+        width: 100%;
+    }
+
+    .header h3 {
+        font-size: 1.8em;
+    }
+
+    .header span {
+        font-size: 18px;
+    }
+
+    .branch {
+        font-size: 18px;
+        justify-content: center;
+    }
+
+    .details, .section {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .signature {
+        font-size: 20px;
+    }
+
+    button {
+        width: 100%;
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .banner {
+        width: 98%;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .banner h1 {
+        font-size: 20px;
+    }
+
+    .banner p {
+        font-size: 12px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 8px;
+    }
+
+    .form {
+        width: 93%;
+        padding: 5px;
+    }
+
+    .form h2 {
+        font-size: 18px;
+    }
+
+    .form label {
+        font-size: 12px;
+        margin-left: 6px;
+    }
+
+    .form input, .form select {
+        width: 90%;
+        padding: 8px;
+        margin-left: 5px;
+        font-size: 14px;
+    }
+
+    .header h3 {
+        font-size: 1.5em;
+    }
+
+    .header span {
+        font-size: 16px;
+    }
+
+    .branch {
+        font-size: 16px;
+    }
+
+    .details, .section {
+        font-size: 14px;
+        padding: 5px;
+    }
+
+    .signature {
+        font-size: 18px;
+    }
+
+    button {
+        width: 80%;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    display: none; 
+}
+
     </style>
 </head>
 <body>
-    <div class="banner">
+    <header>
+        <div class="banner-background">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
         <h1>Employee's Payroll Page</h1>
         <p>Track complete details of employee payroll</p>
-    </div>
+    </header>
 <div class="container">
     <div class="form">
-        <h2>Enter Payslip Details</h2>
+    
         <form id="payslip-form">
             <form>
                 <label for="employee-name">Employee Name:</label>
                 <input type="text" id="employee-name" name="employee-name" placeholder="Enter Employee Name" required minlength="3" maxlength="50" pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
-                title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+                title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed." />
+                <span id="employee-name-error" class="error-message"></span>
+            
                 <label for="employeeID">Employee ID:</label>
-                <input type="text" id="employeeID" name="employeeID" placeholder="Enter EmployeeID" required minlength="7" maxlength="7" pattern="^[A-Z]{3}0[0-9]{3}$" title="ID must start with 3 capital letters followed by 4 digits">
+                <input type="text" id="employeeID" name="employeeID" placeholder="Enter EmployeeID" required minlength="7" maxlength="7"  pattern="^[ATS]{3}(?!0000)[0-9]{4}$" 
+                title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits, starting from 0001 (cannot be 0000)" />
+                <span id="employeeID-error" class="error-message"></span>
             
                 <label for="month">Select Month:</label>
-                <input type="month" name="month" id="month" required>
+                <input type="month" name="month" id="month" required />
+                <span id="month-error" class="error-message"></span>
+            
             
                 <button type="submit">Generate Payslip</button>
             </form>
@@ -307,29 +563,117 @@ button:active {
 </div>
 
 <script>
-    document.getElementById('payslip-form').addEventListener('submit', function(e) {
-        e.preventDefault();
+  document.getElementById('payslip-form').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-        const employeeName = document.getElementById('employee-name').value;
-        const month = document.getElementById('month').value;
+    const employeeName = document.getElementById('employee-name').value;
+    const employeeID = document.getElementById('employeeID').value;
+    const month = document.getElementById('month').value;
+    
+    let isValid = true;
 
-        const currentDate = new Date();
-        const currentYear = currentDate.getFullYear();
-        const currentMonth = currentDate.getMonth() + 1;
+    // Validate name
+    const namePattern = /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
+    const nameError = document.getElementById('employee-name-error');
+    if (!namePattern.test(employeeName)) {
+        nameError.innerText = "Invalid name format.";
+        nameError.style.display = "inline";
+        isValid = false;
+    } else {
+        nameError.style.display = "none";
+    }
 
-        const selectedYear = parseInt(month.split('-')[0]);
-        const selectedMonth = parseInt(month.split('-')[1]);
+    // Validate ID
+    const idPattern = /^[ATS]{3}(?!0000)[0-9]{4}$/;
+    const idError = document.getElementById('employeeID-error');
+    if (!idPattern.test(employeeID)) {
+        idError.innerText = "Invalid ID format. It should be 3 uppercase letters followed by 4 digits, and cannot be 0000.";
+        idError.style.display = "inline";
+        isValid = false;
+    } else {
+        idError.style.display = "none";
+    }
 
-        if (selectedYear >= currentYear && selectedMonth >= currentMonth) {
-            alert("Invalid selection. You cannot select the current or any future month.");
-            return;
+    // Validate month
+    const monthError = document.getElementById('month-error');
+    if (!month) {
+        monthError.innerText = "Please select a month";
+        monthError.style.display = "inline";
+        isValid = false;
+    } else {
+        const selectedDate = new Date(month + '-01');
+        const minDate = new Date('2021-01-01');
+        const today = new Date();
+        const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+        
+        if (selectedDate < minDate || selectedDate > lastMonth) {
+            monthError.innerText = "Please select a month between January 2021 and last month";
+            monthError.style.display = "inline";
+            isValid = false;
+        } else {
+            monthError.style.display = "none";
         }
+    }
 
+    if (isValid) {
         document.getElementById('employee-name-span').innerText = employeeName;
-        document.getElementById('month-span').innerText = "Payment slip for the month of " + month;
+        
+        // Format the month display (e.g., "October 2024")
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+                          "July", "August", "September", "October", "November", "December"];
+        const [year, monthNum] = month.split('-');
+        const monthName = monthNames[parseInt(monthNum) - 1];
+        document.getElementById('month-span').innerText = `Payment slip for the month of ${monthName} ${year}`;
+        
         document.getElementById('payslip').style.display = 'block';
         document.querySelector('.form').style.display = 'none';
-    });
+    }
+});
+
+
+
+
+document.getElementById('employee-name').addEventListener('input', function() {
+    const namePattern = /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
+    const nameError = document.getElementById('employee-name-error');
+    if (!namePattern.test(this.value)) {
+        nameError.innerText = "Invalid name format.";
+        nameError.style.display = "inline";
+    } else {
+        nameError.style.display = "none";
+    }
+});
+
+
+document.getElementById('employeeID').addEventListener('input', function() {
+    const idPattern = /^[ATS]{3}(?!0000)[0-9]{4}$/;
+    const idError = document.getElementById('employeeID-error');
+    if (!idPattern.test(this.value)) {
+        idError.innerText = "Invalid ID format. It should be 3 uppercase letters followed by 4 digits, and cannot be 0000.";
+        idError.style.display = "inline";
+    } else {
+        idError.style.display = "none";
+    }
+});
+
+
+document.getElementById('month').addEventListener('input', function() {
+    const monthError = document.getElementById('month-error');
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1;
+
+    const selectedYear = parseInt(this.value.split('-')[0]);
+    const selectedMonth = parseInt(this.value.split('-')[1]);
+
+    if (selectedYear >= currentYear && selectedMonth >= currentMonth) {
+        monthError.innerText = "Invalid month. You cannot select the current or any future month.";
+        monthError.style.display = "inline";
+    } else {
+        monthError.style.display = "none";
+    }
+});
+
 </script>
 
 </body>
